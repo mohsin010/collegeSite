@@ -1,0 +1,41 @@
+#label{
+  /* background-color:red ;  */
+  /* float: left; */
+  width: 99%;
+  margin-left: 0.5%;
+  margin-top: 4vh;
+  padding-bottom: 0.1%;
+  /* height: 20vh; */
+}
+#label>label, #ckeditor-child-title>label{
+  color: rgb(9, 9, 148);
+    font-weight: bold;
+    /* margin-right:3%; */
+    margin-left: 2%;
+    float: left;
+}
+#label>input{
+  /* float: left; */
+  margin-left: -57%;
+  width: 30%;
+  height: 1.7vh;
+}
+
+#ckeditor-parent{
+  width: 99%;
+  margin-left: 0.5%;
+  
+}
+
+#ckeditor-child-title{
+  width: 5%;
+  
+}
+#ckeditor-child-editor{
+  width: 91.4%;
+  margin-left: 8.6%;
+  margin-top: 0%;
+}
+#ckeditor-child-title>label{
+  margin-left: 40%;
+}

@@ -1,0 +1,115 @@
+#maincontainer{
+    /* background-color: blue; */
+    /* height: 25vh; */
+    /* margin-top: 15%; */
+    width: 150%;
+    padding: 5px;   
+} 
+/* #grandmain-container{
+    background-color: red;
+    height: 78vh;
+    width: 90%;
+    min-width: 10%;
+    margin: 0.01%;
+    padding: 0%;
+    background-color: rgb(9, 36, 116);
+    background-color: rgb(9, 36, 116);
+    margin-left: 5%;
+    border-top: 4px solid rgb(2, 1, 75);
+    
+
+  
+    animation: mymove 50s infinite;   
+} */
+
+
+#idlabel2{
+    font-size: 100%;
+    font-weight: bold;
+    color: rgba(3, 3, 105, 0.884);
+    /* margin-left: 15%; */
+    /* margin-top: 20px; */
+    margin-right: 9.2%;
+}
+
+
+#idinpt2{
+    margin-bottom: 10px;
+    width: 45%;
+    /* border-radius: 50%; */
+}
+
+#pass2{
+    font-size: 100%;
+    font-weight: bold;
+    color: rgba(3, 3, 105, 0.884);
+    /* margin-left: 15%; */
+    /* margin-top: 20px; */
+    margin-right: 6.7%;
+    /* margin-top: 50px; */
+    /* padding: 10px; */
+}
+#passinpt2{
+    margin-bottom: 10px;
+    width: 45%;
+}
+#statusLabel2{
+    font-size: 100%;
+    font-weight: bold;
+    color: rgba(3, 3, 105, 0.884);
+    margin-left: 15%;
+    margin-right: 11%;
+}
+
+#status2{
+    margin-left: 0%;
+    /* border-radius: 10%; */
+}
+
+#anchor2{
+    margin-left: 18.7%;
+    font-size: 80%;
+    font-weight: bold;
+    color: rgba(143, 10, 10, 0.979);
+}
+
+#btn9{
+    background-color: white;
+    border: 1px solid;
+    border-color: gray;
+    height: 45px;
+    margin-left: 18.7%;
+    margin-top: 0%;
+    color: rgba(3, 3, 105, 0.884);
+    font-weight: bold;    
+    /* border: none; */
+    /* margin-top: 10%; */
+    /* float: right; */
+    /* margin-left: 100%; */
+    width: 17%;
+    /* background-color: rgba(17, 65, 197,0.8); */
+
+    /* border-radius: 10px; */
+    /* border-color: rgba(9, 2, 109, 0.692) */
+ 
+}
+#btn9:hover{
+    background-color:  rgba(3, 3, 105, 0.884);
+    color: white;
+    /* border: 2px solid; */
+    /* border-color: rgba(9, 2, 109, 0.692); */
+    /* box-shadow: 5px black; */
+}
+
+#err_msg{
+    margin-left: 18.3%;
+    /* background-color: red; */
+    color: rgb(236, 14, 14);
+    font-weight: 400;
+    font-size: 90%;
+    margin-bottom: 1%;
+    margin-top: 0.5%;
+    height: 20px;
+    width: 50%;
+
+}

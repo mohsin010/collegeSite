@@ -1,0 +1,43 @@
+
+
+
+ #view{
+    margin-left:25%;
+    margin-top: 0.5vh;
+
+    padding:1px 16px;
+    background-color: rgb(49, 89, 197);
+
+} 
+ #schedule {
+    list-style-type: none;
+    margin: 0;
+    margin-left: 0.5%;
+    margin-top: 0.5vh;
+    padding: 0;
+    width: 15%;
+    background-color: #f1f1f1;
+    background-color: rgb(49, 89, 197);
+
+    position: absolute;
+    height: 20vh;
+    overflow: auto;
+}
+
+#schedule>li>a {
+    display: block;
+    color: white;
+    padding: 8px 0 8px 16px;
+    text-decoration: none;
+}
+
+#schedule>li>a.active {
+    background-color: rgb(49, 89, 197);
+    color: white;
+}
+
+#schedule>li>a:hover:not(.active) {
+    background-color: white;
+    
+    color: rgb(49, 89, 197);
+} 

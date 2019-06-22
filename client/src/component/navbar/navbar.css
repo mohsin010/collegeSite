@@ -1,0 +1,47 @@
+.nav-main{
+    background-color: rgb(52, 69, 218);
+    height: 39px;
+    width: 99%;
+    margin-left: 0.5%;
+}
+
+button{
+    height: 30px;
+    margin-left: 50px;
+    background-color: inherit;  
+    border: none;
+}
+
+.a:link, .a:visited , #anchor:link , #anchor:visited {
+    height: 50%;
+    margin-left: 50px;
+    padding: 11px 20px;
+    color: white;
+    text-align: center; 
+    text-decoration: none;
+    display: inline-block;
+    font-size: 90%;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.a:hover, .a:active, #anchor:hover  {
+    background-color: white;
+    color:  rgb(52, 69, 218);
+}
+.a{
+    height: 50%;
+    margin-left: 50px;
+    padding: 11px 20px;
+    color: white;
+    text-align: center; 
+    text-decoration: none;
+    display: inline-block;
+    font-size: 90%;
+    font-family: 'Times New Roman', Times, serif;
+}
+#btn_logout{
+   outline-style: none;
+}
+
+
+ 

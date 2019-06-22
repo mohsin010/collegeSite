@@ -1,0 +1,68 @@
+
+#nn_Assignment{
+    background-color: rgb(140, 157, 233);
+    width: 99%;
+    margin-left: 0.5%;
+    height: 37px;
+    color: red;
+    padding-left: 43%;
+    padding-top: 8px;
+    box-sizing: border-box;
+    font-weight: 420;
+    font-size: 90%;
+}
+#assignment_main_container{
+    border: 1px solid rgb(7, 7, 221);
+    width: 98.8%;
+    margin-left: 0.5%;
+    margin-top:  3px;
+}
+#assignment_container{
+
+    /* margin-top: 5vh; */
+    margin-left: 2%;
+    color: rgb(4, 4, 136);
+}
+#cap{
+    color: rgb(4, 4, 136);
+    
+}
+#tbl-assignment{
+    color: black;
+    font-size: 90%;
+    width: 90%;
+    text-align: left;
+    margin-bottom: 0.3%;
+    margin-left: 4.5%;
+    /* padding: 20px; */
+}
+#tbl-assignment>tbody>tr>th{
+    text-align: center;
+    height: 4vh;
+    font-size: 105%;
+    color: rgb(28, 28, 138);
+    background-color: rgb(162, 167, 240);
+    /* width: 10%; */
+}
+#tbl-assignment>tbody>tr>td{
+    text-align: center;
+    height: 6vh;
+}
+#tbl-assignment{
+    border: 2.5px solid rgb(197, 193, 193);
+    border-collapse: collapse;
+}
+#tbl-assignment>tbody>tr>th, #tbl-assignment>tbody>tr>td{
+    border: 1px solid rgb(197, 193, 193);
+    border-collapse: collapse;
+}
+#f-dowload{
+    color: rgb(22, 6, 255);
+    font-weight: 350 ;
+    font-size: 85%;
+}
+#d-date{
+    color: red;
+}
+
+/* Upload Assignment Styling from Here */

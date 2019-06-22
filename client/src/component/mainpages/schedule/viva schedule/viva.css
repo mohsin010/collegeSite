@@ -1,0 +1,94 @@
+#v-grand-main{
+    height: 7.5vh;
+    margin:1%;
+    /* width: 10%; */
+    padding: 0.5%;
+}
+#v-main-c{
+    border: 1px solid gray;
+    margin-top: 0.3%;
+    margin-left: 16%;
+    min-height: 50vh;
+    max-height: auto;
+    width: 83.2%;
+    padding: 0.1%;
+}
+#vupload{
+    height: 6vh;
+    background-color: rgb(202, 192, 192);
+    padding-top: 0.4%;
+}
+#vcontainer{
+    background-color: rgb(140, 157, 233);
+    height: 4vh;
+    align-content: initial;
+    padding: 0.3%; 
+    padding-left: 0.9%; 
+    padding-top: 0.5%;
+}
+.vform-inline{
+    display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  width: auto;
+}
+.vform-inline label{
+    margin: 0px 0px 0px 0px;
+}
+#vcontainer>#vtitle, #mtitle{
+    color: rgb(9, 9, 148);
+    font-weight: bold;
+    margin-left: -92%;
+}
+#mtitle{
+    margin-left: -89%;
+}
+#v-main{
+    background-color: rgb(185, 175, 175);
+    /* background-color: red; */
+    border: 2px solid rgb(160, 145, 145);    
+    border-radius: 10px;
+    width: 100%;
+    height: 7.5vh;
+}
+.vdate{
+    font-size: 80%;
+    opacity: 0.5;
+    margin-left: 1%;
+    color: rgb(99, 16, 16);
+    width: 70%;
+}
+.vtitle > a{
+    width: 70%;
+    padding: 1%;
+    height: 10px;
+}
+ #v-main > button{
+    float: right;
+    margin-top: -2.4%;
+    margin-right: 1%;
+}
+
+#vupload > form > label {
+    margin-left: 2%;
+    margin-right: 0.5%;
+    font-size: 100%;
+    font-weight: bold;
+    color: rgba(3, 3, 105, 0.884);
+}
+#vbtnn{
+    border-color: inherit;
+    background-color: rgb(155, 114, 114);
+    color: white;
+    font-weight: bold;    
+    width: 8%;
+    height: 30px;
+    border: none;
+    border-radius: 10px;
+}
+#vbtnn:hover{
+    background-color: white;
+    color: rgb(155, 114, 114);
+    border: 2px solid  rgb(155, 114, 114);
+
+}
