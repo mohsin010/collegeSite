@@ -11,8 +11,8 @@ let userSchema = mongoose.Schema({
     department: String,
     startdate: String,
     enddate: String,
-    g_id: String,
-    
+    // g_id: String,
+    cnic: String
 });
   
 

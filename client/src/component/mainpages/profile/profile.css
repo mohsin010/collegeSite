@@ -89,12 +89,12 @@ tr{
   } */
   .password__show {
     cursor: pointer;
-    position: relative;
+    /* position: relative; */
     /* bottom: 11px; */
     height: 16px;
     right: 2;
     /* margin-top: 3px; */
-    background: #727272;
+    background-color: rgba(80, 171, 245, 0.836);
     color: white;
     padding: 4px 8px;
     border-radius: 4px;

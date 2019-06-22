@@ -8,7 +8,9 @@ let faculySchema = mongoose.Schema({
     phone: String,
     password: String,
     department: String,
-    designation:String
+    designation:String,
+    description: String,
+
 })
 
 let Faculty = mongoose.model('faculty', faculySchema);

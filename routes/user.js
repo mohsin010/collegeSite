@@ -6,6 +6,7 @@ let passport = require('passport')
 let User = require('../db/model/user');
 let Faculty = require('../db/model/faculty');
 let Assignments = require('../db/model/assignments');
+let AssignmentsMarks = require('../db/model/assignments_marks');
 const multer = require('multer');
 let path = require('path');
 let crypto = require('crypto');
@@ -19,9 +20,9 @@ var storage = multer.diskStorage({
     filename: function (req, file, cb) {
         crypto.pseudoRandomBytes(16, function (err, raw) {
             if (err) return cb(err)
-      
-            cb(null, file.originalname )
-          })
+
+            cb(null, file.originalname)
+        })
         // cb(null, file.fieldname + '-' + Date.now())
     }
 })
@@ -54,20 +55,28 @@ router.post('/assignments', upload.single('file'), function (req, res) {
     if (req.file) {
         req.body.file = req.file.path;
     }
-    Assignments.findOneAndUpdate({ rollno: req.body.rollno }, req.body, (err, rec) => {
-        if (rec) {
+    Assignments.find({ rollno: req.body.rollno }, req.body, (err, rec) => {
+
+        let newAssignment = new Assignments(req.body);
+        newAssignment.save((err, rec) => {
             res.json(err || rec);
-        } else {
-            let newAssignment = new Assignments(req.body);
-            newAssignment.save((err, rec) => {
-                res.json(err || rec);
-            })
-        }
+        })
+
+    })
+})
+router.post('/assignments_marks', function (req, res) {
+
+    AssignmentsMarks.find({ rollno: req.body.rollno }, (err, rec) => {
+
+        let newAssignment = new AssignmentsMarks(req.body);
+        newAssignment.save((err, rec) => {
+            res.json(err || rec);
+        })
 
     })
 })
 router.post('/assignment_display', function (req, res) {
-    Assignments.findOne({ rollno: req.body.rollno }, (err, rec) => {
+    Assignments.find({ rollno: req.body.rollno }, (err, rec) => {
 
         res.json(err || rec || { rec: "false" });
     })
@@ -114,17 +123,18 @@ router.post('/login', function (req, res, next) {
 
 })
 
+// Faculty signup
 
-router.post('/fsignup', function (req, res) {
+router.post('/sup_signup', function (req, res) {
 
-    Faculty.findOne({ rollno: req.body.rollno }, (err, user) => {
+    Faculty.findOne({ cnic: req.body.cnic }, (err, user) => {
 
         if (user) {
             res.json(user);
         } else {
 
-            let newUser = new User(req.body);
-            newUser.save((err, user) => {
+            let newMember = new Faculty(req.body);
+            newMember.save((err, user) => {
                 res.json(err || { success: true });
             })
         }

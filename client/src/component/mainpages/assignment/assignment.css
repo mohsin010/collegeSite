@@ -30,10 +30,10 @@
 #tbl-assignment{
     color: black;
     font-size: 90%;
-    width: 90%;
+    width: 99%;
     text-align: left;
     margin-bottom: 0.3%;
-    margin-left: 4.5%;
+    margin-left: 0.5%;
     /* padding: 20px; */
 }
 #tbl-assignment>tbody>tr>th{
@@ -64,5 +64,23 @@
 #d-date{
     color: red;
 }
+.a_marks{
+    width: 13%;
+}
+.a_topic_title{
+    width: 21%;
+}
+#tbl-result{
+    /* width: 100%; */
+}
+#main_edit_assign ,#main_edit_marks{
+    width: 40%;
+    display: block;
+    /* position: absolute; */
+}
 
+#main_edit_marks{
+    /* margin-top: 0px; */
+    /* position: absolute; */
+}
 /* Upload Assignment Styling from Here */

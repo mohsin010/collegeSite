@@ -9,7 +9,7 @@ class Signin extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			rollno: '',
+			cnic: '',
 			password: '',
 			status: ''
  
@@ -60,11 +60,11 @@ class Signin extends Component {
 					<form onSubmit={this.submitForm}>
 						<p id='err_msg'></p>
 
-						<label id={'idlabel2'}>Roll No</label>
-						<input id={'idinpt2'} required={'required'} type='text' name='rollno' onChange={this.handleInput} />
+						<label id={'idlabel2'}>CNIC</label>
+						<input id={'idinpt2'} required={'required'} maxLength='13' type='numeric' name='cnic' placeholder='Please enter 13 digit Cnic' onChange={this.handleInput} />
 						<br></br>
 						<label id={'pass2'}>Password</label>
-						<input id={'passinpt2'} required={'required'} type='password' name='password' onChange={this.handleInput} />
+						<input id={'passinpt2'} required={'required'} type='password' name='password' placeholder='Please enter your password' onChange={this.handleInput} />
 						<br></br>
 						{/* <label id={'statusLabel2'}>Status</label> */}
 						{/* <select name={'status'} id={'status2'} required  onChange={this.handleInput}>

@@ -105,7 +105,7 @@ h2{
     margin-right: 13.3%;
 }
 #submaincontainer1>form>#deptlabel{
-    margin-right: 7.9%;
+    margin-right: 8.2%;
 }
 #department, #program{
     margin-bottom: 2%;
@@ -260,3 +260,16 @@ hr{
         overflow-y:scroll;
     }
 } */
+
+/* sup_signup */
+#cniclabel{
+ margin-right: 17% !important;
+ color: red ;  
+}
+#desiglabel{
+    margin-right: 8.5% !important;
+}
+#descrlabel{
+    margin-right: 9.35% !important;
+    vertical-align: top ;
+}

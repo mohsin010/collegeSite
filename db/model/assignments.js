@@ -6,7 +6,9 @@ let assignmentsSchema = mongoose.Schema({
     due_date: String,
     title: String,
     rollno: String,
-    file: String
+    file: String,
+    total_marks: String,
+    obtain_marks: String
 })
 
 let Assignments = mongoose.model('assignments', assignmentsSchema);

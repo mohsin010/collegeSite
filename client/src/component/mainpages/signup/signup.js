@@ -19,7 +19,8 @@ class Signup extends Component {
             department: '',
             program: '',
             startdate: '',
-            enddate: ''
+            enddate: '',
+            cnic:''
         }
         this.handleInput = this.handleInput.bind(this)
         this.submitForm = this.submitForm.bind(this)
@@ -36,7 +37,9 @@ class Signup extends Component {
             [evt.target.name]: evt.target.value,
             [evt.target.name]: evt.target.value,
             [evt.target.name]: evt.target.value,
+            [evt.target.name]: evt.target.value,
             [evt.target.name]: evt.target.value
+
         })
     }
     submitForm = (e) => {
@@ -75,7 +78,7 @@ class Signup extends Component {
                                 <br></br>
 
                                 <label id={'flabel'}>F Name</label>
-                                <input id={'fnam'} type='text' name='fname' placeholder='Father Name' onChange={this.handleInput} />
+                                <input id={'fnam'} type='text'  name='fname' placeholder='Father Name' onChange={this.handleInput} />
                                 <br></br>
 
                                 <label id={'emaillabel'}>Email</label>
@@ -91,6 +94,10 @@ class Signup extends Component {
                                 
                                 <label id={'rollnolabel'}>Roll No</label>
                                 <input type='number' name='rollno' placeholder='Roll No' onChange={this.handleInput} />
+                                <br></br>
+                                 
+                                <label id={'cniclabel'}>Cnic</label>
+                                <input type='numeric' maxLength='13' minLength='13' name='cnic' placeholder='eg. (0000000000000)' onChange={this.handleInput} />
                                 <br></br>
                                 <label id={'deptlabel'}>Department</label>
                                 <select name='department' id={'department'} onChange={this.handleInput} >

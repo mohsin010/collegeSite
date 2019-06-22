@@ -8,16 +8,16 @@ class AssignmentDisplay extends Component {
         super(props);
         this.state = {
             rollno: this.props.login.loggedInUser.rollno,
-            no: '',
-            title: '',
-            topic: '',
-            due_date: '',
-            file: '',
+            assignments: [],
             display1: 'none',
             display2: 'none'
         };
-      
-            
+
+
+        
+
+    }
+    componentDidMount(){
         if (this.state.rollno) {
             fetch('/assignment_display', {
                 method: 'POST',
@@ -25,37 +25,55 @@ class AssignmentDisplay extends Component {
                     'Content-Type': 'Application/json'
                 },
                 body: JSON.stringify(this.state)
-            }).then((resp) => resp.json()).then((resp) => {
-                if (resp.rollno || !resp.rollno) {
-                    if (resp == true ) {
-                        this.setState({
-                            
-                            display1: 'block'
+            }).then((resp) => resp.json()).then((assignments) => {
 
-                        })
-                    }else if(resp.rollno){
-                        this.setState({
-                            no: resp.no,
-                            title: resp.title,
-                            topic: resp.topic,
-                            due_date: resp.due_date,
-                            file: resp.file,
-                            display1: 'block'
-
-                        })
-                    } else {
-                        console.log('hyy');
-                        this.setState({
-                            display1:'none',
-                            display2: 'block'
-                        })
-                }
-                }
-
+                if (assignments) {
+                this.setState({ 
+                    
+                    assignments : assignments ,
+                    display1: 'block',
+                });
+            }else{
+                this.setState({display2:'block'})
+            }
             })
         }
-
     }
+
+    // let resp = {}
+
+    // return;
+
+
+    // if (resp.rollno || !resp.rollno) {
+    //     if (resp == true) {
+    //         this.setState({
+
+    //             display1: 'block'
+
+    //         })
+    //     } else if (resp.rollno) {
+    //         this.setState({
+    //             no: resp.no,
+    //             title: resp.title,
+    //             topic: resp.topic,
+    //             due_date: resp.due_date,
+    //             file: resp.file,
+    //             total_marks: resp.total_marks,
+    //             obtain_marks: resp.obtain_marks,
+    //             display1: 'block'
+
+    //         })
+    //     } else {
+    //         console.log('hyy');
+    //         this.setState({
+    //             display1: 'none',
+    //             display2: 'block'
+    //         })
+    //     }
+    // }
+
+
 
     render() {
         return (
@@ -70,20 +88,34 @@ class AssignmentDisplay extends Component {
                             <tbody>
                                 {/* <caption>Instructor's Info</caption> */}
                                 {/* <hr /> */}
+
                                 <tr>
                                     <th>No</th>
-                                    <th>Title</th>
-                                    <th>Topic</th>
-                                    <th>Assignment</th>
-                                    <th>Due Date</th>
+                                    <th className='a_topic_title'>Title</th>
+                                    <th className='a_topic_title'>Topic</th>
+                                    <th className='a_marks'>Assignment</th>
+                                    <th className='a_marks'>Due Date</th>
+                                    <th className='a_marks'>Total Marks</th>
+                                    <th className='a_marks'>Marks Obtained</th>
+
                                 </tr>
-                                <tr>
-                                    <td>{this.state.no}</td>
-                                    <td>{this.state.title}</td>
-                                    <td>{this.state.topic}</td>
-                                    <td><a href={this.state.file} download id='f-dowload'>(Download File)</a></td>
-                                    <td id='d-date'>{this.state.due_date}</td>
-                                </tr>
+
+
+                                {this.state.assignments.map( (assignment) => {
+
+                                    return <tr>
+                                        <td>{assignment.no}</td>
+                                        <td>{assignment.title}</td>
+                                        <td>{assignment.topic}</td>
+                                        <td><a href={assignment.file} download id='f-dowload'>(Download File)</a></td>
+                                        <td id='d-date'>{assignment.due_date}</td>
+                                        <td >{assignment.total_marks}</td>
+                                        <td >{assignment.obtain_marks}</td>
+
+                                    </tr>
+
+                                })
+                                }
                             </tbody>
                         </table>
                     </div>
