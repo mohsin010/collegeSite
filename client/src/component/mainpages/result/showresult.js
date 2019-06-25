@@ -17,7 +17,7 @@ class UploadResult extends Component {
             linkadress: '',
             time: new Date().toLocaleString()
         };
-
+ 
     }
 
 
@@ -25,10 +25,10 @@ class UploadResult extends Component {
     render() {
         return (
             <div id='main-c'>
+                <div className='pcontainer-editor' align='left' ><p id={'user-type'} className={'p-r'}><b>Upload Result</b></p></div>
                 <form>
                     <table className={'tbl-result'} >
                         <tbody>
-                            <tr><p id={'user-type'} className={'p-r'}><b>Upload Result</b></p></tr>
                             <tr>
                                 <th>Name</th>
                                 <td className={'r-td'}><input type='text' name='name' placeholder='Student Name' /></td>

@@ -6,7 +6,7 @@
 }
 .main-c{
     border: 1px solid gray;
-    margin: 0.5%;
+    margin: 0.5%; 
     min-height: 30vh;
     max-height: auto;
     padding: 0.1%;
@@ -16,9 +16,9 @@
     background-color: rgb(202, 192, 192);
     padding-top: 0.4%;
 }
-.pcontainer{
+.pcontainer-editor-r{
     background-color: rgb(140, 157, 233);
-    height: 5vh;
+    height: 30px;
     align-content: initial;
     padding: 0.3%;  
     padding-top: 0.5%;
@@ -123,22 +123,24 @@
 .tbl-result input {
     border-radius: 2px;
 }
-/* .r-td{
-    padding: 0.5%;
-    background-color:rgb(250, 246, 246);
+.r-td{
+    width: 100%;
+    /* min-width: 40px; */
+   /* max-width: 10%; */
 
 
-} */
+}
 .p-pic{
     background-color:rgb(250, 246, 246); 
     width: 13%;
 }
 .r-btn{
+
     color: white;
     margin-top: 10%;
     margin-left: 103%;
     /* float: right;     */
-    height: 4vh;
+    height: 30px !important;
     width: 100%;
     background-color: rgba(17, 65, 197,0.8);
     border: none;
@@ -192,6 +194,14 @@
     width: 100%;
     margin-left: 31%;
 }
+
+.tbl-marks{
+    margin-top: 10px;
+}
+.th-result{
+    width: 10%;
+}
+.tbl-marks>tbody>tr:nth-child(odd) {background-color: #c9c4c4;}
 
 /* #s-view2{
     margin-left: calc

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './result.css';
 import UploadResult from './uploadresult';
-import Result from './result';
+import ResultTable from './resulttable';
+import {connect} from 'react-redux';
 
 
 class ViewResult extends Component {
@@ -17,23 +18,25 @@ class ViewResult extends Component {
 
   render() {
 
-    // if(this.state.usertype == 'teacher' || this.state.usertype == 'admin'){
-    //   return
-    // }else{
-    //   return 
-    // }
-
-
-
-    return <div>
+    if (this.props.login.loggedInUser.rollno) {
+      return <ResultTable />
+    } else {
+      return <div>
         <UploadResult />
-        <Result />
-      </div>
-    
+        <ResultTable />
 
+      </div>
+    }
   }
-  // < Result />
 
 }
+let ConnectedViewResult = connect((store) => {
 
-export default ViewResult;
+  return {
+        login: store.loginReducer
+  }
+})(ViewResult);
+
+
+export default ConnectedViewResult;
+

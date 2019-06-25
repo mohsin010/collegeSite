@@ -64,7 +64,7 @@ class Sup_AssignmentDisplay extends Component {
 
                                 </tr>
 
-
+ 
                                 {this.state.assignments.map( (assignment) => {
 
                                     return <tr>

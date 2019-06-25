@@ -1,31 +1,36 @@
 import React, { Component } from 'react';
 import './document.css';
-import  Document from './document';
+import Editor_document from './editor_document';
+import ConnectedAssignmentDisplay from './uploaddocument';
+import { connect } from "react-redux";
 
 
 class ViewDocument extends Component {
-  // constructor(props){
-  //   super(props);
-  //   this.state = {
-  //     title: '' 
-  //   }
-  //   console.log(this.state);
-  //   this.generateNotification = this.generateNotification.bind(this);
-  // }
 
-  // generateNotification(evt){
-    
-  //   this.setState({
-  //     title: evt.target.value
-  //   })
-  // }
 
 
   render() {
-    return (
-          <Document />
-    );
-  }
-}
+    if (this.props.login.loggedInUser.rollno) {
+      return <ConnectedAssignmentDisplay />
+    } else {
+      return <div>
+        <Editor_document />
+        <ConnectedAssignmentDisplay />
 
-export default ViewDocument;
+      </div>
+    }
+  }
+
+
+
+}
+let ConnectedViewDocument = connect((store) => {
+
+  return {
+        login: store.loginReducer
+  }
+})(ViewDocument);
+
+
+export default ConnectedViewDocument;
+

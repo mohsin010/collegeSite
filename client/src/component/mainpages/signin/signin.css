@@ -74,14 +74,18 @@
 }
 
 #btn9{
-    background-color: white;
-    border: 1px solid;
-    border-color: gray;
-    height: 45px;
+    background-color: rgba(17, 65, 197,0.8);
+
+    border: none;
+    border-radius: 2px;
+    /* border-color: gray; */
+    height: 30px;
     margin-left: 18.7%;
     margin-top: 0%;
-    color: rgba(3, 3, 105, 0.884);
-    font-weight: bold;    
+    margin-bottom: 15px;
+    
+    color: white;
+    /* font-weight: bold;     */
     /* border: none; */
     /* margin-top: 10%; */
     /* float: right; */
@@ -94,8 +98,8 @@
  
 }
 #btn9:hover{
-    background-color:  rgba(3, 3, 105, 0.884);
-    color: white;
+    background-color: rgba(17, 65, 197, 1);
+    
     /* border: 2px solid; */
     /* border-color: rgba(9, 2, 109, 0.692); */
     /* box-shadow: 5px black; */

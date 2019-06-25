@@ -5,7 +5,7 @@ import Result from './result';
 
 
 class UploadResult extends Component {
-    
+
     constructor(props) {
         super(props);
         // this.state = {
@@ -15,10 +15,70 @@ class UploadResult extends Component {
             components: [
 
             ],
-            linkadress: '',
-            time: new Date().toLocaleString()
+            rollno: '',
+            groupId: '',
+            marks: '',
+            grade: '',
         };
+        this.handleChange = this.handleChange.bind(this);
 
+
+    }
+
+    handleChange(evt) {
+        this.setState({
+            [evt.target.name]: evt.target.value,
+            [evt.target.name]: evt.target.value.toUpperCase(),
+            [evt.target.name]: evt.target.value,
+            [evt.target.name]: evt.target.value.toUpperCase()
+        })
+    }
+    componentDidMount() {
+        this.submitData = (e) => {
+            e.preventDefault();
+
+            fetch('/result', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'Application/json'
+                },
+                body: JSON.stringify(this.state),
+            }).then((resp) => resp.json()).then((resp) => {
+                if (resp.rollno) {
+                    fetch('/sup_document_display', {
+                        method: "POST"
+
+                    }).then((resp) => {
+                        return resp.json()
+                    }).then((res) => {
+
+                        this.setState({
+                            rollno: '',
+                            groupId: '',
+                            marks: '',
+                            grade: '',
+                        })
+
+                        // store.dispatch({
+                        //     type: 'assignment_uploaded',
+                        //     payload: res
+                        // });
+                    })
+
+
+                    alert('Result Successfully Published ');
+
+                } else {
+                    this.setState({
+                        rollno: '',
+                        groupId: '',
+                        marks: '',
+                        grade: '',
+                    })
+                    alert('Result Already Uploaded');
+                }
+            })
+        }
     }
 
 
@@ -26,29 +86,24 @@ class UploadResult extends Component {
     render() {
         return (
             <div className='main-c'>
-                <form>
+                <div className='pcontainer-editor-r' align='left' ><p id={'user-type'} className={'p-r'}><b> Upload Result</b></p></div>
+
+                <form onSubmit={this.submitData}>
                     <table className={'tbl-result'} >
                         <tbody>
-                            <tr><p id={'user-type'} className={'p-r'}><b>Upload Result</b></p></tr>
                             <tr>
-                                <th>Name</th>
-                                <td className={'r-td'}><input type='text' name='name' required='required' placeholder='Enter Student Name' /></td>
                                 <th>Roll No</th>
-                                <td className={'r-td'}><input type='numeric' name='rollNo' required='required' placeholder='Enter Roll no' /></td>
-                            </tr>
-                            <tr>
-                                <th>Father Name</th>
-                                <td className={'r-td'}><input type='text' name='Fname' required='required' placeholder='Enter Father Name ' /></td>
+                                <td >
+                                    <input type='numeric' className='r-td' name='rollno' required='required'  placeholder='Enter Roll no' value={this.state.rollno} onChange={this.handleChange} /></td>
                                 <th>Group ID</th>
-                                <td className={'r-td'}><input type='text' name='groupId' required='required' placeholder='Enter Group ID' /></td>
-                                {/* <td className={'p-pic'}></td> */}
-
+                                <td ><input type='text' className='r-td' name='groupId' required='required' placeholder='Enter Group ID' value={this.state.groupId} onChange={this.handleChange} /></td>
                             </tr>
+
                             <tr>
                                 <th>Marks</th>
-                                <td className={'r-td'}><input type='number' name='marks' required='required' placeholder='Enter Marks ' /></td>
+                                <td ><input type='number' className='r-td' name='marks' required='required' placeholder='Enter Marks' value={this.state.marks} onChange={this.handleChange} /></td>
                                 <th>Grade</th>
-                                <td className={'r-td'}><input type='text' name='grade'  required='required' placeholder='Enter Grade ' /></td>
+                                <td ><input type='text' className='r-td' name='grade' required='required' placeholder='Enter Grade' value={this.state.grade} onChange={this.handleChange} /></td>
 
                             </tr>
                             <tr>
@@ -58,18 +113,7 @@ class UploadResult extends Component {
                             </tr>
                         </tbody>
                     </table>
-                    {/* <div className='pcontainer' align='left' ><span  className='ptitle'>Results</span></div>
-                <div id='upload' >
-                    <form  id='form-inline' action=''>
 
-                    <label for=''>Result Title:</label>
-                    <input id='fa' required='required' type='text' name='title' value={this.state.linkadress} onChange={this.linkAdress.bind(this)} />
-
-                    <label for=''>Upload Result:</label>
-                    <input id='fb' type='file' name='uploadfile' value='' />
-                    <input type='submit' className='btnn' onClick={this.createComponents} value={'Upload Result'} /> */}
-
-                    {/* <button id='fc' name='Submit' onClick={this.genNDiv} > Click </button> */}
 
                 </form>
 

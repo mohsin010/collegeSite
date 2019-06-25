@@ -6,6 +6,8 @@ let passport = require('passport')
 let User = require('../db/model/user');
 let Faculty = require('../db/model/faculty');
 let Assignments = require('../db/model/assignments');
+let Documents = require('../db/model/document');
+let Result = require('../db/model/result');
 let AssignmentsMarks = require('../db/model/assignments_marks');
 const multer = require('multer');
 let path = require('path');
@@ -36,10 +38,90 @@ router.get('/is_authenticated', function (req, res) {
     res.json(req.user || {});
 });
 
+router.post('/result', function (req, res) {
+
+    Result.findOne( {rollno: req.body.rollno}, req.body, (err, rec) => {
+            if(rec){
+                res.json({success:false})
+            }else{
+
+                let newAssignment = new Result(req.body);
+                newAssignment.save((err, rec) => {
+                    res.json(err || rec);
+                })
+            }
+    })
+})
+router.post('/result_display', function (req, res) {
+    Result.find({ rollno: req.body.rollno }, (err, rec) => {
+
+        res.json(err || rec || { rec: "false" });
+    })
+})
+
+router.post('/sup_result_display', function (req, res) {
+    Result.find((err, rec) => {
+
+        res.json(err || rec || { rec: "false" });
+    })
+})
+
+router.post('/delete_marks', function (req, res) {
+
+    Result.findOneAndDelete({ rollno: req.body.rollno}, req.body, (err, rec) => {
+
+        if (rec) {
+            res.json(rec)
+        } else {
+            console.log('an Error is occurd');
+        }
+    })
+})
+
+router.post('/documents', upload.single('file'), (req, res) => {
+    if (req.file) {
+        req.body.file = req.file.path;
+    }
+    Documents.find( req.body, (err, rec) => {
+
+        let newAssignment = new Documents(req.body);
+        newAssignment.save((err, rec) => {
+            res.json(err || rec);
+        })
+
+    })
+})
+
+
+
+router.post('/document_display', function (req, res) {
+    Documents.find( (err, rec) => {
+
+        res.json(err || rec || { rec: "false" });
+    })
+})
+
+router.post('/sup_document_display', function (req, res) {
+    Documents.find((err, rec) => {
+
+        res.json(err || rec || { rec: "false" });
+    })
+})
+
+router.post('/delete_document', function (req, res) {
+
+    Documents.findOneAndDelete({ linkadress: req.body.linkadress}, req.body, (err, rec) => {
+
+        if (rec) {
+            res.json(rec)
+        } else {
+            console.log('an Error is occurd');
+        }
+    })
+})
 
 
 router.post('/assignments', upload.single('file'), (req, res) => {
-    debugger;
     if (req.file) {
         req.body.file = req.file.path;
     }

@@ -70,9 +70,9 @@
 .a_topic_title{
     width: 21%;
 }
-#tbl-result{
-    /* width: 100%; */
-}
+/* .tbl-result > tbody > tr> th{
+    margin-right: 40px;
+} */
 #main_edit_assign ,#main_edit_marks{
     width: 99%;
     display: block;
@@ -91,25 +91,27 @@
 
 }
 #btn_delete{
-    background-color: rgb(6, 6, 223);
+    background-color: rgba(17, 65, 197,0.8);
+    
     color: white;
     margin-left: 0%;
     outline: none;
+    height: 25px;
     border: 1px solid blue;
-    border-radius: 10px;
+    border-radius: 2px; 
     /* float:left; */
 }
+.b-td{
+    width: 100%;
+    /* margin-right: 10px; */
+}
 #btn_delete:hover{
-    background-color: rgb(238, 234, 234);
-    color: rgb(6, 6, 165);
+    background-color: rgba(17, 65, 197, 1);
+    /* color: rgb(6, 6, 165); */
 
 }
 #a_no{
     width: 5%;
 }
+/* #marks:nth-child(even) {background-color: #c9c4c4;} */
 
-#main_edit_marks{
-    /* margin-top: 0px; */
-    /* position: absolute; */
-}
-/* Upload Assignment Styling from Here */

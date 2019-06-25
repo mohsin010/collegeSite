@@ -156,32 +156,33 @@ hr{
 }
 
 #submaincontainer1 > form > #btn{
-    background-color: white;
+    background-color: rgba(17, 65, 197,0.8);
+    
     /* animation: my3ndmove 5s infinite reverse;    */
 
      /* background-color: inherit; */
     margin-left: 37%;
     margin-top: 5%;
-    color: rgba(3, 3, 105, 0.884);
-    font-weight: bold;    
-    border: 1px solid;
+    color: white;
+    /* font-weight: bold;     */
+    /* border: 1px solid; */
     /* margin-top: 10%; */
     /* float: right; */
     /* margin-left: 100%; */
     width: 20%;
     height: 30px;
+    border: none;
+    border-radius: 3px;
     /* border: 1 px solid blue;     */
     /* background-color: rgba(17, 65, 197,0.8); */
 
     /* border-radius: 10px; */
-    border-color: rgba(9, 2, 109, 0.692);
+    /* border-color: rgba(9, 2, 109, 0.692); */
 
 }
 #submaincontainer1 > form > #btn:hover{
-    background-color:  rgba(3, 3, 105, 0.884);
-    color: white;
-    border: 2px solid;
-    border-color: rgba(9, 2, 109, 0.692);
+    background-color: rgba(17, 65, 197, 1);
+
     box-shadow: 5px black;
 
 }

@@ -13,7 +13,7 @@ class Result extends React.Component {
         this.myref = React.createRef();
         // this.inptRollno = this.inptRollno.bind(this);
     }
-
+ 
     // inptRollno(event){
     //     this.setState({
     //         // resultfound: event.target.value
@@ -57,7 +57,6 @@ class Result extends React.Component {
                 </div>
 
             </div>
-                <ResultTable />
                 </div>
         )
         // }else if(this.state.resultfound == false){

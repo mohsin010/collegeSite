@@ -37,6 +37,10 @@ class AssignmentEditor extends Component {
     }
 
     handleChange(evt) {
+        // let { value, min, max } = evt.target;
+        // value = Math.max(Number(min), Math.min(Number(max), Number(value)));
+    
+
         this.setState({
             [evt.target.name]: evt.target.value,
             [evt.target.name]: evt.target.value,
@@ -85,13 +89,12 @@ class AssignmentEditor extends Component {
                 }).then((resp)=>{
                     return resp.json()
                 }).then((res)=>{
-                    debugger;
                     // store.dispatch({
                     //     type: 'assignment_uploaded',
                     //     payload: res
                     // });
                 })
-        
+                this.refs.assigninput.value = '';
                 this.setState({
                     no: '',
                     title: '',
@@ -149,34 +152,34 @@ class AssignmentEditor extends Component {
             {/* style={{border: '2px solid black' }} */}
                 <div  id='main_edit_assign'>
                     <form onSubmit={this.submitAssignment}>
-                        <table className={'tbl-result'} >
+                        <table className='tbl-result' >
                             <tr><h4 id={'user-type'} className={'p-r'}>Upload Assignment</h4></tr>
                             <tbody>
                                 <tr>
                                     <th>No:</th>
-                                    <td className={'r-td'}><input type='numeric' name='no' required='required' placeholder='Enter No' onChange={this.handleChange} value={this.state.no} /></td>
+                                    <td ><input type='number' className='b-td' name='no' required='required' placeholder='Enter No' onChange={this.handleChange} value={this.state.no} /></td>
                                     <th>Title:</th>
-                                    <td className={'r-td'}><input type='text' name='title' required='required' placeholder='Enter Title' onChange={this.handleChange} value={this.state.title} /></td>
+                                    <td ><input type='text'  className='b-td' name='title' required='required' placeholder='Enter Title' onChange={this.handleChange} value={this.state.title} /></td>
                                 </tr>
                                 <tr>
                                     <th>Topic:</th>
-                                    <td className={'r-td'}><input type='text' name='topic' required='required' placeholder='Enter Topic Name ' onChange={this.handleChange} value={this.state.topic} /></td>
+                                    <td ><input type='text'  className='b-td' name='topic' required='required' placeholder='Enter Topic Name ' onChange={this.handleChange} value={this.state.topic} /></td>
                                     <th>File:</th>
-                                    <td className={'r-td'}><input type='file' name='file' onChange={this.pickFile} placeholder='Enter Group ID' /></td>
+                                    <td ><input type='file'  className='b-td' ref='assigninput' name='file' onChange={this.pickFile} placeholder='Enter Group ID' /></td>
                                     {/* <td className={'p-pic'}></td> */}
                                     {/* onChange={this.getBase64 }  */}
 
                                 </tr>
                                 <tr>
                                     <th>Due Date:</th>
-                                    <td className={'r-td'}><input type='date' name='due_date' required='required' placeholder='Enter Marks ' onChange={this.handleChange} value={this.state.due_date} /></td>
+                                    <td ><input type='date' className='b-td' name='due_date' required='required' placeholder='Enter Marks ' onChange={this.handleChange} value={this.state.due_date} /></td>
                                     <th>Roll No:</th>
-                                    <td className={'r-td'}><input type='numeric' name='rollno' required='required' placeholder='Enter Roll No ' onChange={this.handleChange} value={this.state.rollno}/></td>
+                                    <td ><input type='numeric' className='b-td' name='rollno' required='required' placeholder='Enter Roll No ' onChange={this.handleChange} value={this.state.rollno}/></td>
 
                                 </tr>
                                 <tr>
                                     <th>Total Marks:</th>
-                                    <td className={'r-td'}><input type='numeric' name='total_marks' placeholder='Enter Total Marks ' onChange={this.handleChange} value={this.state.total_marks}/></td>
+                                    <td ><input type='number' className='b-td' name='total_marks' placeholder='Enter Total Marks ' onChange={this.handleChange} value={this.state.total_marks}/></td>
 
                                 </tr>
                                 <tr>
