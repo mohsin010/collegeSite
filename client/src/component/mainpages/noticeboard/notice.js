@@ -22,7 +22,7 @@ class Notice extends Component {
         this.deleteComponent = this.deleteComponent.bind(this);
         // this.delComponent=this.delComponent.bind(this);
 
-    }
+    } 
     createComponents = (ob, i) => {
         this.setState({
             components: this.state.components.concat(<UploadNotice deleteComponent={this.deleteComponent} component={this.state.components} linkadress={this.state.linkadress} 

@@ -89,3 +89,7 @@
     border: 2px solid  rgb(155, 114, 114);
 
 }
+.ck, .ck-toolbar{
+    /* position: relative; */
+    display: hidden;
+}

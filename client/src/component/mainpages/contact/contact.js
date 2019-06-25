@@ -6,7 +6,7 @@ class Contacts extends Component {
   render() {
     return (
       <div>
-          <Sup_Signup />
+          {/* <Sup_Signup /> */}
 
       </div>
     );

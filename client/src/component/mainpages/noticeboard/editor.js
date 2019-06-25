@@ -11,7 +11,7 @@ class Editor extends Component {
 
     }
     render() {
-        return (
+        return ( 
             <div className="App">
                    <div id='main-c'>
                 <div id='pcontainer' ><span id='ntitle'>Upload Notice</span></div>

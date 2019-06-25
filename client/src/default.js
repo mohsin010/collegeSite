@@ -11,12 +11,18 @@ import { withRouter } from 'react-router-dom';
 class Default extends Component {
   constructor(props) {
     super(props);
+    let user = this.props.login.loggedInUser;
     if (this.props.location.pathname == '/signup' || this.props.location.pathname == '/to_login') {
     } else {
       fetch('/is_authenticated', {
-        method: 'GET'
+        method: 'GET',
+        // headers:{
+        //   'Content-Type': 'Application/json'
+
+        // },
+        // body: this.user
       }).then((resp) => resp.json()).then((resp) => {
-        if (resp.rollno) {
+        if (resp.cnic) {
           store.dispatch({
             payload: resp,
             type: 'user_signed_success'
@@ -38,7 +44,7 @@ class Default extends Component {
     return (
       <div className="default">
         <Header />
-        <div hidden={!this.props.login.loggedInUser._id}>
+        <div hidden={!this.props.login.loggedInUser.cnic}>
           <Nav />
         </div>
         {/* <div hidden={!this.props.login.loggedInUser._id}>

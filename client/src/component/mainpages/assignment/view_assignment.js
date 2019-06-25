@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import './result.css';
 import AssignmentEditor from './editor_assignment';
 import AssignmentDisplay from './display_assignment';
+import Sup_AssignmentDisplay from './assignment';
 
 
 class ViewAssignment extends Component {
@@ -23,7 +24,9 @@ class ViewAssignment extends Component {
       }else{
           return <div>
           <AssignmentEditor />
-          <AssignmentDisplay  />
+          {/* <Sup_AssignmentDisplay  /> */}
+           <AssignmentDisplay  />
+
           </div>
         
       }

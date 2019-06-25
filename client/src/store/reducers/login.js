@@ -4,7 +4,8 @@ import userService from '../../services/user';
 
 let initialState = {
     in_process: 'false',
-    loggedInUser: {}
+    loggedInUser: {},
+    assignments: []
 };
 
 const loginReducer = (state = initialState, action) => {
@@ -101,8 +102,16 @@ const loginReducer = (state = initialState, action) => {
             }
             break;
 
-    }
+        case 'assignment_uploaded':
+            return {
+                assignments: action.payload,
+                loggedInUser:{},
+                in_process: 'false'
+            }
+            break;
 
+    }
+debugger;
     return state;
 }
 

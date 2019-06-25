@@ -7,7 +7,7 @@ class ViewDocument extends Component {
   // constructor(props){
   //   super(props);
   //   this.state = {
-  //     title: ''
+  //     title: '' 
   //   }
   //   console.log(this.state);
   //   this.generateNotification = this.generateNotification.bind(this);

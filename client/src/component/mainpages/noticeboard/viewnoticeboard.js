@@ -11,7 +11,7 @@ import Editor from './editor';
 class Noticeboard extends Component {
   
   render() {
-    debugger;
+    debugger; 
     if (this.props.login.loggedInUser.rollno) {
 
       return <Notice />;

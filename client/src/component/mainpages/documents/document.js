@@ -64,7 +64,7 @@ class Document extends Component {
                     {/* <button id='fc' name='Submit' onClick={this.genNDiv} > Click </button> */}
 
                     </form> 
-
+ 
 
 
                 </div>

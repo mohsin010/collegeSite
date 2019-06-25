@@ -20,8 +20,8 @@ var storage = multer.diskStorage({
     filename: function (req, file, cb) {
         crypto.pseudoRandomBytes(16, function (err, raw) {
             if (err) return cb(err)
-
-            cb(null, file.originalname)
+            // cb(null, file.fieldname + '-' + Date.now())
+            cb(null, file.originalname + path.extname(file.fieldname))
         })
         // cb(null, file.fieldname + '-' + Date.now())
     }
@@ -32,26 +32,14 @@ var upload = multer({ storage: storage })
 
 
 
-// AllStoreRoutes.post('/new', upload.single('file'), function (req, res, next) {
-//     if (req.file) {
-//         req.body.file = req.file.path;
-//     } else {
-
-//     }
-
-
-
-// })
-
-
-
 router.get('/is_authenticated', function (req, res) {
     res.json(req.user || {});
 });
 
 
 
-router.post('/assignments', upload.single('file'), function (req, res) {
+router.post('/assignments', upload.single('file'), (req, res) => {
+    debugger;
     if (req.file) {
         req.body.file = req.file.path;
     }
@@ -66,13 +54,24 @@ router.post('/assignments', upload.single('file'), function (req, res) {
 })
 router.post('/assignments_marks', function (req, res) {
 
-    AssignmentsMarks.find({ rollno: req.body.rollno }, (err, rec) => {
+    Assignments.findOneAndUpdate({ rollno: req.body.rollno, no: req.body.no }, req.body, (err, rec) => {
 
-        let newAssignment = new AssignmentsMarks(req.body);
-        newAssignment.save((err, rec) => {
-            res.json(err || rec);
-        })
+        if (rec) {
+            res.json(rec)
+        } else {
+            console.log('an Error is occurd');
+        }
+    })
+})
+router.post('/delete_assignment', function (req, res) {
 
+    Assignments.findOneAndDelete({ rollno: req.body.rollno, no: req.body.no }, req.body, (err, rec) => {
+
+        if (rec) {
+            res.json(rec)
+        } else {
+            console.log('an Error is occurd');
+        }
     })
 })
 router.post('/assignment_display', function (req, res) {
@@ -81,11 +80,31 @@ router.post('/assignment_display', function (req, res) {
         res.json(err || rec || { rec: "false" });
     })
 })
+router.post('/sup_assignment_display', function (req, res) {
+    Assignments.find((err, rec) => {
+
+        res.json(err || rec || { rec: "false" });
+    })
+})
+
+router.post('/supervisor_display', function (req, res) {
+    Faculty.find((err, rec) => {
+
+        res.json(err || rec);
+    })
+})
+
 
 router.post('/update_profile', function (req, res) {
-    User.findOneAndUpdate({ rollno: req.body.rollno }, req.body, (err, user) => {
-        if (user) {
+    User.findOneAndUpdate({ cnic: req.body.cnic }, req.body, (err, user) => {
+        if (!user) {
+            Faculty.findOneAndUpdate({ cnic: req.body.cnic }, req.body  , (err, user) => {
+
+                res.json(user);
+            })
+        }else{
             res.json(user);
+
         }
         if (err) {
             console.log('an Error is occurd');

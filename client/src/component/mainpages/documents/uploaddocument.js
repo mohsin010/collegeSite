@@ -8,7 +8,7 @@ class UploadDocument extends React.Component {
     onRemoveComponent(e){
         e.preventDefault();
         this.props.deleteComponent(this.props.component)
-    }
+    } 
 
     
     

@@ -1,5 +1,6 @@
 let express = require('express');
 let User = require('./db/model/user');
+let Faculty = require('./db/model/faculty');
 let bd = require('body-parser');
 let userRoutes = require('./routes/user');
 let passport = require('passport');
@@ -25,19 +26,28 @@ app.use(passport.session());
 
 passport.serializeUser(function (user, next) {
 
-    next(null, user.rollno)
+    next(null, user.cnic)
 
 });
 
 let users = require('./authentication').users;
 
 
-passport.deserializeUser(function (rollno, next) {
+passport.deserializeUser(function (cnic, next) {
 
     let userFound = null
 
-      User.findOne({ rollno: rollno }, function (err, user) {
+      User.findOne({ cnic: cnic }, function (err, user) {
+          if(!user){
+        Faculty.findOne({ cnic: cnic }, function (err, user) {
+        
+           return next(err, user);
+        });
+    }else{
+
         next(err, user);
+    }
+    
     });
 
 

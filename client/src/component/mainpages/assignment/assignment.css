@@ -65,7 +65,7 @@
     color: red;
 }
 .a_marks{
-    width: 13%;
+    width: 9%;
 }
 .a_topic_title{
     width: 21%;
@@ -74,9 +74,38 @@
     /* width: 100%; */
 }
 #main_edit_assign ,#main_edit_marks{
-    width: 40%;
+    width: 99%;
     display: block;
     /* position: absolute; */
+}
+
+#marks{
+    border: none;
+    outline: none;
+    text-align: center;
+    /* width: 10%; */
+    /* cursor: alias; */
+}
+#marks:hover{
+    cursor: text;
+
+}
+#btn_delete{
+    background-color: rgb(6, 6, 223);
+    color: white;
+    margin-left: 0%;
+    outline: none;
+    border: 1px solid blue;
+    border-radius: 10px;
+    /* float:left; */
+}
+#btn_delete:hover{
+    background-color: rgb(238, 234, 234);
+    color: rgb(6, 6, 165);
+
+}
+#a_no{
+    width: 5%;
 }
 
 #main_edit_marks{
