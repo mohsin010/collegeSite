@@ -1,6 +1,7 @@
 let express = require('express');
 let User = require('./db/model/user');
 let Faculty = require('./db/model/faculty');
+let Admin = require('./db/model/admin');
 let bd = require('body-parser');
 let userRoutes = require('./routes/user');
 let passport = require('passport');
@@ -37,23 +38,31 @@ passport.deserializeUser(function (cnic, next) {
 
     let userFound = null
 
-      User.findOne({ cnic: cnic }, function (err, user) {
-          if(!user){
-        Faculty.findOne({ cnic: cnic }, function (err, user) {
-        
-           return next(err, user);
-        });
-    }else{
+    User.findOne({ cnic: cnic }, function (err, user) {
+        if (!user) {
+            Faculty.findOne({ cnic: cnic }, function (err, user) {
+                if (!user) {
+                    Admin.findOne({ cnic: cnic }, function (err, user) {
+                        return next(err, user);
 
-        next(err, user);
-    }
-    
+                    })
+                } else {
+
+                    return next(err, user);
+                }
+
+            });
+        } else {
+
+            next(err, user);
+        }
+
     });
 
 
-       
 
-  
+
+
 
 });
 

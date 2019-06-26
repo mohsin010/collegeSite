@@ -35,7 +35,7 @@ class Signin extends Component {
 			},
 			body: JSON.stringify(this.state)
 		}).then((resp) => resp.json()).then((resp) => {
-
+			debugger;
 			if (resp._id) {
 				console.log('user found');
 				store.dispatch({

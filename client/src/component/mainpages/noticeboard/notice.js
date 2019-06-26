@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import UploadNotice from './uploadnotice';
+import UploadNotice from './display_notice';
 import './noticeboard.css';
 
 

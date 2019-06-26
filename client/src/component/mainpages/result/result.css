@@ -203,6 +203,10 @@
 }
 .tbl-marks>tbody>tr:nth-child(odd) {background-color: #c9c4c4;}
 
+
+.t-rd{
+    padding-left: 15% !important;
+}
 /* #s-view2{
     margin-left: calc
 } */

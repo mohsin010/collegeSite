@@ -134,14 +134,14 @@ class Profile extends Component {
                             </tr>
 
                         </tbody>
-                    </table>
+                    </table> 
                 </form>
             </div>
-            <div hidden={this.props.login.loggedInUser.rollno}>
+            <div hidden={this.props.login.loggedInUser.rollno || !this.props.login.loggedInUser.designation}>
                 <form>
                     <table className={'tbl-profile'}  >
                         <tbody>
-                            <tr><p id={'user-type'} className={'p-p'}><b>Student Profile</b></p></tr>
+                            <tr><p id={'user-type'} className={'p-p'}><b>Supervisor Profile</b></p></tr>
                             <tr>
                                 <th>Name</th>
                                 <td className={'p-td'}><span>{this.state.name}</span></td>
@@ -173,6 +173,31 @@ class Profile extends Component {
                                 <td className={'p-td'}><input placeholder={'Email no here'} name='email' onChange={this.handleInput} value={this.state.email} /></td>
                             </tr>
                            
+
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+            <div hidden={this.props.login.loggedInUser.rollno || this.props.login.loggedInUser.designation}>
+                <form>
+                    <table className={'tbl-profile'}  >
+                        <tbody>
+                            <tr><p id={'user-type'} className={'p-p'}><b>Admin Profile</b></p></tr>
+                            <tr>
+                                <th>Name</th>
+                                <td className={'p-td'}><span>{this.state.name}</span></td>
+                                <th>CNIC</th>
+                                <td className={'p-td'}><span>{this.state.cnic}</span></td>
+                                {/* <td className={'p-pic'}  rowSpan={'4'}><span></span>Profile pic Placed here</td> */}
+                            </tr>
+                            <tr>
+                                <th>Password</th>
+                                <td className={'p-td'}> <input type={this.state.type} name='password' className="password__input" onChange={(event) => { this.handleInput(event); this.passwordStrength(event); }} value={this.state.password} /> 
+                                <span className="password__show" onClick={this.showHide}>{this.state.type === 'password' ? 'Show' : 'Hide'}</span>
+                                    <span className="password__strength" value={this.state.score} />
+                                    </td>
+                            </tr>
+                            
 
                         </tbody>
                     </table>

@@ -111,7 +111,6 @@ const loginReducer = (state = initialState, action) => {
             break;
 
     }
-debugger;
     return state;
 }
 

@@ -219,9 +219,9 @@ class AssignmentDisplay extends Component {
                 <div id='nn_Assignment' style={{ display: this.state.display2 }} ><span>No Assignment Assigned Yet</span></div>
                 <div id='assignment_main_container' style={{ display: this.state.display1 }}>
                     <div >
+                    <div className='pcontainer-editor-r' align='left' ><p id={'user-type'} className={'p-r'}><b> Assignment</b></p></div>
 
                         <table id='tbl-assignment' >
-                            <caption id='cap'><h3 align='left'>Assignments</h3></caption>
                             {/* <hr className='hr' />                     */}
                             <tbody>
                                 {/* <caption>Instructor's Info</caption> */}
@@ -244,12 +244,12 @@ class AssignmentDisplay extends Component {
                                 {this.state.assignments.map((assignment) => {
 
                                     return <tr>
-                                        <td>{assignment.no}</td>
-                                        <td hidden={this.props.login.loggedInUser.rollno}>{assignment.rollno}</td>
-                                        <td>{assignment.title}</td>
-                                        <td>{assignment.topic}</td>
-                                        <td><a href={assignment.file} download id='f-dowload'>(Download File)</a></td>
-                                        <td id='d-date'>{assignment.due_date}</td>
+                                        <td >{assignment.no}</td>
+                                        <td className='show_assign' hidden={this.props.login.loggedInUser.rollno}>{assignment.rollno}</td>
+                                        <td className='show_assign'>{assignment.title}</td>
+                                        <td className='show_assign'>{assignment.topic}</td>
+                                        <td ><a href={assignment.file} download id='f-dowload'>(Download File)</a></td>
+                                        <td  id='d-date'>{assignment.due_date}</td>
                                         <td >{assignment.total_marks}</td>
                                         <td >< input hidden={this.props.login.loggedInUser.rollno} name='obtain_marks' title='Edit' id='marks' type='numeric' onChange={this.handleInput.bind(this, assignment)} value={assignment.obtain_marks}  /></td>
                                         <td hidden={this.props.login.loggedInUser.rollno}><button id='btn_delete' onClick={this.deleteAssignment.bind(this, assignment)}>Delete</button></td>

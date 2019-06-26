@@ -32,6 +32,7 @@
     font-size: 90%;
     width: 99%;
     text-align: left;
+    margin-top: 10px;
     margin-bottom: 0.3%;
     margin-left: 0.5%;
     /* padding: 20px; */
@@ -97,8 +98,8 @@
     margin-left: 0%;
     outline: none;
     height: 25px;
-    border: 1px solid blue;
-    border-radius: 2px; 
+    /* border: 1px solid blue; */
+    border-radius: 2px;  
     /* float:left; */
 }
 .b-td{
@@ -112,6 +113,12 @@
 }
 #a_no{
     width: 5%;
+}
+.e-a-t{
+    padding-left: 15% !important;
+}
+.show_assign{
+    text-transform:capitalize;
 }
 /* #marks:nth-child(even) {background-color: #c9c4c4;} */
 

@@ -28,11 +28,11 @@ const Nav = () => (
                             Profile
                          </Link>
                     </td>
-                    <td>
+                    {/* <td>
                         <Link to='/schedule/meeting' className={'a'}>
                             Meeting Schedule
                             </Link>      
-                    </td>
+                    </td> */}
                     <td>
                         <Link to='/noticeboard' className={'a'}>
                             Notice Board

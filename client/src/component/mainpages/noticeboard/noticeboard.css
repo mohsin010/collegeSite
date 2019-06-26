@@ -66,6 +66,10 @@
     margin-top: -2.4%;
     margin-right: 1%;
 }
+#main-c >#label{
+    margin-bottom: 30px !important;
+
+}
 
 #upload > form > label {
     margin-left: 2%;
@@ -89,7 +93,34 @@
     border: 2px solid  rgb(155, 114, 114);
 
 }
-.ck, .ck-toolbar{
-    /* position: relative; */
-    display: hidden;
+.ck.ck-editor, .ck.ck-editor>button {
+    position: unset !important;
+}
+.ck-rounded-corners, .ck.ck-editor__editable:not(.ck-editor__nested-editable), .ck.ck-editor__editable:not(.ck-editor__nested-editable).ck-rounded-corners{
+height: 300px;
+}
+#btn_n_editor{
+    background-color: rgba(17, 65, 197,0.8);
+    color: white;
+    border: none;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 20%;
+    height: 30px;
+    margin-left: -62%;
+    /* float: left; */
+    /* border: none; */
+    border-radius: 4px;
+}
+
+#btn_n_editor:hover{
+    background-color: rgba(17, 65, 197, 1);
+
+}
+.ck ,.ck-editor__main {
+    text-align: left;
+}
+.ckedit{
+    /* background-color: red; */
+    border: 1px solid white;
 }

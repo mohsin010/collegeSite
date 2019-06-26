@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './noticeboard.css';
 import store from '../../../store/store';
 import {connect} from 'react-redux';
-import Notice from './notice';
+import ConnectedDisplay_notic from './display_notice';
 import Editor from './editor';
 
 
@@ -11,14 +11,13 @@ import Editor from './editor';
 class Noticeboard extends Component {
   
   render() {
-    debugger; 
     if (this.props.login.loggedInUser.rollno) {
 
-      return <Notice />;
+      return <ConnectedDisplay_notic />;
     } else {
       return <div>
         <Editor />
-        <Notice />
+        <ConnectedDisplay_notic />
       </div>
     }
 

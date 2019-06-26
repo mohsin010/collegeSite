@@ -44,3 +44,15 @@
     position: relative;
     /* width: 10px; */
 }
+#username_{
+    float: right;
+    margin-right: 0.4%;
+    color: rgb(5, 5, 150);
+    font-size: 6.5pt;
+    text-transform: uppercase;
+    font-weight: 700;
+    word-spacing: -1pt;
+    letter-spacing: 0.5px;
+    /* font-style: oblique; */
+    font-family: "MS Sans Serif";
+}

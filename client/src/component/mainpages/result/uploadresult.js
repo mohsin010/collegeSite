@@ -92,17 +92,17 @@ class UploadResult extends Component {
                     <table className={'tbl-result'} >
                         <tbody>
                             <tr>
-                                <th>Roll No</th>
-                                <td >
+                                <th className='t-rd' >Roll No:</th>
+                                <td  >
                                     <input type='numeric' className='r-td' name='rollno' required='required'  placeholder='Enter Roll no' value={this.state.rollno} onChange={this.handleChange} /></td>
-                                <th>Group ID</th>
+                                <th className='t-rd'>Group ID:</th>
                                 <td ><input type='text' className='r-td' name='groupId' required='required' placeholder='Enter Group ID' value={this.state.groupId} onChange={this.handleChange} /></td>
                             </tr>
 
                             <tr>
-                                <th>Marks</th>
+                                <th className='t-rd' >Marks:</th>
                                 <td ><input type='number' className='r-td' name='marks' required='required' placeholder='Enter Marks' value={this.state.marks} onChange={this.handleChange} /></td>
-                                <th>Grade</th>
+                                <th className='t-rd'>Grade:</th>
                                 <td ><input type='text' className='r-td' name='grade' required='required' placeholder='Enter Grade' value={this.state.grade} onChange={this.handleChange} /></td>
 
                             </tr>

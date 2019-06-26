@@ -8,6 +8,8 @@ let Faculty = require('../db/model/faculty');
 let Assignments = require('../db/model/assignments');
 let Documents = require('../db/model/document');
 let Result = require('../db/model/result');
+let Admin = require('../db/model/admin');
+let Notic = require('../db/model/notic'); 
 let AssignmentsMarks = require('../db/model/assignments_marks');
 const multer = require('multer');
 let path = require('path');
@@ -37,6 +39,49 @@ var upload = multer({ storage: storage })
 router.get('/is_authenticated', function (req, res) {
     res.json(req.user || {});
 });
+
+router.post('/notic', function (req, res) {
+
+    Notic.findOne( {title: req.body.title}, req.body, (err, rec) => {
+            if(rec){
+                res.json({success:false})
+            }else{
+
+                let newAssignment = new Notic(req.body);
+                newAssignment.save((err, rec) => {
+                    res.json(err || rec);
+                })
+            }
+    })
+})
+
+router.post('/notic_display', function (req, res) {
+    Notic.find((err, rec) => {
+
+        res.json(err || rec || { rec: "false" });
+    })
+})
+
+router.post('/sup_notic_display', function (req, res) {
+    Notic.find((err, rec) => {
+
+        res.json(err || rec || { rec: "false" });
+    })
+})
+
+router.post('/delete_notic', function (req, res) {
+
+    Notic.findOneAndDelete({ title: req.body.linkadress}, req.body , (err, rec) => {
+
+        if (rec) {
+            res.json(rec)
+        } else {
+            // res.json({success : false})
+            console.log('Notic Not Found');
+        }
+    })
+})
+
 
 router.post('/result', function (req, res) {
 
@@ -73,7 +118,7 @@ router.post('/delete_marks', function (req, res) {
         if (rec) {
             res.json(rec)
         } else {
-            console.log('an Error is occurd');
+            console.log('Marks not Found');
         }
     })
 })
@@ -181,8 +226,16 @@ router.post('/update_profile', function (req, res) {
     User.findOneAndUpdate({ cnic: req.body.cnic }, req.body, (err, user) => {
         if (!user) {
             Faculty.findOneAndUpdate({ cnic: req.body.cnic }, req.body  , (err, user) => {
+            if(!user){
+                Admin.findOneAndUpdate({cnic: req.body.cnic }, req.body , (err,user) => {
+
+                    res.json(user);
+                })
+
+            }else{
 
                 res.json(user);
+            }
             })
         }else{
             res.json(user);
@@ -194,7 +247,7 @@ router.post('/update_profile', function (req, res) {
     })
 })
 
-
+ 
 router.post('/login', function (req, res, next) {
 
 

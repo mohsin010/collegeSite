@@ -7,7 +7,7 @@ import Home from '../src/component/home/home';
 import store from './store/store';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-
+ 
 class Default extends Component {
   constructor(props) {
     super(props);
@@ -61,8 +61,8 @@ class Default extends Component {
 }
 
 let ConnectedDefault = connect((store) => {
-
   return {
+    
     login: store.loginReducer
   }
 })(withRouter(Default));

@@ -145,40 +145,41 @@ class AssignmentEditor extends Component {
     
 
 
-
+ 
     render() {
         return (
             <div className='main-c'>
             {/* style={{border: '2px solid black' }} */}
+            <div className='pcontainer-editor-r' align='left' ><p id={'user-type'} className={'p-r'}><b> Upload Assignment</b></p></div>
+
                 <div  id='main_edit_assign'>
                     <form onSubmit={this.submitAssignment}>
                         <table className='tbl-result' >
-                            <tr><h4 id={'user-type'} className={'p-r'}>Upload Assignment</h4></tr>
                             <tbody>
                                 <tr>
-                                    <th>No:</th>
+                                    <th className='e-a-t'>No:</th>
                                     <td ><input type='number' className='b-td' name='no' required='required' placeholder='Enter No' onChange={this.handleChange} value={this.state.no} /></td>
-                                    <th>Title:</th>
+                                    <th className='e-a-t'>Title:</th>
                                     <td ><input type='text'  className='b-td' name='title' required='required' placeholder='Enter Title' onChange={this.handleChange} value={this.state.title} /></td>
                                 </tr>
                                 <tr>
-                                    <th>Topic:</th>
+                                    <th className='e-a-t'>Topic:</th>
                                     <td ><input type='text'  className='b-td' name='topic' required='required' placeholder='Enter Topic Name ' onChange={this.handleChange} value={this.state.topic} /></td>
-                                    <th>File:</th>
+                                    <th className='e-a-t'>File:</th>
                                     <td ><input type='file'  className='b-td' ref='assigninput' name='file' onChange={this.pickFile} placeholder='Enter Group ID' /></td>
                                     {/* <td className={'p-pic'}></td> */}
                                     {/* onChange={this.getBase64 }  */}
 
                                 </tr>
                                 <tr>
-                                    <th>Due Date:</th>
+                                    <th className='e-a-t'>Due Date:</th>
                                     <td ><input type='date' className='b-td' name='due_date' required='required' placeholder='Enter Marks ' onChange={this.handleChange} value={this.state.due_date} /></td>
-                                    <th>Roll No:</th>
+                                    <th className='e-a-t'>Roll No:</th>
                                     <td ><input type='numeric' className='b-td' name='rollno' required='required' placeholder='Enter Roll No ' onChange={this.handleChange} value={this.state.rollno}/></td>
 
                                 </tr>
                                 <tr>
-                                    <th>Total Marks:</th>
+                                    <th className='e-a-t'>Total Marks:</th>
                                     <td ><input type='number' className='b-td' name='total_marks' placeholder='Enter Total Marks ' onChange={this.handleChange} value={this.state.total_marks}/></td>
 
                                 </tr>
