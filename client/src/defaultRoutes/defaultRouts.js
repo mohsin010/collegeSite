@@ -22,6 +22,10 @@ import Viva from '../component/mainpages/schedule/viva schedule/viva';
 import Instructor_Info from '../component/mainpages/instructor_info/instructor_info';
 import ViewAssignment from '../component/mainpages/assignment/view_assignment';
 import RedirectLogin from '../component/mainpages/signup/to_login';
+import ConnectedAnnouncement from '../component/mainpages/announcements/viewannouncement';
+import Discussion from '../component/mainpages/discussion/discussion';
+import Post_Msg from '../component/mainpages/discussion/post_msg';
+
 import logOut from '../component/mainpages/signout/signout';
 import { connect } from 'react-redux';
 
@@ -53,6 +57,10 @@ const CustomDefaultRouts = (props) => (
       <Route path='/schedule/viva' component={Viva} />
       <Route path='/app/instructor' component={Instructor_Info} />
       <Route path='/app/assignment' component={ViewAssignment} />
+      <Route path='/app/announcements' component={ConnectedAnnouncement} />
+      <Route path='/app/discussion' component={Discussion} />
+      <Route path='/post_msg' component={Post_Msg} />
+
       <Route path='/to_login' component={RedirectLogin} />
       {/* <Route path='/to_login' component={logOut} /> */}
     {/* </div> */}

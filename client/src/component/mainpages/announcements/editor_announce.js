@@ -3,7 +3,7 @@ import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import './draft.css';
 import './noticeboard.css'
-class Editor extends Component {
+class Editor_announce extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -69,7 +69,7 @@ class Editor extends Component {
 
         } else {
 
-            fetch('/notic', {
+            fetch('/announcement', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'Application/json'
@@ -86,7 +86,7 @@ class Editor extends Component {
                     })
 
 
-                    alert('Notic Successfully Published ');
+                    alert('Announcement Successfully Published ');
 
                 } else {
                     this.setState({
@@ -94,7 +94,7 @@ class Editor extends Component {
                         body: ''
 
                     })
-                    alert('Notic Already Uploaded');
+                    alert('Announcement Already Uploaded');
                 }
             })
         }
@@ -106,7 +106,7 @@ class Editor extends Component {
         return (
             <div className="App">
                 <div id='main-c'>
-                    <div id='pcontainer' ><span id='ntitle'>Upload Notice</span></div>
+                    <div id='pcontainer'  ><span id='ntitle' className='pcontainer_ral'>Upload Announcement</span></div>
                     <div id='label'><label>Title</label><input style={{ borderColor: this.state.titleerr ? 'red' : 'inherit' }} type='text' name='title' required='required' value={this.state.title} onChange={this.changeHandler} /></div>
                     {/* <h2>Using CKEditor 5 build in React</h2> */}
                     <div id='ckeditor-parent'>
@@ -142,7 +142,7 @@ class Editor extends Component {
                             />
                         </div>
                     </div>
-                    <button id='btn_n_editor' onClick={this.submitData}>Publish Notic</button>
+                    <button id='btn_n_editor' onClick={this.submitData}>Publish Announcement</button>
                 </div>
 
             </div>
@@ -151,4 +151,4 @@ class Editor extends Component {
     }
 }
 
-export default Editor;
+export default Editor_announce;

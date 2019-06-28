@@ -58,7 +58,7 @@
     border-collapse: collapse;
 }
 #f-dowload{
-    color: rgb(22, 6, 255);
+    color: rgb(22, 6, 255); 
     font-weight: 350 ;
     font-size: 85%;
 }
@@ -121,4 +121,25 @@
     text-transform:capitalize;
 }
 /* #marks:nth-child(even) {background-color: #c9c4c4;} */
-
+#p_detail{
+    width: 100%;
+}
+.p_head{
+    background-color: rgb(212, 212, 250);
+    width: 20%;
+    font-size: 88%;
+    font-weight: 500;
+    text-align: left;
+}
+.p_info{
+    background-color: rgb(243, 239, 239);
+    /* width: 20%; */
+    font-size: 95%;
+    text-align: left;
+}
+#submit_assign{
+    width: 20%;
+}
+#sub_d{
+    font-size: 80%;
+}

@@ -10,7 +10,8 @@ let Documents = require('../db/model/document');
 let Result = require('../db/model/result');
 let Admin = require('../db/model/admin');
 let Notic = require('../db/model/notic'); 
-let AssignmentsMarks = require('../db/model/assignments_marks');
+let Announcement = require('../db/model/announcement');
+let Discussion = require('../db/model/discussion');
 const multer = require('multer');
 let path = require('path');
 let crypto = require('crypto');
@@ -40,6 +41,75 @@ router.get('/is_authenticated', function (req, res) {
     res.json(req.user || {});
 });
 
+// <===================== Discussions ========================>
+
+router.post('/post_msg', function (req, res) {
+    Discussion.find( req.body, (err, rec) => {
+     
+
+            let newMsg = new Discussion(req.body);
+            newMsg.save((err, rec) => {
+                res.json(err || rec);
+            })
+})
+})
+
+router.post('/msg_display', function (req, res) {
+    Discussion.find((err, rec) => {
+
+        res.json(err || rec || { rec: "false" });
+    })
+})
+
+
+
+
+// Announcement below
+
+router.post('/announcement', function (req, res) {
+
+    Announcement.findOne( {title: req.body.title}, req.body, (err, rec) => {
+            if(rec){
+                res.json({success:false})
+            }else{
+
+                let newAssignment = new Announcement(req.body);
+                newAssignment.save((err, rec) => {
+                    res.json(err || rec);
+                })
+            }
+    })
+})
+
+router.post('/announcement_display', function (req, res) {
+    Announcement.find((err, rec) => {
+
+        res.json(err || rec || { rec: "false" });
+    })
+})
+
+router.post('/sup_announcement_display', function (req, res) {
+    Announcement.find((err, rec) => {
+
+        res.json(err || rec || { rec: "false" });
+    })
+})
+
+router.post('/delete_announcement', function (req, res) {
+
+    Announcement.findOneAndDelete({ title: req.body.linkadress}, req.body , (err, rec) => {
+
+        if (rec) {
+            res.json(rec)
+        } else {
+            // res.json({success : false})
+            console.log('Announcement Not Found');
+        }
+    })
+})
+
+
+// below noticeboard 
 router.post('/notic', function (req, res) {
 
     Notic.findOne( {title: req.body.title}, req.body, (err, rec) => {
@@ -127,7 +197,7 @@ router.post('/documents', upload.single('file'), (req, res) => {
     if (req.file) {
         req.body.file = req.file.path;
     }
-    Documents.find( req.body, (err, rec) => {
+    Documents.findOne( req.body, (err, rec) => {
 
         let newAssignment = new Documents(req.body);
         newAssignment.save((err, rec) => {
@@ -165,23 +235,28 @@ router.post('/delete_document', function (req, res) {
     })
 })
 
+// Assignments section from here
 
 router.post('/assignments', upload.single('file'), (req, res) => {
     if (req.file) {
         req.body.file = req.file.path;
     }
-    Assignments.find({ rollno: req.body.rollno }, req.body, (err, rec) => {
+    Assignments.findOne({ groupid:req.body.groupid , no:req.body.no }, req.body, (err, rec) => {
+        if(rec){
+            res.json({success:false})
+        }else{
 
-        let newAssignment = new Assignments(req.body);
-        newAssignment.save((err, rec) => {
-            res.json(err || rec);
-        })
+            let newAssignment = new Assignments(req.body);
+            newAssignment.save((err, rec) => {
+                res.json(err || rec);
+            })
+        }
 
     })
 })
 router.post('/assignments_marks', function (req, res) {
 
-    Assignments.findOneAndUpdate({ rollno: req.body.rollno, no: req.body.no }, req.body, (err, rec) => {
+    Assignments.findOneAndUpdate({ groupid: req.body.groupid, no: req.body.no }, req.body, (err, rec) => {
 
         if (rec) {
             res.json(rec)
@@ -190,9 +265,26 @@ router.post('/assignments_marks', function (req, res) {
         }
     })
 })
+
+router.post('/submit_assignment', upload.single('file'), (req, res) => {
+    if (req.file) {
+        req.body.subfile = req.file.path;
+    }
+    Assignments.findOneAndUpdate({ groupid: req.body.b, no: req.body.a },  req.body, (err, rec) => {
+
+        if (!rec) {
+            res.json({success: false})
+        } else if(rec) {
+            res.json({success:true})
+        }else{
+            console.log('an Error is occurd');
+        }
+    })
+})
+
 router.post('/delete_assignment', function (req, res) {
 
-    Assignments.findOneAndDelete({ rollno: req.body.rollno, no: req.body.no }, req.body, (err, rec) => {
+    Assignments.findOneAndDelete({ groupid: req.body.groupid, no: req.body.no }, req.body, (err, rec) => {
 
         if (rec) {
             res.json(rec)
@@ -202,7 +294,7 @@ router.post('/delete_assignment', function (req, res) {
     })
 })
 router.post('/assignment_display', function (req, res) {
-    Assignments.find({ rollno: req.body.rollno }, (err, rec) => {
+    Assignments.find({ groupid: req.body.groupid }, (err, rec) => {
 
         res.json(err || rec || { rec: "false" });
     })

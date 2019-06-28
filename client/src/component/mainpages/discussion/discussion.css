@@ -1,0 +1,149 @@
+#msg_container_main{
+    /* background-color: red; */
+    border: 1px solid gray;
+    width: 98.8%;
+    margin-top: 8px;
+    margin-left: 0.5%;
+    padding: 1px;
+    padding-top: 2px;
+
+}
+.label_msg{
+    vertical-align: vertical;
+    color: rgba(1, 1, 163, 0.979);
+    font-weight: 700;
+    margin-right: 10%;
+    margin-left: 5%;
+    /* margin-bottom: 10px; */
+    float: left;
+    /* margin-top: 10px; */
+}
+#label_msg{
+    margin-top: 30px;
+    margin-right: 9.4%;
+}
+#msg_container{
+    /* background-color: red; */
+    margin-top: 20px;
+    width: 99%;
+    /* position: absolute; */
+}
+
+#msg_subject{
+    width: 40.4%;
+    border: 1px solid gainsboro !important;
+
+    /* border: none; */
+    
+}
+#msg_textarea{
+    margin-top: 35px;
+    border: 1px solid gainsboro !important;
+    /* box-shadow: 2px 2px  rgb(111, 114, 253); */
+}
+#msg_controler{
+
+    /* background-color: red; */
+    width: 20%;
+    margin-top: 19px;
+    margin-left: 19.2%; 
+    /* padding: 10px; */
+
+}
+
+.msg_control{
+    margin-right: 20px;
+}
+
+#msg_post{
+    background-image: url('../../../data/postmsg.png');
+    background-repeat: no-repeat;
+    width: 106px;
+    height: 24px;
+    border: none;
+    /* border-radius: 10px; */
+
+}
+/* #msg_cancel{
+    background-image: url('../../../data/cancel.png');
+    background-repeat: no-repeat;
+    width: 55px;
+    height: 24px;
+    border: none;
+    margin-top: 0px;
+
+} */
+#msg_disp_container{
+    /* background-color: red; */
+    width: 98.55%;
+    margin-left: 0.5%;
+    height: 500px;
+    padding: 1px;
+    border: 1px solid gray;
+}
+#post_btn_container{
+    /* background-color: red; */
+
+    width: 300px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    margin-left: 1%;
+}
+#post_btn{
+    width: 130px;
+    height: 25px;
+}
+#msg_list{
+    /* margin-top: 10px; */
+    height: 20px !important;
+    padding-top: 2px !important;
+}
+#msg_list_container{
+    width: 99.8%;
+    text-align: left;
+    /* height: 500px; */
+    border: 1px solid gray;
+}
+#tbl_msgs{
+    width: 100%;
+    border: red;
+    /* border-collapse: collapse;
+     */
+    /* background-color: rgb(250, 246, 246); */
+}
+ #tbl_msgs > tr:nth-child(even) {
+    background-color: #f2f2f2
+  }
+  .td_msg{
+    width: 70%;
+    font-size: 80%;
+    text-transform: capitalize;
+  }
+
+.hide{
+    display:none;
+}
+
+  .td_msg1{
+    font-size: 80%;
+  }
+  #th_msg >th{
+      background-color: rgba(45, 45, 185, 0.411);
+      font-size: 95%;
+      color: white;
+        font-weight: 600;
+      /* background-color: red; */
+  }
+  #td_msg_sub{
+      color: blue;
+  }
+  #td_msg_sub_span{
+    cursor: pointer;
+  }
+  .msg_rep_tim{
+    background-color: rgb(236, 235, 235);
+  }
+  .tr_ms{
+      height: 200px;
+  }

@@ -5,10 +5,15 @@ let assignmentsSchema = mongoose.Schema({
     topic: String,
     due_date: String,
     title: String,
-    rollno: String,
+    groupid: String,
     file: String,
+    subfile: String,
     total_marks: String,
-    obtain_marks: String
+    obtain_marks: String,
+    display3: Boolean,
+    display4: Boolean,
+    date:''
+
 })
 
 let Assignments = mongoose.model('assignments', assignmentsSchema);
