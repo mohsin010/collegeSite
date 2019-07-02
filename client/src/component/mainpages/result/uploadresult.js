@@ -84,6 +84,8 @@ class UploadResult extends Component {
 
 
     render() {
+
+       
         return (
             <div className='main-c'>
                 <div className='pcontainer-editor-r' align='left' ><p id={'user-type'} className={'p-r'}><b> Upload Result</b></p></div>
@@ -108,7 +110,7 @@ class UploadResult extends Component {
                             </tr>
                             <tr>
                                 <td >
-                                    <input type='submit' className={'r-btn'} value='Save' />
+                                    <input type='submit' className={'r-btn'} id='r_btn_sup' value='Save' />
                                 </td>
                             </tr>
                         </tbody>

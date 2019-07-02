@@ -9,7 +9,7 @@ var Admin = require('./db/model/admin');
 var myStrategy = new LocalStrategy({
     usernameField: 'cnic'
 }, function (username, password, next) {
-
+ 
     User.findOne({ cnic: username, password: password }, function (err, user) {
 
 

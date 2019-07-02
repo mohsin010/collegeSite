@@ -71,22 +71,21 @@ class Display_announce extends React.Component {
             index2 + ' <br /> <button  onclick={window.close()}>Close</button>');
     }
 
+    // newest = (assignment) => {
+    //     debugger;
+    //     return <div dangerouslySetInnerHTML={{ __html: assignment.body }} >
+
+    //     </div>
+    // }
+
     nextAnnouncement = () => {
-        // debugger;
-        if (this.state.announementIndex < this.state.assignments.length-1) {
+        if (this.state.announementIndex < this.state.assignments.length) {
             this.setState({
-                announementIndex: ++this.state.announementIndex 
+                announementIndex: ++this.state.announementIndex
             });
         }
-        // else{
-        //     this.setState({
-
-        //         announementIndex : this.state.assignments.length -1
-        //     })
-        // }
     }
     previousAnnouncement = () => {
-        debugger;
         if (this.state.announementIndex > 0) {
             this.setState({
                 announementIndex: --this.state.announementIndex
@@ -104,14 +103,6 @@ class Display_announce extends React.Component {
             announementIndex: this.state.assignments.length - 1
         });
     }
-
-    // newest = (assignment) => {
-    //     return <div dangerouslySetInnerHTML={{ __html: assignment.body }} >
-
-    //                         </div>
-    // }
-
-
     render() {
 
         if (this.props.login.loggedInUser.rollno) {
@@ -123,10 +114,17 @@ class Display_announce extends React.Component {
                 body: JSON.stringify(this.state)
             }).then((resp) => resp.json()).then((assignments) => {
                 if (assignments) {
-                    
+                    // this.setState((prevState) => {
+                    //     return{
+                    //         assignment: [...prevState, assignments],
+                    //         obtain_marks:assignments.obtain_marks,
+                    //     display1: 'block',
+                    //     }
+                    // })
                     this.setState({
 
                         assignments: assignments,
+                        // obtain_marks: assignments.obtain_marks,
                         display1: 'block',
                     });
                 } else {
@@ -148,6 +146,7 @@ class Display_announce extends React.Component {
 
                 if (assignments) {
                     this.setState({
+
                         assignments: assignments,
                         display1: 'block',
                     });
@@ -167,11 +166,11 @@ class Display_announce extends React.Component {
                     <div id='nn_Assignment' style={{ display: this.state.display2 }} ><span>No Announcement Yet</span></div>
                     {/* <div  style={{ display: this.state.display1 }}> */}
                     <div className='pcontainer' align='left' ><span className='ptitle'>Announcement</span></div>
-                    <div hidden={!this.props.login.loggedInUser.rollno}>
+                    {/* hidden = {!this.props.login.loggedInUser.rollno} */}
+                    {/* <div >
                         {this.state.assignments.map((assignment, index) => {
-                            return <div className={index != this.state.announementIndex ? 'hide' : ''} dangerouslySetInnerHTML={{ __html: assignment.body }}> 
+                            return <div className={index != this.state.announementIndex ? 'hide' : ''} dangerouslySetInnerHTML={{ __html: assignment.body }}>
                             </div>
-
                         })}
 
                         <div id='btn-navigate-container'>
@@ -184,72 +183,73 @@ class Display_announce extends React.Component {
 
 
 
-                    </div>
+
+                    </div> */}
 
                     <div id='n-main-disp' hidden={this.props.login.loggedInUser.rollno}>
 
-                        <div  >
-                            <div>
-                                {this.state.assignments.map((assignment) => {
+
+                        <div>
+                            {this.state.assignments.map((assignment) => {
 
 
-                                    return <div >
+                                return <div>
+                                    <div >
 
-                                        <div className='dv_dateL'>
-                                            <span id='m-span'>{new Date(assignment.time).toLocaleDateString('en-us', {
-                                                month: 'short'
-                                            })}</span>
+                                        <span id='m-span'>{new Date(assignment.time).toLocaleDateString('en-us', {
+                                            month: 'short'
+                                        })}</span>
 
-                                            <span id='d-span'>{new Date(assignment.time).toLocaleDateString('en-us', {
+                                        <span id='d-span'>
+                                            {new Date(assignment.time).toLocaleDateString('en-us', {
                                                 day: 'numeric'
-                                            })}</span>
-                                        </div>
-                                        {/* <br></br> */}
-                                        <div align='left' className='assign'>
-                                            <div className='dv_time'>
-                                                <span >{new Date(assignment.time).toLocaleDateString('en-us', {
-                                                    day: 'numeric',
-                                                    month: 'long',
-                                                    year: 'numeric'
-                                                })}</span>
-                                            </div>
-                                            <div className='dv_link'>
+                                            })}
+                                        </span>
+                                    </div>
+                                    <br></br>
+                                    <span
+                                        className='assign'
+                                        className='dv_time'>
+                                        {new Date(assignment.time).toLocaleDateString('en-us', {
+                                            day: 'numeric',
+                                            month: 'long',
+                                            year: 'numeric'
+                                        })}</span>
+                                </div>
+                                    <div className='dv_link'>
 
-                                                <a onClick={this.openWin.bind(this, assignment)}  >{assignment.title}</a>
-                                            </div>
-
-                                        </div>
+                                        <a onClick={this.openWin.bind(this, assignment)}  > {assignment.title}</a>
+                                    </div>
+                                    <div>
                                         <button className='btnn-disp' title='delete' hidden={this.props.login.loggedInUser.rollno} onClick={this.deleteAssignment.bind(this, assignment)}>Delete</button>
                                         <hr id='disp_hr' />
                                     </div>
-                                    // return <tr>
-                                    //     <td>{assignment.time}</td>
-                                    //     <td><a href={assignment.file} download id='f-dowload'>{assignment.linkadress}</a></td>
-                                    //     <td id='d-date'>{assignment.due_date}</td>
-                                    //     <td hidden={this.props.login.loggedInUser.rollno}><button id='btn_delete' onClick={this.deleteAssignment.bind(this, assignment)}>Delete</button></td>
-                                    // </tr>
 
+                                     
                                 })
-                                }
-                            </div>
-
+                            }
                         </div>
+
                     </div>
                 </div>
             </div>
+            // </div >
         )
     }
 }
 
 
+
+
 let ConnectedDisplay_announce = connect((store) => {
 
     return {
+
         login: store.loginReducer,
         assignments: store.login
 
-    }
-})(Display_announce);
+    }(Display_announce);
 
+}
 
 export default ConnectedDisplay_announce;

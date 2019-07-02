@@ -13,7 +13,7 @@ class RedirectLogin extends Component {
                         <tr id='tr1'>Your Account is Created Successfully</tr>
                         <tr id='tr2'><span>Click <Link to='/'>here</Link> to Login</span></tr>
                     </tbody>
-                    <tfoot>Learning Management System</tfoot>
+                    <tfoot>Project Management System</tfoot>
                 </table>
                 {/* 
                 <header>hyyy</header>

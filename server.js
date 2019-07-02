@@ -29,7 +29,7 @@ passport.serializeUser(function (user, next) {
 
     next(null, user.cnic)
 
-});
+}); 
 
 let users = require('./authentication').users;
 

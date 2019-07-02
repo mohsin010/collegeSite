@@ -1,6 +1,6 @@
 import './discussion.css';
 import React, { Component } from 'react'
-import{Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import post from '../../../data/cancel.png';
 
 import { connect } from 'react-redux';
@@ -24,9 +24,13 @@ class Post_Msg extends Component {
             msgid: this.id(),
             subject: '',
             body: '',
-            posttime: new Date().toLocaleString(),
+            posttime: '',
             replytime: '',
-            supreply: ''
+            supreply: '',
+            to:'Dear Student,',      
+            titleerr: false,
+            bodyerr: true,
+            required:false
         }
 
 
@@ -50,98 +54,181 @@ class Post_Msg extends Component {
     }
 
     changeHandler = (evt, arg) => {
-
-        this.setState({
-            [evt.target.name]: evt.target.value,
-            [evt.target.name]: evt.target.value,
+        if (this.props.login.loggedInUser.rollno) {
 
 
-        })
+            this.setState({
+                posttime: new Date().toLocaleString(),
+                [evt.target.name]: evt.target.value,
+                [evt.target.name]: evt.target.value,
+
+
+            })
+        }
+        else {
+            // console.log(this.props.mId.messageId);
+            this.setState({
+                // msgid: this.props.mId.messageId,
+                supreply: evt.target.value,
+                // replytime: new Date().toLocaleString()
+            })
+        }
+
 
 
         // console.log(this.editor.getData());
-        console.log(this.state);
+        // console.log(this.state);
+
+
+
+
+
+
 
     }
-    submitData = (e) => {
+    componentDidMount(){
+
+    this.submitData = (e) => {
         e.preventDefault();
-        // if (this.state.title == '' && this.state.body == '') {
+        // if (this.state.supreply == '') {
         //     this.setState({
-        //         titleerr: true,
+        //         // titleerr: true,
         //         bodyerr: true
         //     })
-        //     alert("Please Fill Red Borderd Fields")
-        // } else if (this.state.title == '') {
-        //     this.setState({
-        //         titleerr: true
-        //     })
-        //     alert("Please Fill Title Field")
-        // } else if (this.state.body == '') {
+        //     // alert("Please Fill Red Borderd Fields")
+        // }else  {
         //     this.setState({
 
-        //         bodyerr: true
+        //         bodyerr: false
         //     })
-        //     alert("Please Fill Body Field")
+        //     // alert("Please Fill Body Field")
 
-        // } else {
+        // } 
 
-        fetch('/post_msg', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'Application/json'
-            },
-            body: JSON.stringify(this.state),
-        }).then((resp) => resp.json()).then((resp) => {
+        if (this.props.login.loggedInUser.rollno) {
 
-            if (resp._id) {
+            fetch('/post_msg', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'Application/json'
+                },
+                body: JSON.stringify(this.state),
+            }).then((resp) => resp.json()).then((resp) => {
 
-                this.setState({
-                    subject: '',
-                    body: ''
+                if (resp._id) {
 
-                })
+                    this.setState({
+                        subject: '',
+                        body: ''
+
+                    })
 
 
-                alert('Message Successfully Send ');
+                    alert('Message Successfully Send ');
 
-            } else {
-                this.setState({
-                    subject: '',
-                    body: ''
+                } else {
+                    this.setState({
+                        subject: '',
+                        body: ''
 
-                })
-                alert('Please try again');
+                    })
+                    alert('Please try again');
+                }
+            })
+        } else {
+            this.data = {
+                msgid: this.props.mId.messageId,
+                supreply: this.state.supreply,
+                to: this.state.to,
+                replytime: new Date().toLocaleString()
+            };
+
+            fetch('/sup_post_msg', {
+              
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'Application/json'
+                },
+                body: JSON.stringify(this.data),
+            }).then((resp) => resp.json()).then((resp) => {
+                debugger;
+                if (resp.msgid) {
+
+                    this.setState({
+                        supreply: ''
+
+                    })
+
+                    this.props.history.push('/app/discussion');
+
+
+                    alert('Message Successfully Replied ');
+
+                } else {
+                    this.setState({
+                        supreply: ''
+
+                    })
+                    alert('Please try again');
+                }
+            })
             }
-        })
-    }
+        }
+        }
     // }
 
-    render() {
-        return (
-            <div id='msg_container_main'>
-                <div>
-                    <div className='pcontainer' align='left' ><span className='ptitle'>Announcement</span></div>
-                    <div id='msg_container'>
-                        <form onSubmit={this.submitData}>
-                            <label className='label_msg'>Subject</label>
-                            <input id='msg_subject' type='text' name='subject' required='required' value={this.state.subject} onChange={this.changeHandler} />
-                            <br />
-                            <label id='label_msg' className='label_msg'>Message</label>
-                            <textarea id='msg_textarea' name="body" rows="10" cols="73.99" style={{ borderColor: this.state.bodyerr ? 'red' : 'inherit' }} required value={this.state.body} onChange={this.changeHandler} />
-                            <br />
-                            <div id='msg_controler'>
-                                <input id='msg_post' className='msg_control' type='submit' name='postmsg' value='' />
 
-                                <Link to ='/app/discussion' ><img src={post} id='msg_cancel' className='msg_control'  /> </Link> 
-                            </div>
+        render() {
+            return (
+                <div id='msg_container_main'>
+                    <div>
+                        <div className='pcontainer' align='left' ><span className='ptitle'>Message Editor</span></div>
+                        <div id='msg_container'>
+                            <form onSubmit={this.submitData}>
+                                <label hidden={!this.props.login.loggedInUser.rollno} className='label_msg'>Subject</label>
 
-                        </form>
+                                <input hidden={!this.props.login.loggedInUser.rollno} className='msg_subject' 
+                                type='text' name='subject' required= {this.props.login.loggedInUser.rollno ? 'required' : false}
+                                 value={this.state.subject} onChange={this.changeHandler}
+                                 style ={{ borderColor: this.state.titleerr ? 'red' : 'inherit' }} />
 
+                                <label hidden={this.props.login.loggedInUser.rollno} className='label_msg'>To</label>
+
+                                <input hidden={this.props.login.loggedInUser.rollno}  className='msg_subject' 
+                                id='to' type='text' name='to' 
+                                // required= {!this.props.login.loggedInUser.rollno ? 'required' : false} 
+                                value={this.state.to} onChange={this.changeHandler} readOnly
+                                style={{ borderColor: this.state.titleerr ? 'red' : 'inherit' }} />
+
+                                <br />
+                                <label id='label_msg' className='label_msg'>Message</label>
+                                <textarea id='msg_textarea' name="body" rows="10" cols="73.99" style={{ borderColor: this.state.bodyerr ? 'red' : 'inherit' }} required value={this.state.body || this.state.supreply} onChange={this.changeHandler} />
+                                <br />
+                                <div id='msg_controler'>
+                                    <input id='msg_post' className='msg_control' type='submit' name='postmsg' value='' />
+
+                                    <Link to='/app/discussion' ><img src={post} id='msg_cancel' className='msg_control' /> </Link>
+                                </div>
+
+                            </form>
+
+                        </div>
                     </div>
                 </div>
-            </div>
 
-        )
+            )
+        }
     }
-}
-export default Post_Msg;
+
+let ConnectedPostMsg = connect((store) => {
+
+        return {
+            login: store.loginReducer,
+            assignments: store.login,
+            mId: store.loginReducer
+
+        }
+    })(Post_Msg);
+
+
+export default ConnectedPostMsg;

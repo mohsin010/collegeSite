@@ -46,7 +46,7 @@ class Signin extends Component {
 				// alert('User Found');
 			} else {
 				this.props.history.push('/');
-				document.getElementById('err_msg').innerText = 'Invalid Roll No or Password';
+				document.getElementById('err_msg').innerText = 'Invalid CNIC No or Password';
 			}
 
 		})

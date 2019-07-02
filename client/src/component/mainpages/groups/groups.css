@@ -1,0 +1,57 @@
+#create_group{
+    /* background-color: red; */
+    /* height: 400px; */
+}
+#st_list{
+    /* margin-right: 5px !important; */
+}
+#sup_list{
+    /* width: 20% !important; */
+    /* padding-left: 20% !important; */
+    /* float: right; */
+
+
+}
+#sup_list_drop{
+    /* margin-left: 2%; */
+}
+#r_btn_sup{ 
+
+    margin-left: 10% !important;
+}
+#make_groups{
+    /* line-height: 90px; */
+}
+#main_tr_group{
+    /* margin-top: 10px; */
+    /* padding-left: 20%; */
+   
+}
+.st_list, .sup_list{
+    /* margin-left: 20px; */
+    background-color: lightgray;
+    width: 500px !important;
+    height: 200px;
+}
+#st_list_container{
+    margin-top: 0%;
+    /* background-color: red; */
+    height: 100%;
+    width: 100%;
+}
+.st_list_title{
+    margin-left: 40%;
+    margin-bottom: 40px;
+    color: rgb(5, 5, 126);
+    font-weight: 600;
+}
+.st_list_item{
+    /* margin-top: 50px; */
+    margin-left: 40%;
+    font-size: 95%;
+}
+#main_selected_group{
+    /* background-color: red;
+    width: 100%;
+    height: 30px; */
+}

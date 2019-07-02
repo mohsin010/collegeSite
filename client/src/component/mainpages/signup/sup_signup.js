@@ -78,8 +78,8 @@ class Sup_Signup extends Component {
                 {/* <DefaultHeader /> */}
                 <div id='grandmain-container'>
 
-                    <div id={'maincontainer1'}>
-                        <h2>Sign Up Here!</h2>
+                    <div id='maincontainer1' className= 'maincontainer1_sup'>
+                        <h2>Create Supervisor's Login!</h2>
                         <div id={'submaincontainer1'}>
                             <form onSubmit={this.submitForm1}>
                                 <label id={'namlabel'}>Name</label>
@@ -105,7 +105,7 @@ class Sup_Signup extends Component {
                                 <label id={'cniclabel'}>Cnic</label>
                                 <input type='numeric' maxLength='13' minLength='13' name='cnic' required placeholder='eg. (0000000000000)' value={this.state.cnic} onChange={this.handleInput} />
                                 <br></br>
-                                <label id={'deptlabel'}>Department</label>
+                                <label id={'deptlabel'} className='deptlabel_sup'>Department</label>
                                 <select name='department' id={'department'} required   value={this.state.department} onChange={this.handleInput} >
                                     <option>Select Your Department</option>
                                     <option>Computer Science</option>

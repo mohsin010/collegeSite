@@ -20,6 +20,7 @@ class Signup extends Component {
             program: '',
             startdate: '',
             enddate: '',
+            groupid:'',
             cnic:''
         }
         this.handleInput = this.handleInput.bind(this)

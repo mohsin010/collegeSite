@@ -111,7 +111,7 @@ class Display_document extends React.Component {
             })
         }
         // console.log("im Hell")
-        return (
+        return ( 
             // id='assignment_main_container'
             <div className='main-c-editor' id='main-title-disp'  >
                 {/* <div id='nn_Assignment' style={{ display: this.state.display2 }} ><span>No Assignment Assigned Yet</span></div> */}

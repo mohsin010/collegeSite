@@ -12,6 +12,7 @@ let Admin = require('../db/model/admin');
 let Notic = require('../db/model/notic'); 
 let Announcement = require('../db/model/announcement');
 let Discussion = require('../db/model/discussion');
+let Contacts = require('../db/model/contacts');
 const multer = require('multer');
 let path = require('path');
 let crypto = require('crypto');
@@ -40,8 +41,62 @@ var upload = multer({ storage: storage })
 router.get('/is_authenticated', function (req, res) {
     res.json(req.user || {});
 });
+// <======================================== Create Groups below ===========================================>
+
+
+router.post('/get_students', function (req, res) {
+    User.find((err, rec) => {
+
+        res.json(err || rec || { rec: "false" });
+    })
+})
+
+router.post('/get_supervisors', function (req, res) {
+    Faculty.find((err, rec) => {
+
+        res.json(err || rec || { rec: "false" });
+    })
+})
+
+
+
+
+// <======================================== Contacts below ===========================================>
+
+router.post('/contact', function (req, res) {
+    Contacts.find( req.body, (err, rec) => {
+     
+
+            let newcontact = new Contacts(req.body);
+            newcontact.save((err, rec) => {
+                res.json(err || rec);
+            })
+})
+})
+
+router.post('/contacts_display', function (req, res) {
+    Contacts.find((err, rec) => {
+
+        res.json(err || rec || { rec: "false" });
+    })
+})
+
+// delete contact
+router.post('/delete_contact', function (req, res) {
+
+    Contacts.findOneAndDelete({ issue: req.body.issue}, req.body , (err, rec) => {
+
+        if (rec) {
+            res.json(rec)
+        } else {
+            // res.json({success : false})
+            console.log('Contact Not Found');
+        }
+    })
+})
 
 // <===================== Discussions ========================>
+//  Student Message
 
 router.post('/post_msg', function (req, res) {
     Discussion.find( req.body, (err, rec) => {
@@ -54,6 +109,17 @@ router.post('/post_msg', function (req, res) {
 })
 })
 
+// supervisor reply
+
+router.post('/sup_post_msg', function (req, res) {
+    Discussion.findOneAndUpdate( { msgid: req.body.msgid }, req.body, (err, rec) => {
+     
+         
+                res.json( err || rec);
+})
+})
+
+
 router.post('/msg_display', function (req, res) {
     Discussion.find((err, rec) => {
 
@@ -61,10 +127,24 @@ router.post('/msg_display', function (req, res) {
     })
 })
 
+// delete Message
+router.post('/delete_message', function (req, res) {
+
+    Discussion.findOneAndDelete({ msgid: req.body.msgid}, req.body , (err, rec) => {
+
+        if (rec) {
+            res.json(rec)
+        } else {
+            // res.json({success : false})
+            console.log('Message Not Found');
+        }
+    })
+})
 
 
 
-// Announcement below
+
+// <======================================== Announcement below ===========================================>
 
 router.post('/announcement', function (req, res) {
 

@@ -6,10 +6,12 @@ import {
 import App from '../App';
 import DefaultMain from '../component/defaultPages/main/main';
 import Supervisors from '../component/mainpages/supervisors/viewSup/supervisors';
-import Contacts from '../component/mainpages/contact/contact';
+import ConnectedViewContacs from '../component/mainpages/contact/viewContacts';
 import Signup from '../component/mainpages/signup/signup';
 // import Noticeboard from '../component/mainpages/noticeboard/viewnoticeboard';
-import Notice from './../component/mainpages/noticeboard/notice';
+// import Notice from './../component/mainpages/noticeboard/notice';
+import ConnectedDisplay_notic from '../component/mainpages/noticeboard/display_notice';
+
 
 import Home from '../component/home/home'
 import Profile from '../component/mainpages/profile/Profile';
@@ -25,6 +27,8 @@ import RedirectLogin from '../component/mainpages/signup/to_login';
 import ConnectedAnnouncement from '../component/mainpages/announcements/viewannouncement';
 import Discussion from '../component/mainpages/discussion/discussion';
 import Post_Msg from '../component/mainpages/discussion/post_msg';
+import Sup_Signup from '../component/mainpages/signup/sup_signup'; 
+import  Groups from '../component/mainpages/groups/groups';
 
 import logOut from '../component/mainpages/signout/signout';
 import { connect } from 'react-redux';
@@ -45,16 +49,18 @@ const CustomDefaultRouts = (props) => (
 
       {/* <Route path='/noticeboard' component={Notice} /> */}
       <Route path='/supervisorsList' component={Supervisors} />
-      <Route path='/Contacts' component={Contacts} />
+      <Route path='/Contacts' component={ConnectedViewContacs} />
       <Route path='/signup' component={Signup} />
       <Route path='/profile' component={Profile} />
       <Route path='/noticeboard' component={Noticeboard} />
-      <Route path='/notices' component={Notice} />
+      <Route path='/notices' component={ConnectedDisplay_notic} />
       <Route path='/documents' component={ViewDocument} />
       <Route path='/result' component={ViewResult} />
       <Route path='/schedule' component={Schedule} />
       <Route path='/schedule/meeting' component={Meeting} />
       <Route path='/schedule/viva' component={Viva} />
+      <Route path='/app/create_groups' component={Groups} />
+      <Route path='/app/create_supervisor_login' component={Sup_Signup} />
       <Route path='/app/instructor' component={Instructor_Info} />
       <Route path='/app/assignment' component={ViewAssignment} />
       <Route path='/app/announcements' component={ConnectedAnnouncement} />

@@ -22,7 +22,7 @@ class Header extends Component {
     fetch('/is_authenticated', {
       method: 'GET'
     }).then((resp) => resp.json()).then((resp) => {
-      if (resp.rollno) {
+      if (resp.cnic) {
         store.dispatch({
           payload: resp,
           type: 'user_signed_success'

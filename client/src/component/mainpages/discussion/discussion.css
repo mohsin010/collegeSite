@@ -29,16 +29,26 @@
     /* position: absolute; */
 }
 
-#msg_subject{
+.msg_subject{
     width: 40.4%;
     border: 1px solid gainsboro !important;
 
     /* border: none; */
     
 }
+#to{
+    margin-left: 2.9%;
+
+}
+.to{
+    /* color: rgb(27, 146, 27); */
+    margin-left: 2%;
+    font-weight: 500;
+    font-size: 80%;
+}
 #msg_textarea{
     margin-top: 35px;
-    border: 1px solid gainsboro !important;
+    border: 2px solid gainsboro !important;
     /* box-shadow: 2px 2px  rgb(111, 114, 253); */
 }
 #msg_controler{
@@ -107,7 +117,8 @@
 }
 #tbl_msgs{
     width: 100%;
-    border: red;
+    /* border-right: 2px solid red; */
+    /* border: red; */
     /* border-collapse: collapse;
      */
     /* background-color: rgb(250, 246, 246); */
@@ -135,15 +146,70 @@
         font-weight: 600;
       /* background-color: red; */
   }
+  .td_head_1{
+    width: 20% !important;
+  }
+  .td_head_2{
+    width: 70% !important;
+  }
+  .td_head_3{
+    width: 10% !important;
+  }
   #td_msg_sub{
       color: blue;
+    width: 20%;
+
   }
   #td_msg_sub_span{
     cursor: pointer;
   }
   .msg_rep_tim{
     background-color: rgb(236, 235, 235);
+    width: 20%;
   }
   .tr_ms{
       height: 200px;
   }
+  .heading_msg{
+      /* background-color: red; */
+      margin-top: -5px;
+      margin-bottom: 0%;
+      /* vertical-align: text-top; */
+  }
+  .body_msg1{
+    /* background-color: red; */
+    margin-left: 8%;
+    font-size: 90%;
+    /* margin-top: -40px; */
+    /* margin-top: 30px !important; */
+
+
+  }
+  .msg_hr{
+      width: 100%;
+  }
+  .instruct_rep{
+      margin-top: 10px;
+      text-decoration: underline;
+      font-weight: bold;
+      color: rgb(16, 16, 182);
+      /* background-color: red; */
+  }
+  .sup_rep_head{
+      /* background-color: red; */
+      font-weight: bold;
+      color: rgb(27, 146, 27);
+      /* height: 50px; */
+  }
+  .sup_rep_body{
+      margin-left: 8%;
+  }
+  .btnn-del{
+/* float: left;
+ */
+ margin-left: 30%;
+ outline: none;
+}
+.btnn-del:hover{
+    opacity: 0.8;
+}

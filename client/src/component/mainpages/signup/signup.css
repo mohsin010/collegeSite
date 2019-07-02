@@ -1,11 +1,15 @@
+.maincontainer1_sup{
+height: 610px !important;
+}
 
 #maincontainer1{
     /* background-color: rgb(70, 133, 133); */
-    height: 660px;
+    height: 690px;
     width: 50%;
     /* margin-left: calc(50% - 15%); */
-    /* margin-top: 5px; */
+    margin-top: 5px;
     padding: 5px;
+
     /* margin-left: 10px; */
     margin-left: calc(50% - 25%);
     background-color: rgb(243, 241, 236);
@@ -20,10 +24,12 @@
     min-width: 10%;
     margin: 0.01%;
     padding: 0%;
+    padding-top: 4px;
+    padding-bottom: 8px;
     background-color: rgb(9, 36, 116);
     /* background-color: rgb(9, 36, 116); */
     margin-left: 0.5%;
-    /* margin-top: 0%; */
+    margin-bottom: 5px;
     /* border-top: 4px solid rgb(2, 1, 75); */
     
 
@@ -256,21 +262,24 @@ hr{
 /* body{
     overflow-y:unset;
 }
-@media only screen and (max-width:960px){
+@media only screen and (max-width:960px){ 
     body{
         overflow-y:scroll;
     }
 } */
 
 /* sup_signup */
+.deptlabel_sup{
+    margin-right: 7.7% !important;
+}
 #cniclabel{
- margin-right: 17% !important;
+ margin-right: 16.5% !important;
  color: red ;  
 }
 #desiglabel{
-    margin-right: 8.5% !important;
+    margin-right: 7.8% !important;
 }
 #descrlabel{
-    margin-right: 9.35% !important;
+    margin-right: 8.6% !important;
     vertical-align: top ;
 }

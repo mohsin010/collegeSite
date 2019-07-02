@@ -1,0 +1,21 @@
+/* input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+} */
+.t-rd::-webkit-inner-spin-button, 
+.t-rd::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+.td_cont_issu{
+    font-size: 120%;
+}
+.th_phone, .th_email{
+    width: 40% !important;
+
+}
+.td_cont{
+    font-size: 80%;
+    color: rgb(28, 28, 209);
+}

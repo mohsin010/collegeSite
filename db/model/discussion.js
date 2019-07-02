@@ -10,7 +10,8 @@ let discussionSchema = mongoose.Schema({
     body: String,
     posttime: String,
     replytime: String,
-    supreply: String
+    supreply: String,
+    to: String
 })
 
 let Discussion = mongoose.model('discussion', discussionSchema);
