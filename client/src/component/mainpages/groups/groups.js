@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './groups.css';
 import { connect } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlusSquare, faMinusSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 class Groups_Create extends Component {
 
@@ -20,35 +22,115 @@ class Groups_Create extends Component {
             selectedStudents: [
 
             ],
+            sendGroup: [],
 
-            supervisor: 'ahmed'
+            supervisor: '',
+            groupid: ''
         };
         this.handleChange = this.handleChange.bind(this);
 
 
     }
 
-    change = (e) =>{
+
+    change = (e) => {
         debugger;
         this.setState({
-            supervisor: e.target.value
+            [e.target.name]: e.target.value,
+            // groupid: e.target.value
         })
     }
+    deleterollno = (student, evt) =>{
+         let newChild = evt.target.value;
 
-    handleChange(evt ) {
+        // alert(newChild);
+
+        // let target = this.state.selectedStudents.find((student) => {
+        //     return student.rollno == newChild;
+        // })
+
+        let index = this.state.selectedStudents.indexOf(student);
+
+
+        this.state.selectedStudents.splice(index, 1);
         debugger;
+
         this.setState({
-            // [evt.target.name]: evt.target.value,
-            // [evt.target.name]: evt.target.value.toUpperCase(),
-            // [evt.target.name]: evt.target.value,
-            // [evt.target.name]: evt.target.value.toUpperCase(),
-            selectedStudents: evt.target.value,
-            supervisor: evt.target.value
+            students: [
+                ...this.state.students,
+                student
+            ],
+            selectedStudents: this.state.selectedStudents
+
         })
+        
     }
 
-    render() {
+    handleChange(student, evt) {
+        let newChild = evt.target.value;
 
+        // alert(newChild);
+
+        let target = this.state.students.find((student) => {
+            return student.rollno == newChild;
+        })
+
+        let index = this.state.students.indexOf(target)
+
+
+        this.state.students.splice(index, 1)
+        // this.setState({
+
+        // })
+
+        this.setState({
+
+            [evt.target.name]: evt.target.value.toUpperCase(),
+            selectedStudents: [
+                ...this.state.selectedStudents,
+                target
+            ],
+            students: this.state.students
+
+
+            // supervisor: evt.target.value
+        })
+        console.log(this.state.selectedStudents)
+    }
+
+    submit = (e) => {
+        e.preventDefault();
+        debugger;
+       
+        let data = {
+            st_group: this.state.selectedStudents.map((item)=>{
+                return item.rollno;
+            }),
+            supervisor: this.state.supervisor,
+            groupid: this.state.groupid
+        }
+
+        fetch('/add_group', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'Application/json'
+            },
+            body: JSON.stringify(data)
+        }).then((resp) => resp.json()).then((groups) => {
+
+            if (!groups.success == false) {
+                this.setState({
+                    selectedStudents: [],
+                    supervisor: '',
+                    groupId: ''
+                });
+                alert('Group Successfully Created');
+            } else {
+                alert("Group Already Exist");
+            }
+        })
+    }
+    componentDidMount() {
         if (!this.props.login.loggedInUser.department) {
             fetch('/get_students', {
                 method: 'POST',
@@ -58,16 +140,12 @@ class Groups_Create extends Component {
                 body: JSON.stringify(this.state)
             }).then((resp) => resp.json()).then((students) => {
 
-                // assignments = assignments.sort((prev, next) => {
-                //     return prev.rollno - next.rollno;
-                // })
+          
 
                 if (students) {
                     this.setState({
                         students: students
-                        // selected: null,
-                        // msgs: msgs,
-                        // display1: 'block',
+                        
                     });
                 } else {
                     this.setState({ display2: 'block' })
@@ -82,22 +160,20 @@ class Groups_Create extends Component {
                 body: JSON.stringify(this.state)
             }).then((resp) => resp.json()).then((supervisors) => {
 
-                // assignments = assignments.sort((prev, next) => {
-                //     return prev.rollno - next.rollno;
-                // })
-
                 if (supervisors) {
                     this.setState({
                         supervisors: supervisors
-                        // selected: null,
-                        // msgs: msgs,
-                        // display1: 'block',
                     });
                 } else {
                     this.setState({ display2: 'block' })
                 }
             })
         }
+    }
+
+    render() {
+
+
 
 
         return (
@@ -105,65 +181,67 @@ class Groups_Create extends Component {
 
                 <div id='msg_disp_container'>
                     <div>
-                        <div className='pcontainer-editor-r' id='create_group' align='left' ><p id={'user-type'} className={'p-r'}><b> Upload Result</b></p></div>
-                        <form onSubmit={this.submitData}>
+                        <div className='pcontainer-editor-r' id='create_group' align='left' ><p id={'user-type'} className={'p-r'}><b> Create Group</b></p></div>
+                        <form onSubmit={this.submit}>
                             <table className={'tbl-result'} id='make_groups'  >
                                 <tbody>
                                     <tr>
-                                        <th className='t-rd' id='st_list' >Students List:</th>
+                                        <th className='title_st'>Group ID:</th>
+                                        <td ><input type='text' className='group_id_g' name='groupid' required='required' placeholder='Enter Group ID' value={this.state.groupid} onChange={this.change} /></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+
+
+                                        <th className='' id='st_list' >Students List:</th>
                                         <td  >
-                                            <select value={this.state.supervisor} onchange={this.change} >
-                                                <option value =' select student'>Select Student</option>
+                                            <select id='multi_st_list' multiple='multiple' value={this.state.selectedStudents}  >
+                                                {/* <option value=' select student'>Select Student</option> */}
                                                 {this.state.students.map((student) => {
 
-                                                    return <option value={student.rollno} >{student.rollno}</option>
+                                                    return <option value={student.rollno} onDoubleClick={this.handleChange.bind(this, student)}>{student.rollno}</option>
                                                 }
                                                 )}
 
                                             </select>
                                         </td>
-                                        <th className='t-rd' id='sup_list' >Supervisors:</th>
-                                        <td className='sup_list_drop'>
-
-                                            <select>
-                                                <option>Select Supervisor</option>
-                                                {this.state.supervisors.map((supervisor) => {
-
-                                                    return <option onClick={this.handleChange.bind(this, supervisor)}>{supervisor.name}</option>
-                                                }
-                                                )}
-
-
-                                            </select>
-                                        </td>
-
-                                    </tr>
-                                    <br />
-                                    <tr id='main_tr_group'>
-                                        <td></td>
-                                        {/* <td>fasdfasdfads</td> */}
-                                        <td></td>
-                                        <td className='st_list' ><div id='st_list_container'>
+                                        <td className='st_list'  ><div id='st_list_container'>
                                             <span className='st_list_title' >St_List</span>
                                             <br />
                                             <br />
                                             {this.state.selectedStudents.map((student) => {
-                                                return  <span className='st_list_item'> {student.rollno} </span>
-                                                // <br />
+                                                return <sapn>
+                                                    <span className='st_list_item'> {student.rollno} </span>
+                                                    <span><FontAwesomeIcon icon={faTrash} onDoubleClick={this.deleterollno.bind(this, student)} /></span>
+                                                    <br />
+                                                </sapn>
                                             })}
 
                                         </div></td>
-                                        {/* <td className='sup_list'  >sup_list</td> */}
+                                        {/* <td></td> */}
+                                    </tr>
+                                    <tr>
+                                        <th className='title_st' id='sup_list' >Supervisors:</th>
+                                        <td className='sup_list_drop'>
 
-                                        {/* <div id='main_selected_group' >
-                                                <div>
-fasdfasf
-                                                </div>
-                                                <div>
+                                            <select name='supervisor' value={this.state.supervisor} onChange={this.change}>
+                                                <option>Select Supervisor</option>
+                                                {this.state.supervisors.map((supervisor) => {
 
-                                                </div>
+                                                    return <option value={supervisor.name}>{supervisor.name}</option>
+                                                }
+                                                )}
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <br />
+                                    <tr id='main_tr_group'>
+                                        <td></td>
+                                        {/* <td></td> */}
+                                        {/* <tr>/ */}
 
-                                        </div> */}
+                                        <td></td>
+
                                     </tr>
                                     <tr>
                                         <td >

@@ -171,9 +171,8 @@ class AssignmentDisplay extends Component {
             })
         }
     }
-  
 
-    render() {
+    componentDidMount(){
         if (this.state.rollno) {
             fetch('/assignment_display', {
                 method: 'POST',
@@ -183,7 +182,7 @@ class AssignmentDisplay extends Component {
                 body: JSON.stringify(this.state)
             }).then((resp) => resp.json()).then((assignments) => {
 
-                if (assignments.groupid) {
+                if (assignments) {
                     // this.setState((prevState) => {
                     //     return{
                     //         assignment: [...prevState, assignments],
@@ -229,6 +228,11 @@ class AssignmentDisplay extends Component {
                 }
             })
         }
+    }
+  
+
+    render() {
+       
         return (
             <div>
                 <div id='nn_Assignment' style={{ display: this.state.display2 }} ><span>No Assignment Assigned Yet</span></div>
