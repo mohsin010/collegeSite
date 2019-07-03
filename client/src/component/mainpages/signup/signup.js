@@ -21,6 +21,7 @@ class Signup extends Component {
             startdate: '',
             enddate: '',
             groupid:'',
+            supervisorname:'',
             cnic:''
         }
         this.handleInput = this.handleInput.bind(this)

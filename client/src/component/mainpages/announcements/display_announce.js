@@ -2,6 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import newest from '../../../data/newest.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlusSquare, faMinusSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 // import './document.css';
 
 class Display_announce extends React.Component {
@@ -212,6 +214,8 @@ class Display_announce extends React.Component {
                                                     month: 'long',
                                                     year: 'numeric'
                                                 })}</span>
+
+                                                <span className='group_id_display'>{assignment.groupid}</span>
                                             </div>
                                             <div className='dv_link'>
 
@@ -219,7 +223,9 @@ class Display_announce extends React.Component {
                                             </div>
 
                                         </div>
-                                        <button className='btnn-disp' title='delete' hidden={this.props.login.loggedInUser.rollno} onClick={this.deleteAssignment.bind(this, assignment)}>Delete</button>
+                                        <button id='btn_delete' className='btnn-disp' title='delete' hidden={this.props.login.loggedInUser.rollno} onClick={this.deleteAssignment.bind(this, assignment)}><FontAwesomeIcon icon={faTrash} /></button>
+
+                                        {/* <button className='btnn-disp' title='delete' hidden={this.props.login.loggedInUser.rollno} onClick={this.deleteAssignment.bind(this, assignment)}>Delete</button> */}
                                         <hr id='disp_hr' />
                                     </div>
                                     // return <tr>

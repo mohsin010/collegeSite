@@ -9,15 +9,29 @@ class Editor_announce extends Component {
         this.state = {
             title: '',
             body: '',
+            groupid:'',
             time: new Date().toDateString(),
             titleerr: false,
-            bodyerr: false
+            bodyerr: false,
+            groupiderr: false
 
         }
 
     }
 
     editor = null;
+    change = (evt) =>{
+        this.setState({
+            [evt.target.name]: evt.target.value
+
+        })
+        if ([evt.target.name] == 'groupid'){
+            this.setState({
+                groupiderr: false,
+
+            })
+        }
+    }
 
     changeHandler = (evt, arg) => {
         let titl = evt.target.value
@@ -49,10 +63,11 @@ class Editor_announce extends Component {
 
     submitData = (e) => {
         e.preventDefault();
-        if (this.state.title == '' && this.state.body == '') {
+        if (this.state.title == '' && this.state.body == '' && this.state.groupid == '') {
             this.setState({
                 titleerr: true,
-                bodyerr: true
+                bodyerr: true,
+                groupiderr: true
             })
             alert("Please Fill Red Border Fields")
         } else if (this.state.title == '') {
@@ -66,6 +81,13 @@ class Editor_announce extends Component {
                 bodyerr: true
             })
             alert("Please Fill Body Field")
+
+        } else if (this.state.groupid == '') {
+            this.setState({
+
+                groupiderr: true
+            })
+            alert("Please Fill Group ID Field")
 
         } else {
 
@@ -81,18 +103,16 @@ class Editor_announce extends Component {
 
                     this.setState({
                         title: '',
-                        body: ''
-
+                        body: '',
+                        groupid:''
                     })
-
-
                     alert('Announcement Successfully Published ');
 
                 } else {
                     this.setState({
                         title: '',
-                        body: ''
-
+                        body: '',
+                        groupid:''
                     })
                     alert('Announcement Already Uploaded');
                 }
@@ -100,14 +120,14 @@ class Editor_announce extends Component {
         }
     }
 
-
-
     render() {
         return (
             <div className="App">
                 <div id='main-c'>
                     <div id='pcontainer'  ><span id='ntitle' className='pcontainer_ral'>Upload Announcement</span></div>
                     <div id='label'><label>Title</label><input style={{ borderColor: this.state.titleerr ? 'red' : 'inherit' }} type='text' name='title' required='required' value={this.state.title} onChange={this.changeHandler} /></div>
+                    <div id='label'><label className='label_id'>Group ID</label><input style={{ borderColor: this.state.groupiderr ? 'red' : 'inherit' }} type='text' name='groupid' required='required' value={this.state.groupid} onChange={this.change} /></div>
+                    
                     {/* <h2>Using CKEditor 5 build in React</h2> */}
                     <div id='ckeditor-parent'>
                         <div id='ckeditor-child-title'>

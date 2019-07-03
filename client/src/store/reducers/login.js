@@ -6,7 +6,7 @@ let initialState = {
     in_process: 'false',
     loggedInUser: {},
     assignments: [],
-    messageId:{}
+    messageId: {}
 };
 
 const loginReducer = (state = initialState, action) => {
@@ -39,7 +39,7 @@ const loginReducer = (state = initialState, action) => {
             return {
                 in_process: false,
                 ...action.payload,
-                loggedInUser: {}
+                loggedInUser: {...state.loggedInUser}
                 // loggedInUser: action.payload
 
             }
@@ -114,9 +114,10 @@ const loginReducer = (state = initialState, action) => {
         case 'message_reply':
             return {
                 assignments: {},
-                loggedInUser: {},
-                messageId:action.payload,
+                loggedInUser: {...state.loggedInUser},
+                messageId: action.payload,
                 in_process: 'false',
+                
             }
             break;
     }

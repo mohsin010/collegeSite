@@ -175,7 +175,7 @@ class AssignmentEditor extends Component {
                                     <th className='e-a-t'>Group Id:</th>
                                     <td ><input type='numeric' className='b-td' name='groupid' required='required' placeholder='Enter Group ID ' onChange={this.handleChange} value={this.state.groupid} /></td>
                                     <th className='e-a-t'>File:</th>
-                                    <td ><input type='file' className='b-td' ref='assigninput' name='file' onChange={this.pickFile} placeholder='Enter Group ID' /></td>
+                                    <td ><input type='file' className='b-td' ref='assigninput' name='file' onChange={this.pickFile} /></td>
                                     {/* <td className={'p-pic'}></td> */}
                                     {/* onChange={this.getBase64 }  */}
 

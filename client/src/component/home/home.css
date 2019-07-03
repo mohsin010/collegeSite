@@ -35,9 +35,9 @@
       /* margin-top: 0%; */
   }
   .descriptio{
-    font-size: 47%;
+    font-size: 13px;
     color: rgb(32, 32, 243);
-    font-weight: 430; 
+    font-weight: 400; 
   }
   #btn_info-dec{
     margin-top: 9%;

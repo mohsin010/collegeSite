@@ -207,7 +207,8 @@
   .btnn-del{
 /* float: left;
  */
- margin-left: 30%;
+ margin-left: 23% !important;
+ /* float: cen; */
  outline: none;
 }
 .btnn-del:hover{

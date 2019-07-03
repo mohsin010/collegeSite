@@ -68,6 +68,7 @@ class Discussion extends Component {
 
 
     viewMsg = (msg) => {
+        debugger;
         store.dispatch({
             payload: msg.msgid,
             type: 'message_reply'
@@ -134,7 +135,7 @@ class Discussion extends Component {
                                     <th className='td_head_1'>ID</th>
                                     <th className='td_head_2'>Subject</th>
                                     <th className='td_head_3'>Date</th>
-                                    <th className='td_head_3'>Delete</th>
+                                    <th className='td_head_3' hidden={this.props.login.loggedInUser.rollno}>Delete</th>
 
                                 </tr>
                                 {this.state.msgs.map((msg) => {
@@ -148,8 +149,9 @@ class Discussion extends Component {
                                                 Msg No :{msg.msgid} </span></td>
                                             <td className='td_msg1' className='td_msg'>{msg.subject}</td>
                                             <td className='td_msg1'>{msg.posttime}</td>
-                                            <td>
-                                                <button className='btnn-del' title='delete' hidden={this.props.login.loggedInUser.rollno} onClick={this.deleteAssignment.bind(this, msg)}><FontAwesomeIcon icon={faTrash} /></button>
+                                            <td hidden={this.props.login.loggedInUser.rollno}>
+                                                <button id='btn_delete' className='btnn-del'    onClick={this.deleteAssignment.bind(this, msg)}><FontAwesomeIcon icon={faTrash} /></button>
+                                                {/* <button className='btnn-del' title='delete' hidden={this.props.login.loggedInUser.rollno} onClick={this.deleteAssignment.bind(this, msg)}><FontAwesomeIcon icon={faTrash} /></button> */}
                                             </td>
 
 
@@ -163,7 +165,7 @@ class Discussion extends Component {
                                                 <br />
 
                                                 <span className='body_msg1' >{msg.body} </span>
-                                                <div className='instruct_rep'>
+                                                <div className='instruct_rep' hidden={this.props.login.loggedInUser.rollno}>
                                                     <Link to='/post_msg' > <span>Reply</span> </Link>
                                                 </div>
                                                 <hr className='msg_hr' />

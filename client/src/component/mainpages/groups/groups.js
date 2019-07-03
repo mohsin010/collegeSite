@@ -25,7 +25,11 @@ class Groups_Create extends Component {
             sendGroup: [],
 
             supervisor: '',
-            groupid: ''
+            groupid: '',
+            no: '',
+            title: '',
+            groups: [],
+
         };
         this.handleChange = this.handleChange.bind(this);
 
@@ -34,14 +38,13 @@ class Groups_Create extends Component {
 
 
     change = (e) => {
-        debugger;
+
         this.setState({
             [e.target.name]: e.target.value,
-            // groupid: e.target.value
         })
     }
-    deleterollno = (student, evt) =>{
-         let newChild = evt.target.value;
+    deleterollno = (student, evt) => {
+        let newChild = evt.target.value;
 
         // alert(newChild);
 
@@ -53,7 +56,7 @@ class Groups_Create extends Component {
 
 
         this.state.selectedStudents.splice(index, 1);
-        debugger;
+
 
         this.setState({
             students: [
@@ -63,7 +66,52 @@ class Groups_Create extends Component {
             selectedStudents: this.state.selectedStudents
 
         })
-        
+
+    }
+
+    // Delete Group
+
+    deleteGroup = (group, evt) => {
+
+        // this.setState({
+        // [evt.target.name]:evt.target.value
+        // })
+
+
+        let data = {
+
+            groupid: group.groupid,
+            no: group.no,
+        }
+
+        fetch('/delete_group', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then((resp) => resp.json()).then((resp) => {
+            if (resp) {
+
+                let target = this.state.groups.find((group) => {
+                    return resp._id == group._id;
+                })
+
+                let index = this.state.groups.indexOf(target)
+
+
+                this.state.groups.splice(index, 1)
+                this.setState({
+                    groups: this.state.groups
+                })
+                alert('Group Deleted Successfully')
+
+
+            } else {
+                alert('Error is Occured');
+            }
+
+        });
     }
 
     handleChange(student, evt) {
@@ -100,14 +148,16 @@ class Groups_Create extends Component {
 
     submit = (e) => {
         e.preventDefault();
-        debugger;
-       
+
+
         let data = {
-            st_group: this.state.selectedStudents.map((item)=>{
+            st_group: this.state.selectedStudents.map((item) => {
                 return item.rollno;
             }),
             supervisor: this.state.supervisor,
-            groupid: this.state.groupid
+            groupid: this.state.groupid,
+            no: this.state.no,
+            title: this.state.title
         }
 
         fetch('/add_group', {
@@ -118,19 +168,24 @@ class Groups_Create extends Component {
             body: JSON.stringify(data)
         }).then((resp) => resp.json()).then((groups) => {
 
-            if (!groups.success == false) {
+            if (groups.success == false) {
+                alert("Group Already Exist");
+
+            } else {
                 this.setState({
                     selectedStudents: [],
                     supervisor: '',
-                    groupId: ''
+                    groupid: '',
+                    no: '',
+                    title: ''
+
                 });
                 alert('Group Successfully Created');
-            } else {
-                alert("Group Already Exist");
             }
         })
     }
     componentDidMount() {
+
         if (!this.props.login.loggedInUser.department) {
             fetch('/get_students', {
                 method: 'POST',
@@ -140,12 +195,12 @@ class Groups_Create extends Component {
                 body: JSON.stringify(this.state)
             }).then((resp) => resp.json()).then((students) => {
 
-          
+
 
                 if (students) {
                     this.setState({
                         students: students
-                        
+
                     });
                 } else {
                     this.setState({ display2: 'block' })
@@ -165,15 +220,42 @@ class Groups_Create extends Component {
                         supervisors: supervisors
                     });
                 } else {
-                    this.setState({ display2: 'block' })
+                    // this.setState({ display2: 'block' })
+                    console.log('Err')
+
                 }
             })
         }
     }
 
+
     render() {
 
+        fetch('/groups_display', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'Application/json'
+            },
+            body: JSON.stringify(this.state)
+        }).then((resp) => resp.json()).then((groups) => {
 
+            // groups = groups.sort((prev, next) => {
+            //     return prev.rollno - next.rollno;
+            // })
+            debugger;
+            if (groups) {
+                this.setState({
+
+                    groups: groups,
+                    // display3: groups.display3,
+                    // display4: groups.display4,
+                    // display1: 'block',
+                });
+            } else {
+                // this.setState({ display2: 'block' })
+                console.log('Err')
+            }
+        })
 
 
         return (
@@ -186,9 +268,16 @@ class Groups_Create extends Component {
                             <table className={'tbl-result'} id='make_groups'  >
                                 <tbody>
                                     <tr>
+                                        <th className='title_st'>No:</th>
+                                        <td ><input type='text' className='group_id_g' name='no' required='required' placeholder='Enter No' value={this.state.no} onChange={this.change} /></td>
+                                    </tr>
+                                    <tr>
                                         <th className='title_st'>Group ID:</th>
                                         <td ><input type='text' className='group_id_g' name='groupid' required='required' placeholder='Enter Group ID' value={this.state.groupid} onChange={this.change} /></td>
-                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th className='title_st'>Project Title:</th>
+                                        <td ><input type='text' className='group_id_g' name='title' required='required' placeholder='Enter Project Title' value={this.state.title} onChange={this.change} /></td>
                                     </tr>
                                     <tr>
 
@@ -255,12 +344,65 @@ class Groups_Create extends Component {
                         </form>
 
                     </div>
-
-                    <div className='pcontainer' id='msg_list' align='left' ><span className='ptitle'>Groups List</span>
-
-
-                    </div>
                 </div>
+                {/* <div id='nn_Assignment' style={{ display: this.state.display2 }} ><span>No Assignment Assigned Yet</span></div> */}
+                    <div className='group_list_disp'>
+                        <div className='pcontainer' id='groups_list' align='left'  ><span className='ptitle'>Groups List</span>
+                            <div className='groups_tbl'>
+                                <table id='p_detail' className='tbl_groups' hidden={!this.props.login.loggedInUser.rollno}>
+                                    <tr>
+                                        <th className='p_head'>Group Id</th>
+                                        <td className='p_info'>Group id here</td>
+                                    </tr>
+                                    <tr>
+                                        <th className='p_head'>Title</th>
+                                        <td className='p_info'>Title here</td>
+                                    </tr>
+                                    <tr>
+                                        <th className='p_head'>Supervisor Name</th>
+                                        <td className='p_info'>Name here</td>
+                                    </tr>
+                                </table>
+                                <table id='tbl-assignment' >
+                                    {/* <hr className='hr' />                     */}
+                                    <tbody>
+                                        {/* <caption>Instructor's Info</caption> */}
+                                        {/* <hr /> */}
+
+                                        <tr>
+                                            <th id='a_no'>No</th>
+                                            <th className='grp_id' >Group Id</th>
+                                            <th className=''>Title</th>
+                                            <th className='grp_id'>Members</th>
+                                            <th className='grp_id' hidden={this.props.login.loggedInUser.rollno}>Delete</th>
+
+                                        </tr>
+
+
+                                        {this.state.groups.map((group) => {
+
+                                            return <tr>
+                                                <td  >{group.no}</td>
+                                                <td >{group.groupid}</td>
+                                                <td className='show_assign' className='tbl_group_val' >{group.title}</td>
+                                                {/* <td className='show_assign'>{assignment.topic}</td> */}
+                                                <td className='show_assign' >
+                                                    {group.st_group.map((item) => {
+                                                        return <span >{item}<br /></span>
+
+                                                    })}
+                                                </td>
+                                                <td hidden={this.props.login.loggedInUser.rollno} ><button id='btn_delete' onClick={this.deleteGroup.bind(this, group)}><FontAwesomeIcon icon={faTrash} /></button></td>
+                                            </tr>
+
+                                        })
+                                        }
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
 
 
 

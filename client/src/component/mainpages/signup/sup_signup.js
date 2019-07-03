@@ -18,10 +18,19 @@ class Sup_Signup extends Component {
             department: '',
             cnic: '',
             designation: '',
-            description: ''
+            description: '',
+            file:''
         }
         this.handleInput = this.handleInput.bind(this)
         this.submitForm1 = this.submitForm1.bind(this)
+    }
+
+    pickFile = (e) => {
+        e.preventDefault()
+        debugger;
+        this.setState({
+            file: e.target.files[0]
+        })
     }
 
     handleInput = (evt) => {
@@ -37,14 +46,29 @@ class Sup_Signup extends Component {
             [evt.target.name]: evt.target.value,
         })
     }
+   
     submitForm1 = (e) => {
         e.preventDefault();
+        debugger;
+        let data = this.state;
+        let formData = new FormData();
+        formData.append('name', data.name)        
+        formData.append('fname', data.fname)
+        formData.append('email', data.email)
+        formData.append('phone', data.phone)
+        formData.append('password', data.password)
+        formData.append('department', data.department)
+        formData.append('cnic', data.cnic)
+        formData.append('designation', data.designation)
+        formData.append('description', data.description)
+        formData.append('file', data.file)
+     debugger;
+
         fetch('/sup_signup', {
+            
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(this.state)
+           
+            body: formData,
         }).then((resp) => resp.json()).then((resp) => {
             this.setState({
                 name: '',
@@ -55,7 +79,8 @@ class Sup_Signup extends Component {
                 department: '',
                 cnic: '',
                 designation: '',
-                description: ''
+                description: '',
+                file:''
             })
 
             if (resp._id) {
@@ -100,7 +125,7 @@ class Sup_Signup extends Component {
                                 <label id={'pass'}>Password</label>
                                 <input id={'passinpt1'} type='password' required name='password' placeholder='Password' value={this.state.password} onChange={this.handleInput} />
                                 <br></br>
-
+  
 
                                 <label id={'cniclabel'}>Cnic</label>
                                 <input type='numeric' maxLength='13' minLength='13' name='cnic' required placeholder='eg. (0000000000000)' value={this.state.cnic} onChange={this.handleInput} />
@@ -123,7 +148,9 @@ class Sup_Signup extends Component {
                                 <label id={'descrlabel'}>Description</label>
                                 <textarea rows="4" cols="45" type='textarea' name='description'  value={this.state.description} required placeholder='Description' onChange={this.handleInput} />
                                 <br></br>
-
+                                <label id={'inpt_file_pic'}>Profile Picture</label>
+                                <input  type='file' name='file'   required  onChange={this.pickFile} />
+                                <br></br>
 
                                 {/* Form Ends */}
                                 <input id={'btn'} type='submit' name='signup' value={'Create Account'} />

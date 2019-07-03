@@ -73,11 +73,13 @@
 
 #upload > form > label {
     margin-left: 2%;
-    margin-right: 0.5%;
+    margin-right: 5% !important;
     font-size: 100%;
     font-weight: bold;
     color: rgba(3, 3, 105, 0.884);
+    
 }
+
 #upload > .btnn{
     border-color: inherit;
     background-color: rgb(97, 74, 182);
@@ -87,6 +89,9 @@
     height: 30px;
     border-radius: 10px;
 } 
+.label_id{
+    margin-right: -2.7% !important;
+}
 #upload > .btnn:hover{
     background-color: white;
     color: rgb(155, 114, 114);
@@ -163,4 +168,7 @@ height: 300px;
     /* display: none; */
     position: static !important;
     /* float: left !important; */
+}
+.group_id_display{
+    margin-left: 1%;
 }

@@ -12,6 +12,7 @@ let userSchema = mongoose.Schema({
     startdate: String,
     enddate: String,
     groupid: String,
+    supervisorname: String,
     cnic: String
 });
   

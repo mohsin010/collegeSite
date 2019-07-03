@@ -3,8 +3,8 @@ let mongoose = require('mongoose');
 let discussionSchema = mongoose.Schema({
   
     groupid: String,
-    supid: String,
-    rollno: String,
+    supervisorname: String,
+    // rollno: String,
     msgid: String,
     subject: String,
     body: String,

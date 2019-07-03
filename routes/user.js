@@ -70,11 +70,31 @@ router.post('/add_group', function (req, res) {
 
             let newgroup = new Groups(req.body);
             newgroup.save((err, rec) => {
-                res.json(err || rec);
+                res.json(err || rec || {success:true});
             })
 
         }
 
+    })
+})
+
+router.post('/groups_display', function (req, res) {
+    Groups.find((err, rec) => {
+
+        res.json(err || rec || { rec: "false" });
+    })
+})
+
+router.post('/delete_group', function (req, res) {
+
+    Groups.findOneAndDelete({ groupid: req.body.groupid }, req.body, (err, rec) => {
+
+        if (rec) {
+            res.json(rec)
+        } else {
+            // res.json({success : false})
+            console.log('Contact Not Found');
+        }
     })
 })
 
@@ -395,32 +415,32 @@ router.post('/delete_assignment', function (req, res) {
     })
 })
 router.post('/assignment_display', function (req, res) {
-Groups.find({}, (err, rec) => {
+// Groups.find({}, (err, rec) => {
 
-        let rollno = rec.map((item) =>{
-             let a= item.st_group.map((item) => {
-                return item
+//         let rollno = rec.map((item) =>{
+//              let a= item.st_group.map((item) => {
+//                 return item
               
-            })
-            return a;
-        });
-        let groupid = rec.map((item) =>{
-            return item.groupid
-        });
+//             })
+//             return a;
+//         });
+//         let groupid = rec.map((item) =>{
+//             return item.groupid
+//         });
 
-        if (rollno == req.body.rollno) {
-            Assignments.find({ groupid: groupid }, (err, rec) => {
+        // if (rollno == req.body.rollno) {
+            Assignments.find((err, rec) => {
 
                 res.json(err || rec || { rec: "false" });
             })
-        }
-        else {
-            console.log('Assignments not found');
-        }
+        // }
+        // else {
+        //     console.log('Assignments not found');
+        // }
 
     })
 
-})
+// })
 router.post('/sup_assignment_display', function (req, res) {
     Assignments.find((err, rec) => {
 
@@ -492,25 +512,41 @@ router.post('/login', function (req, res, next) {
 })
 
 // Faculty signup
-
-router.post('/sup_signup', function (req, res) {
-
-    Faculty.findOne({ cnic: req.body.cnic }, (err, user) => {
+router.post('/sup_signup', upload.single('file'), (req, res) => {
+    if (req.file) {
+        req.body.file = req.file.path;
+    }
+    Faculty.findOne( { cnic: req.body.cnic }, req.body, (err, user) => {
 
         if (user) {
             res.json(user);
         } else {
-
-            let newMember = new Faculty(req.body);
-            newMember.save((err, user) => {
-                res.json(err || { success: true });
-            })
-        }
+        let newMember = new Faculty(req.body);
+        newMember.save((err, rec) => {
+            res.json(err || { success: true });
+        })
+    }
 
     })
-
-
 })
+
+// router.post('/sup_signup', function (req, res) {
+
+//     Faculty.findOne({ cnic: req.body.cnic }, (err, user) => {
+
+//         if (user) {
+//             res.json(user);
+//         } else {
+
+//             let newMember = new Faculty(req.body);
+//             newMember.save((err, user) => {
+//             })
+//         }
+
+//     })
+
+
+// })
 
 // router.post('/login', function (req, res) {
 
@@ -548,6 +584,19 @@ router.post('/logout', function (req, res) {
     // res.redirect('/');
 }
 )
+
+// router.get('/sup_assignment_display',  function (req, res)  {
+
+//     function search(req,res) {
+//         var groupid = []
+//         var stgroup;
+//         Groups.find().then(group => {
+//             groupid = [...groupid, group.groupid]
+//             stgroup = group.st_group
+//         })
+//     }
+//     search();
+// })
 
 
 

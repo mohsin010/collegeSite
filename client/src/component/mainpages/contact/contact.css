@@ -12,10 +12,14 @@ input[type=number]::-webkit-outer-spin-button {
     font-size: 120%;
 }
 .th_phone, .th_email{
-    width: 40% !important;
+    width: 40% !important; 
 
 }
 .td_cont{
     font-size: 80%;
     color: rgb(28, 28, 209);
+}
+.cont_disp_cont{
+ width: 98.7% !important;
+ margin-left: 0.5%;
 }

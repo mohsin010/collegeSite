@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import store from '../../../store/reducers/login';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlusSquare, faMinusSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 
 class AssignmentDisplay extends Component {
@@ -214,8 +216,8 @@ class AssignmentDisplay extends Component {
                 assignments = assignments.sort((prev, next) => {
                     return prev.rollno - next.rollno;
                 })
-
-                if (assignments[0].groupid) {
+                debugger;
+                if (assignments) {
                     this.setState({
 
                         assignments: assignments,
@@ -282,7 +284,8 @@ class AssignmentDisplay extends Component {
                                         {/* <td className='show_assign'>{assignment.topic}</td> */}
                                         <td ><a href={assignment.file} download id='f-dowload'>(Download File)</a></td>
                                         <td id='d-date'>{assignment.due_date}</td>
-                                        <td ><input type='file' name='subfile' ref='assigninput' style={{display: assignment.display3 ? 'block' : 'none'}} onChange={this.uploadSolvedAssinment.bind(this, assignment)} value={this.state.subfile} />
+                                        {/* onChange={this.uploadSolvedAssinment.bind(this, assignment)} */}
+                                        <td ><input type='file' name='subfile' ref='assigninput' style={{display: assignment.display3 ? 'block' : 'none'}}  value={this.state.subfile} />
                                             <a href={assignment.file} download id='f-dowload' style={{display: assignment.display4 ? 'block' : 'none'}}>(Download File)</a>
                                             <br />
                                             <span id='sub_d' style={{display: assignment.display4 ? 'block' : 'none'}}>Submit Date: {assignment.date}</span>
@@ -291,7 +294,7 @@ class AssignmentDisplay extends Component {
                                             onChange={this.handleInput.bind(this, assignment)}
                                             value={assignment.obtain_marks} />
                                         </td>
-                                        <td hidden={this.props.login.loggedInUser.rollno}><button id='btn_delete' onClick={this.deleteAssignment.bind(this, assignment)}>Delete</button></td>
+                                        <td hidden={this.props.login.loggedInUser.rollno}><button id='btn_delete' onClick={this.deleteAssignment.bind(this, assignment)}><FontAwesomeIcon icon={faTrash} /></button></td>
                                     </tr>
 
                                 })

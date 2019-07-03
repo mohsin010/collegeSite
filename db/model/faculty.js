@@ -10,6 +10,7 @@ let faculySchema = mongoose.Schema({
     department: String,
     designation:String,
     description: String,
+    file: String
 
 })
 

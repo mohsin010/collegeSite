@@ -5,7 +5,7 @@ import UploadContacts from './editorContacts';
 import {connect} from 'react-redux';
 
 
-class ViewContacs extends Component {
+class editor_contacts extends Component {
 
   constructor(props) {
     super(props);
@@ -20,8 +20,10 @@ class ViewContacs extends Component {
     //   return <ResultTable />
     // } else {
       return <div>
-        <UploadContacts  />
+        {/* <div hidden={!this.props.login.loggedInUser.department || this.props.login.loggedInUser.department }> */}
 
+        {/* </div> */}
+        {/* <UploadContacts  /> */}
         <ConnectedDisplay_contacts />
 
       </div>
@@ -29,13 +31,13 @@ class ViewContacs extends Component {
 //   }
 
 }
-let ConnectedViewContacs = connect((store) => {
+let Connectededitor_contacts = connect((store) => {
 
   return {
         login: store.loginReducer
   }
-})(ViewContacs);
+})(editor_contacts);
 
 
-export default ConnectedViewContacs;
+export default Connectededitor_contacts;
 

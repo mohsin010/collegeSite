@@ -19,8 +19,8 @@ class Post_Msg extends Component {
         super(props)
         this.state = {
             groupid: '',
-            supid: '',
-            rollno: '',
+            supervisorname: '',
+            // rollno: '',
             msgid: this.id(),
             subject: '',
             body: '',

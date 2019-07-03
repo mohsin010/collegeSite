@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import team2 from '../../../../data/team2.jpg';
-require('./supervisors.css');
+import './supervisors.css';
 
 
 class Supervisors extends Component {
@@ -26,7 +26,7 @@ class Supervisors extends Component {
             if (supervisors) {
             this.setState({ 
                 
-              supervisors
+              supervisors:supervisors
             });
         }else{
             console.log('No supervisor Yet')
@@ -44,7 +44,7 @@ class Supervisors extends Component {
 
            return  <div className='row'>
             <div className="card" > 
-              <img id='j_img' src={team2} alt="John" />
+              <img id='j_img' src={supervisor.file} alt="John" />
               <h3>{supervisor.name}</h3>
               <div id='detail'>
               <p id="c-title">{supervisor.designation}</p>

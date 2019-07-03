@@ -29,6 +29,8 @@ import Discussion from '../component/mainpages/discussion/discussion';
 import Post_Msg from '../component/mainpages/discussion/post_msg';
 import Sup_Signup from '../component/mainpages/signup/sup_signup'; 
 import  Groups from '../component/mainpages/groups/groups';
+import ConnectedDisplay_contacts from '../component/mainpages/contact/contact';
+
 
 import logOut from '../component/mainpages/signout/signout';
 import { connect } from 'react-redux';
@@ -49,7 +51,7 @@ const CustomDefaultRouts = (props) => (
 
       {/* <Route path='/noticeboard' component={Notice} /> */}
       <Route path='/supervisorsList' component={Supervisors} />
-      <Route path='/Contacts' component={ConnectedViewContacs} />
+      <Route path='/Contacts' component={ConnectedDisplay_contacts} />
       <Route path='/signup' component={Signup} />
       <Route path='/profile' component={Profile} />
       <Route path='/noticeboard' component={Noticeboard} />
@@ -65,6 +67,8 @@ const CustomDefaultRouts = (props) => (
       <Route path='/app/assignment' component={ViewAssignment} />
       <Route path='/app/announcements' component={ConnectedAnnouncement} />
       <Route path='/app/discussion' component={Discussion} />
+      <Route path='/app/contacts' component={ConnectedViewContacs} />
+
       <Route path='/post_msg' component={Post_Msg} />
 
       <Route path='/to_login' component={RedirectLogin} />
