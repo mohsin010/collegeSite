@@ -74,6 +74,9 @@
 /* .tbl-result > tbody > tr> th{
     margin-right: 40px;
 } */
+/* .tbl-result tr{
+    background-color: red;
+} */
 #main_edit_assign ,#main_edit_marks{
     width: 99%;
     display: block;
@@ -103,7 +106,7 @@
     /* float:left; */
 }
 .b-td{
-    width: 100%;
+    width: 97%;
     /* margin-right: 10px; */
 }
 #btn_delete:hover{
@@ -142,4 +145,7 @@
 }
 #sub_d{
     font-size: 80%;
+}
+.gid_select{
+    width: 99.5% !important;
 }

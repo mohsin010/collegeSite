@@ -195,11 +195,13 @@ class Groups_Create extends Component {
                 body: JSON.stringify(this.state)
             }).then((resp) => resp.json()).then((students) => {
 
+                const filterStudents = students.filter(el=>{
+                    return el.groupid == ''
+                })
 
-
-                if (students) {
+                if (filterStudents) {
                     this.setState({
-                        students: students
+                        students: filterStudents 
 
                     });
                 } else {
@@ -341,7 +343,7 @@ class Groups_Create extends Component {
                             </table>
 
 
-                        </form>
+                        </form> 
 
                     </div>
                 </div>

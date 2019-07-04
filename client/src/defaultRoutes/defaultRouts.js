@@ -45,7 +45,7 @@ const CustomDefaultRouts = (props) => (
     <Route exact path='/' component={DefaultMain} />
     {/* <Route path='/' component={Defaultheader} /> */}
     {/* <div hidden={props.login.loggedInUser._id}> */}
-      <Route exact path='/app' component={App} />
+      {/* <Route exact path='/app' component={App} /> */}
       {/* <Route path='/app' component={Nav} /> */}
       <Route path='/app' component={Home} />
 

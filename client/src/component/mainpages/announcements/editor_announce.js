@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { connect } from 'react-redux';
+import store from '../../../store/store';
 import './draft.css';
 import './noticeboard.css'
-class Editor_announce extends Component {
+
+class Editor_announce_edit extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -13,7 +16,8 @@ class Editor_announce extends Component {
             time: new Date().toDateString(),
             titleerr: false,
             bodyerr: false,
-            groupiderr: false
+            groupiderr: false,
+            groups:[]
 
         }
 
@@ -119,14 +123,64 @@ class Editor_announce extends Component {
             })
         }
     }
+    componentDidMount(){
+        if(this.props.login.loggedInUser.designation){
+            console.log(this.props.loggedInUser);
+            debugger;
+            let data = {
+                supervisorname : this.props.login.loggedInUser.name
+            }
+        fetch('/sup_groups_display', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'Application/Json'
+            },
+            body: JSON.stringify(data)
+        }).then((resp) => resp.json()).then((groups) => {
+            debugger;
+            if (groups) {
+                this.setState({
+                    groups: groups
+                })
 
+            } else {
+                alert('Groups Not Found');
+            }
+        })
+    }else{
+        fetch('/admin_groups_display', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'Application/Json'
+            },
+            body: JSON.stringify(this.state)
+        }).then((resp) => resp.json()).then((groups) => {
+            debugger;
+            if (groups) {
+                this.setState({
+                    groups: groups
+                })
+
+            } else {
+                alert('Groups Not Found');
+            }
+        })
+    }
+    }
     render() {
         return (
             <div className="App">
                 <div id='main-c'>
                     <div id='pcontainer'  ><span id='ntitle' className='pcontainer_ral'>Upload Announcement</span></div>
                     <div id='label'><label>Title</label><input style={{ borderColor: this.state.titleerr ? 'red' : 'inherit' }} type='text' name='title' required='required' value={this.state.title} onChange={this.changeHandler} /></div>
-                    <div id='label'><label className='label_id'>Group ID</label><input style={{ borderColor: this.state.groupiderr ? 'red' : 'inherit' }} type='text' name='groupid' required='required' value={this.state.groupid} onChange={this.change} /></div>
+                    <div id='label'><label className='label_id'>Group ID</label><select id='an-sele' style={{ borderColor: this.state.groupiderr ? 'red' : 'inherit' }} type='text' name='groupid' required='required' value={this.state.groupid} onChange={this.change} >
+                    <option>Please Select</option>
+                                        {this.state.groups.map((group) =>{
+                                            return <option>{group.groupid}</option>
+                                        })}
+                        
+                        </select>
+                    </div>
                     
                     {/* <h2>Using CKEditor 5 build in React</h2> */}
                     <div id='ckeditor-parent'>
@@ -170,5 +224,15 @@ class Editor_announce extends Component {
         );
     }
 }
+
+
+let Editor_announce = connect((store) => {
+
+    return {
+        login: store.loginReducer,
+        assignments: store.loginReducer
+    }
+})(Editor_announce_edit);
+
 
 export default Editor_announce;

@@ -5,14 +5,66 @@ import { connect } from 'react-redux';
 import btn_info from '../../data/btn_info.png';
 import btn_assignments from '../../data/btn_assignments.png';
 import btn_MDB from '../../data/btn_MDB.png';
-import btn_Announcements from '../../data/btn_Announcements.png';
+import btn_Announcements from '../../data/btn_Announcements.png'; 
 import btn_group from '../../data/btn_groups.png';
+import store from '../../store/store';
 import btn_contact from '../../data/btn_contact.png';
 
 
 
 
 class Home_Comp extends Component {
+
+
+    constructor(props){
+        super(props);
+        this.state = {
+            rollno: this.props.login.loggedInUser.rollno
+        }
+        fetch('/st_groups_display', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'Application/json'
+            },
+            body: JSON.stringify(this.state)
+        }).then((resp) => resp.json()).then((group) => {
+    
+            if (group) {
+                // this.setState({
+                //     groupid: group.groupid,
+                //     title: group.title,
+                //     supervisor: group.supervisor
+                // })
+                store.dispatch({
+                    payload: group,
+                    type: 'group_loaded'
+                })
+            }})
+
+            
+    }
+    componentDidMount(){
+        debugger;
+        fetch('/update_user_group', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'Application/json'
+            },
+            body: JSON.stringify(this.state)
+        }).then((resp) => resp.json()).then((group) => {
+    
+            if (group) {
+                console.log('ok')
+                // this.setState({
+                //     groupid: group.groupid,
+                //     title: group.title,
+                //     supervisor: group.supervisor
+                // })
+                
+            }})
+
+    }
+
     render() {
         return (
             <div>
@@ -51,7 +103,7 @@ class Home_Comp extends Component {
                         <div><Link to='/app/assignment'><img src={btn_assignments} className='btn_image' />  </Link>
                             <p className='description'>Assignments</p>
                         </div>
-                        <div><Link to='/app/discussion'><img src={btn_MDB} className='btn_image' />  </Link>
+                        <div><Link to='/app/discussion'><img src={btn_contact} className='btn_image' />  </Link>
                             <p className='description'>Discussions</p>
                         </div>
                         <div><Link to='/app/announcements'><img src={btn_Announcements} className='btn_image' />  </Link>

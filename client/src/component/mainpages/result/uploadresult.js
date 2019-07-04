@@ -110,7 +110,7 @@ class UploadResult extends Component {
                             </tr>
                             <tr>
                                 <td >
-                                    <input type='submit' className={'r-btn'} id='r_btn_sup' value='Save' />
+                                    <input type='submit' className={'r-btn'} id='btnsub_r' value='Save' />
                                 </td>
                             </tr>
                         </tbody>

@@ -7,13 +7,14 @@ import Home from '../src/component/home/home';
 import store from './store/store';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
- 
+
 class Default extends Component {
   constructor(props) {
     super(props);
     let user = this.props.login.loggedInUser;
     if (this.props.location.pathname == '/signup' || this.props.location.pathname == '/to_login') {
     } else {
+
       fetch('/is_authenticated', {
         method: 'GET',
         // headers:{
@@ -27,7 +28,10 @@ class Default extends Component {
             payload: resp,
             type: 'user_signed_success'
           })
-          this.props.history.push('/app');
+          
+          this.props.history.push(this.props.history.location.pathname);
+
+
         } else {
 
           this.props.history.push('/');
@@ -38,6 +42,7 @@ class Default extends Component {
         //   this.props.history.push('/app');
         // }
       })
+     
     }
   }
   render() {
@@ -62,7 +67,7 @@ class Default extends Component {
 
 let ConnectedDefault = connect((store) => {
   return {
-    
+
     login: store.loginReducer
   }
 })(withRouter(Default));

@@ -13,8 +13,8 @@ height: 610px !important;
     /* margin-left: 10px; */
     margin-left: calc(50% - 25%);
     background-color: rgb(243, 241, 236);
-    border-bottom-right-radius: 100px;
-    border-top-left-radius: 100px;
+    border-radius: 70px;
+    /* border-top-left-radius: 100px; */
     /* animation: my3ndmove 10s infinite;    */
 } 
 #grandmain-container{

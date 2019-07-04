@@ -8,6 +8,7 @@ class Display_announce extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            rollno: this.props.login.loggedInUser.rollno,
             assignments: [],
             display1: 'none',
             display2: 'none',
@@ -103,59 +104,70 @@ class Display_announce extends React.Component {
             announementIndex: this.state.assignments.length - 1
         });
     }
+
+componentDidMount(){
+    if (this.props.login.loggedInUser.rollno) {
+        let data  = {
+            rollno:this.props.login.loggedInUser.rollno
+        }
+        debugger;
+        
+        fetch('/announcement_display1', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'Application/json'
+            },
+            
+            body: JSON.stringify(data)
+        }).then((resp) => resp.json()).then((assignments) => {
+            if (assignments) {
+                // this.setState((prevState) => {
+                //     return{
+                //         assignment: [...prevState, assignments],
+                //         obtain_marks:assignments.obtain_marks,
+                //     display1: 'block',
+                //     }
+                // })
+                this.setState({
+
+                    assignments: assignments,
+                    // obtain_marks: assignments.obtain_marks,
+                    display1: 'block',
+                });
+            } else {
+                this.setState({ display2: 'block' })
+            }
+        })
+    } else {
+        fetch('/sup_announcement_display', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'Application/json'
+            },
+            body: JSON.stringify(this.state)
+        }).then((resp) => resp.json()).then((assignments) => {
+
+            // assignments = assignments.sort((prev, next) => {
+            //     return prev.rollno - next.rollno;
+            // })
+
+            if (assignments) {
+                this.setState({
+
+                    assignments: assignments,
+                    display1: 'block',
+                });
+            } else {
+                this.setState({ display2: 'block' })
+            }
+        })
+    }
+
+}
+
     render() {
 
-        if (this.props.login.loggedInUser.rollno) {
-            fetch('/announcement_display', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'Application/json'
-                },
-                body: JSON.stringify(this.state)
-            }).then((resp) => resp.json()).then((assignments) => {
-                if (assignments) {
-                    // this.setState((prevState) => {
-                    //     return{
-                    //         assignment: [...prevState, assignments],
-                    //         obtain_marks:assignments.obtain_marks,
-                    //     display1: 'block',
-                    //     }
-                    // })
-                    this.setState({
-
-                        assignments: assignments,
-                        // obtain_marks: assignments.obtain_marks,
-                        display1: 'block',
-                    });
-                } else {
-                    this.setState({ display2: 'block' })
-                }
-            })
-        } else {
-            fetch('/sup_announcement_display', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'Application/json'
-                },
-                body: JSON.stringify(this.state)
-            }).then((resp) => resp.json()).then((assignments) => {
-
-                // assignments = assignments.sort((prev, next) => {
-                //     return prev.rollno - next.rollno;
-                // })
-
-                if (assignments) {
-                    this.setState({
-
-                        assignments: assignments,
-                        display1: 'block',
-                    });
-                } else {
-                    this.setState({ display2: 'block' })
-                }
-            })
-        }
-
+        
 
         // console.log("im Hell")
         return (
@@ -215,7 +227,6 @@ class Display_announce extends React.Component {
                                             month: 'long',
                                             year: 'numeric'
                                         })}</span>
-                                </div>
                                     <div className='dv_link'>
 
                                         <a onClick={this.openWin.bind(this, assignment)}  > {assignment.title}</a>
@@ -224,8 +235,9 @@ class Display_announce extends React.Component {
                                         <button className='btnn-disp' title='delete' hidden={this.props.login.loggedInUser.rollno} onClick={this.deleteAssignment.bind(this, assignment)}>Delete</button>
                                         <hr id='disp_hr' />
                                     </div>
+                                    </div>
 
-                                     
+                               
                                 })
                             }
                         </div>
@@ -238,18 +250,27 @@ class Display_announce extends React.Component {
     }
 }
 
-
-
-
 let ConnectedDisplay_announce = connect((store) => {
 
     return {
-
         login: store.loginReducer,
-        assignments: store.login
+        assignments: store.loginReducer
+    }
+})(Display_announce);
 
-    }(Display_announce);
-
-}
 
 export default ConnectedDisplay_announce;
+
+
+
+// let ConnectedDisplay_announce = connect((store) => {
+
+//     return {
+//         login: store.loginReducer,
+//         assignments: store.login
+
+//     }(Display_announce);
+
+// }
+
+// export default ConnectedDisplay_announce;

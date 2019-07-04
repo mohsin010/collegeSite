@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import store from '../../../store/reducers/login';
+import store from '../../../store/store';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlusSquare, faMinusSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 
@@ -12,14 +12,16 @@ class AssignmentDisplay extends Component {
         this.state = {
             rollno: this.props.login.loggedInUser.rollno,
             no: '',
-            groupid: '',
+            groupid: this.props.login.group.groupid,
             assignments: [],
             obtain_marks: '',
             display1: 'none',
             display2: 'none',
             // display3: false,
             // display4: false,
-            file: ''
+            file: '',
+            title: '',
+            supervisor: ''
         };
 
 
@@ -27,7 +29,7 @@ class AssignmentDisplay extends Component {
 
     }
     picFile = (e) => {
-        debugger;
+
         this.setState({
             file: e.target.files[0]
         })
@@ -36,7 +38,7 @@ class AssignmentDisplay extends Component {
 
         this.uploadSolvedAssinment = (assigment, e) => {
             e.preventDefault();
-            debugger;
+
             let data = this.state;
             let no = assigment.no;
             let groupid = assigment.groupid;
@@ -59,7 +61,7 @@ class AssignmentDisplay extends Component {
                 method: 'POST',
                 body: formData,
             }).then((resp) => resp.json()).then((resp) => {
-                debugger;
+
                 if (resp.success == false) {
                     alert('Assignment Already Submitted')
 
@@ -87,7 +89,6 @@ class AssignmentDisplay extends Component {
     }
 
     deleteAssignment = (assignment, evt) => {
-        debugger;
         // this.setState({
         // [evt.target.name]:evt.target.value
         // })
@@ -129,7 +130,7 @@ class AssignmentDisplay extends Component {
         });
     }
     handleInput = (assignment, evt) => {
-        debugger;
+
         // this.setState({
         // [evt.target.name]:evt.target.value
         // })
@@ -174,7 +175,7 @@ class AssignmentDisplay extends Component {
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         if (this.state.rollno) {
             fetch('/assignment_display', {
                 method: 'POST',
@@ -192,6 +193,7 @@ class AssignmentDisplay extends Component {
                     //     display1: 'block',
                     //     }
                     // })
+
                     this.setState({
 
                         assignments: assignments,
@@ -204,8 +206,64 @@ class AssignmentDisplay extends Component {
                     this.setState({ display2: 'block' })
                 }
             })
-        } else {
+
+            fetch('/st_groups_display', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'Application/json'
+                },
+                body: JSON.stringify(this.state)
+            }).then((resp) => resp.json()).then((group) => {
+
+                if (group) {
+                    this.setState({
+                        groupid: group.groupid,
+                        title: group.title,
+                        supervisor: group.supervisor
+                    })
+                    store.dispatch({
+                        payload: group,
+                        type: 'group_loaded'
+                    })
+                } else {
+                    console.log('Not Found any Reacord')
+                }
+
+            })
+
+        } else if(this.props.login.loggedInUser.designation) {
+            // debugger;
+            // console.log(this.props.login.group);
+            let data ={
+                name : this.props.login.loggedInUser.name
+            }
             fetch('/sup_assignment_display', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'Application/json'
+                },
+                body: JSON.stringify(data)
+            }).then((resp) => resp.json()).then((assignments) => {
+
+                assignments = assignments.sort((prev, next) => {
+                    return prev.rollno - next.rollno;
+                })
+
+                if (assignments) {
+                    this.setState({
+
+                        assignments: assignments,
+                        display3: assignments.display3,
+                        display4: assignments.display4,
+                        display1: 'block',
+                    });
+
+                } else {
+                    this.setState({ display2: 'block' })
+                }
+            })
+        }else{
+            fetch('/admin_assignment_display', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'Application/json'
@@ -216,7 +274,7 @@ class AssignmentDisplay extends Component {
                 assignments = assignments.sort((prev, next) => {
                     return prev.rollno - next.rollno;
                 })
-                debugger;
+
                 if (assignments) {
                     this.setState({
 
@@ -225,16 +283,18 @@ class AssignmentDisplay extends Component {
                         display4: assignments.display4,
                         display1: 'block',
                     });
+
                 } else {
                     this.setState({ display2: 'block' })
                 }
             })
         }
-    }
-  
+        }
+    
+
 
     render() {
-       
+
         return (
             <div>
                 <div id='nn_Assignment' style={{ display: this.state.display2 }} ><span>No Assignment Assigned Yet</span></div>
@@ -244,15 +304,15 @@ class AssignmentDisplay extends Component {
                         <table id='p_detail' hidden={!this.props.login.loggedInUser.rollno}>
                             <tr>
                                 <th className='p_head'>Group Id</th>
-                                <td className='p_info'>Group id here</td>
+                                <td className='p_info'>{this.state.groupid}</td>
                             </tr>
                             <tr>
                                 <th className='p_head'>Title</th>
-                                <td className='p_info'>Title here</td>
+                                <td className='p_info'>{this.state.title}</td>
                             </tr>
                             <tr>
                                 <th className='p_head'>Supervisor Name</th>
-                                <td className='p_info'>Name here</td>
+                                <td className='p_info'>{this.state.supervisor}</td>
                             </tr>
                         </table>
                         <table id='tbl-assignment' >
@@ -285,10 +345,10 @@ class AssignmentDisplay extends Component {
                                         <td ><a href={assignment.file} download id='f-dowload'>(Download File)</a></td>
                                         <td id='d-date'>{assignment.due_date}</td>
                                         {/* onChange={this.uploadSolvedAssinment.bind(this, assignment)} */}
-                                        <td ><input type='file' name='subfile' ref='assigninput' style={{display: assignment.display3 ? 'block' : 'none'}}  value={this.state.subfile} />
-                                            <a href={assignment.file} download id='f-dowload' style={{display: assignment.display4 ? 'block' : 'none'}}>(Download File)</a>
+                                        <td ><input type='file' name='subfile' ref='assigninput' style={{ display: assignment.display3 ? 'block' : 'none' }} value={this.state.subfile} />
+                                            <a href={assignment.file} download id='f-dowload' style={{ display: assignment.display4 ? 'block' : 'none' }}>(Download File)</a>
                                             <br />
-                                            <span id='sub_d' style={{display: assignment.display4 ? 'block' : 'none'}}>Submit Date: {assignment.date}</span>
+                                            <span id='sub_d' style={{ display: assignment.display4 ? 'block' : 'none' }}>Submit Date: {assignment.date}</span>
                                         </td>
                                         <td >< input hidden={this.props.login.loggedInUser.rollno} name='obtain_marks' title='Edit' id='marks' type='numeric'
                                             onChange={this.handleInput.bind(this, assignment)}
@@ -314,7 +374,8 @@ let ConnectedAssignmentDisplay = connect((store) => {
 
     return {
         login: store.loginReducer,
-        assignments: store.login
+        assignments: store.login,
+        group: store.group
 
     }
 })(AssignmentDisplay);

@@ -19,8 +19,11 @@ class Discussion extends Component {
         super(props);
         this.state = {
             msgs: [],
+            groupid: this.props.login.group.groupid,
+            supervisorname: this.props.login.loggedInUser.name,
             display1: 'none',
             display2: 'none',
+
             // display:false 
         };
 
@@ -94,6 +97,7 @@ class Discussion extends Component {
     // 03213492509
     submitData = () => {
 
+        if(this.props.login.loggedInUser.rollno){
 
         fetch('/msg_display', {
             method: 'POST',
@@ -117,6 +121,57 @@ class Discussion extends Component {
                 this.setState({ display2: 'block' })
             }
         })
+    }else if(this.props.login.loggedInUser.designation){
+
+        fetch('/sup_msg_display', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'Application/json'
+            },
+            body: JSON.stringify(this.state)
+        }).then((resp) => resp.json()).then((msgs) => {
+
+            // assignments = assignments.sort((prev, next) => {
+            //     return prev.rollno - next.rollno;
+            // })
+
+            if (msgs) {
+                this.setState({
+                    selected: null,
+                    msgs: msgs,
+                    display1: 'block',
+                });
+            } else {
+                this.setState({ display2: 'block' })
+            }
+        })
+
+    }else{
+        fetch('/admin_msg_display', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'Application/json'
+            },
+            body: JSON.stringify(this.state)
+        }).then((resp) => resp.json()).then((msgs) => {
+
+            // assignments = assignments.sort((prev, next) => {
+            //     return prev.rollno - next.rollno;
+            // })
+
+            if (msgs) {
+                this.setState({
+                    selected: null,
+                    msgs: msgs,
+                    display1: 'block',
+                });
+            } else {
+                this.setState({ display2: 'block' })
+            }
+        })
+
+    }
+
     }
 
 

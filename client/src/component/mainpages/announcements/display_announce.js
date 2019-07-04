@@ -117,12 +117,15 @@ class Display_announce extends React.Component {
     render() {
 
         if (this.props.login.loggedInUser.rollno) {
+            let data = {
+                rollno: this.props.login.loggedInUser.rollno
+            }
             fetch('/announcement_display', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'Application/json'
                 },
-                body: JSON.stringify(this.state)
+                body: JSON.stringify(data)
             }).then((resp) => resp.json()).then((assignments) => {
                 if (assignments) {
                     
@@ -135,8 +138,33 @@ class Display_announce extends React.Component {
                     this.setState({ display2: 'block' })
                 }
             })
-        } else {
+        } else if(this.props.login.loggedInUser.designation) {
+            let data = {
+                name: this.props.login.loggedInUser.name
+            }
             fetch('/sup_announcement_display', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'Application/json'
+                },
+                body: JSON.stringify(data)
+            }).then((resp) => resp.json()).then((assignments) => {
+
+                // assignments = assignments.sort((prev, next) => {
+                //     return prev.rollno - next.rollno;
+                // })
+
+                if (assignments) {
+                    this.setState({
+                        assignments: assignments,
+                        display1: 'block',
+                    });
+                } else {
+                    this.setState({ display2: 'block' })
+                }
+            })
+        }else{
+            fetch('/admin_announcement_display', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'Application/json'
@@ -160,7 +188,6 @@ class Display_announce extends React.Component {
         }
 
 
-        // console.log("im Hell")
         return (
 
             // id='assignment_main_container'

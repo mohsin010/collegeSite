@@ -6,7 +6,8 @@ let initialState = {
     in_process: 'false',
     loggedInUser: {},
     assignments: [],
-    messageId: {}
+    messageId: {},
+    group:{}
 };
 
 const loginReducer = (state = initialState, action) => {
@@ -18,7 +19,9 @@ const loginReducer = (state = initialState, action) => {
         case 'LOGGED_IN_SUCCESS':
 
             return {
+                ...state,
                 in_process: false,
+                group: { ...state.group},
                 loggedInUser: action.payload
             }
 
@@ -39,7 +42,7 @@ const loginReducer = (state = initialState, action) => {
             return {
                 in_process: false,
                 ...action.payload,
-                loggedInUser: {...state.loggedInUser}
+                loggedInUser: { ...state.loggedInUser }
                 // loggedInUser: action.payload
 
             }
@@ -113,11 +116,22 @@ const loginReducer = (state = initialState, action) => {
 
         case 'message_reply':
             return {
-                assignments: {},
-                loggedInUser: {...state.loggedInUser},
+                assignments: { ...state.assignments},
+                loggedInUser: { ...state.loggedInUser },
+                group: { ...state.group},
                 messageId: action.payload,
                 in_process: 'false',
-                
+
+            }
+            break;
+        case 'group_loaded':
+            return {
+                assignments: { ...state.assignments},
+                loggedInUser: { ...state.loggedInUser },
+                messageId: { ...state.messageId},
+                group:action.payload,
+                in_process: 'false',
+
             }
             break;
     }

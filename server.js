@@ -103,4 +103,5 @@ app.use('/', userRoutes);
 
 
 app.use(express.static('./'))
+
 app.listen(8080, () => console.log('Server Running at:http://localhost:8080'));

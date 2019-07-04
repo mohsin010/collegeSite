@@ -20,12 +20,12 @@
 
 .submain-container{
     height: 500px;
-    width: 50%;
+    width: 40%;
     /* margin-top: 9px; */
-    margin-left: calc(50% - 25%);
+    margin-left: calc(50% - 20%);
     background-color: rgb(243, 241, 236);
-    border-bottom-right-radius: 100px;
-    border-top-left-radius: 100px;
+    border-radius: 60px;
+    /* border-top-left-radius: 100px; */
     animation: my2ndmove 5s infinite;   
     
 }
@@ -70,11 +70,11 @@
 }
 #anchor5{
     margin-top: 5%;
-    margin-left: 34%;
+    margin-left: 35%;
  
 }
 #anchor3{
-    margin-left: 30%;
+    margin-left: 35%;
     font-size: 93%;
 
 }

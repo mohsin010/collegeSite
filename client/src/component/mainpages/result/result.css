@@ -148,7 +148,7 @@
 }
 .r-btn:hover{
     background-color: rgba(17, 65, 197, 1);
-}
+} 
 .p-r{
     margin-top: 0px;
     color: rgb(47, 5, 163);
@@ -206,6 +206,9 @@
 
 .t-rd{
     padding-left: 15% !important;
+}
+#btnsub_r{
+    margin-left: 102%;
 }
 /* #s-view2{
     margin-left: calc

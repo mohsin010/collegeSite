@@ -42,14 +42,44 @@ var upload = multer({ storage: storage })
 router.get('/is_authenticated', function (req, res) {
     res.json(req.user || {});
 });
+// <======================================== Supervisor Info Show below ===========================================>
+
+router.post('/st_supervisor_info', function (req, res) {
+    Faculty.findOne({ name: req.body.supervisor }, (err, rec) => {
+
+        res.json(err || rec || { rec: "false" });
+    })
+})
+
+router.post('/sup_supervisor_info', function (req, res) {
+    Faculty.findOne({ cnic: req.body.cnic }, (err, rec) => {
+
+        res.json(err || rec || { rec: "false" });
+    })
+})
+
+
+
 // <======================================== Create Groups below ===========================================>
 
 
 router.post('/get_students', function (req, res) {
     User.find((err, rec) => {
-
-        res.json(err || rec || { rec: "false" });
+        res.json(err || rec)
     })
+    // Groups.aggregate([{$unwind: '$st_group'}], (err, rec)=>{
+    //     if(rec){
+    //         for(let i= 0; i < rec.length; i++){
+    //             User.findOneAndUpdate({rollno:rec[i].st_group}, ({groupid:rec[i].groupid }), (err, rec) => {
+
+    //                 console.log(rec);
+    //                 // res.json(err || rec || { rec: "false" });
+    //             })
+
+    //         }
+    //     }
+    // })
+
 })
 
 router.post('/get_supervisors', function (req, res) {
@@ -70,7 +100,7 @@ router.post('/add_group', function (req, res) {
 
             let newgroup = new Groups(req.body);
             newgroup.save((err, rec) => {
-                res.json(err || rec || {success:true});
+                res.json(err || rec || { success: true });
             })
 
         }
@@ -85,16 +115,30 @@ router.post('/groups_display', function (req, res) {
     })
 })
 
+router.post('/st_groups_display', function (req, res) {
+    Groups.findOne({ st_group: req.body.rollno }, (err, rec) => {
+
+        res.json(err || rec || { rec: "false" });
+    })
+})
+
 router.post('/delete_group', function (req, res) {
 
     Groups.findOneAndDelete({ groupid: req.body.groupid }, req.body, (err, rec) => {
 
-        if (rec) {
-            res.json(rec)
-        } else {
-            // res.json({success : false})
-            console.log('Contact Not Found');
-        }
+        User.updateMany({ groupid: req.body.groupid }, { groupid: "" }, function (err, users) {
+
+            if (users) {
+                res.json(users)
+            } else {
+                // res.json({success : false})
+                console.log('Contact Not Found');
+            }
+
+
+        })
+
+
     })
 })
 
@@ -162,6 +206,18 @@ router.post('/sup_post_msg', function (req, res) {
 
 
 router.post('/msg_display', function (req, res) {
+    Discussion.find({ groupid: req.body.groupid }, (err, rec) => {
+
+        res.json(err || rec || { rec: "false" });
+    })
+})
+router.post('/sup_msg_display', function (req, res) {
+    Discussion.find({ supervisorname: req.body.supervisorname }, (err, rec) => {
+
+        res.json(err || rec || { rec: "false" });
+    })
+})
+router.post('/admin_msg_display', function (req, res) {
     Discussion.find((err, rec) => {
 
         res.json(err || rec || { rec: "false" });
@@ -203,13 +259,27 @@ router.post('/announcement', function (req, res) {
 })
 
 router.post('/announcement_display', function (req, res) {
-    Announcement.find((err, rec) => {
-
-        res.json(err || rec || { rec: "false" });
+    Groups.findOne({ st_group: req.body.rollno }, (err, rec) => {
+        if (rec) {
+            Announcement.find({ groupid: rec.groupid }, (err, rec) => {
+                res.json(err || rec || { rec: "false" });
+            })
+        }
     })
+
+})
+router.post('/sup_announcement_display', function (req, res) {
+    Groups.findOne({ supervisor: req.body.name }, (err, rec) => {
+        if (rec) {
+            Announcement.find({ groupid: rec.groupid }, (err, rec) => {
+                res.json(err || rec || { rec: "false" });
+            })
+        }
+    })
+
 })
 
-router.post('/sup_announcement_display', function (req, res) {
+router.post('/admin_announcement_display', function (req, res) {
     Announcement.find((err, rec) => {
 
         res.json(err || rec || { rec: "false" });
@@ -415,34 +485,56 @@ router.post('/delete_assignment', function (req, res) {
     })
 })
 router.post('/assignment_display', function (req, res) {
-// Groups.find({}, (err, rec) => {
+    Groups.findOne({ st_group: req.body.rollno }, (err, rec) => {
 
-//         let rollno = rec.map((item) =>{
-//              let a= item.st_group.map((item) => {
-//                 return item
-              
-//             })
-//             return a;
-//         });
-//         let groupid = rec.map((item) =>{
-//             return item.groupid
-//         });
+        if (rec) {
 
-        // if (rollno == req.body.rollno) {
-            Assignments.find((err, rec) => {
+
+            Assignments.find({ groupid: rec.groupid }, (err, rec) => {
 
                 res.json(err || rec || { rec: "false" });
             })
-        // }
-        // else {
-        //     console.log('Assignments not found');
-        // }
+
+        } else {
+            console.log('Group Not Found')
+        }
+
 
     })
 
-// })
+
+
+})
+
 router.post('/sup_assignment_display', function (req, res) {
+    Groups.findOne({ supervisor: req.body.name }, (req, rec) => {
+        if (rec) {
+
+            Assignments.find({ groupid: rec.groupid }, (err, rec) => {
+
+                res.json(err || rec || { rec: "false" });
+            })
+        }
+
+    })
+
+
+})
+router.post('/admin_assignment_display', function (req, res) {
     Assignments.find((err, rec) => {
+
+        res.json(err || rec || { rec: "false" });
+    })
+})
+
+router.post('/sup_groups_display', function (req, res) {
+    Groups.find({ supervisor: req.body.supervisorname }, (err, rec) => {
+
+        res.json(err || rec || { rec: "false" });
+    })
+})
+router.post('/admin_groups_display', function (req, res) {
+    Groups.find((err, rec) => {
 
         res.json(err || rec || { rec: "false" });
     })
@@ -480,6 +572,35 @@ router.post('/update_profile', function (req, res) {
         }
     })
 })
+// <========================================  Update User ===========================================>
+
+router.post('/update_user_group', function (req, res) {
+
+    // Groups.update({ $pull: { $st_group } })
+
+
+    Groups.aggregate([{ $unwind: '$st_group' }], (err, rec) => {
+        if (rec) {
+            for (let i = 0; i < rec.length; i++) {
+                User.findOneAndUpdate({ rollno: rec[i].st_group }, ({ groupid: rec[i].groupid }), (err, rec) => {
+
+                    // console.log(rec);
+                    // res.json({ success: true });
+                })
+
+            }
+        }
+    })
+
+    // Groups.findOne({st_group:req.body.rollno}, (err, rec)=>{
+    //     if(rec){
+    //     User.findOneAndUpdate({rollno: req.body.rollno}, {groupid:rec.groupid}, (err, rec) =>{
+    //         res.json(err || rec);
+    //     })
+    // }
+
+    // })
+})
 
 
 router.post('/login', function (req, res, next) {
@@ -516,16 +637,16 @@ router.post('/sup_signup', upload.single('file'), (req, res) => {
     if (req.file) {
         req.body.file = req.file.path;
     }
-    Faculty.findOne( { cnic: req.body.cnic }, req.body, (err, user) => {
+    Faculty.findOne({ cnic: req.body.cnic }, req.body, (err, user) => {
 
         if (user) {
             res.json(user);
         } else {
-        let newMember = new Faculty(req.body);
-        newMember.save((err, rec) => {
-            res.json(err || { success: true });
-        })
-    }
+            let newMember = new Faculty(req.body);
+            newMember.save((err, rec) => {
+                res.json(err || { success: true });
+            })
+        }
 
     })
 })

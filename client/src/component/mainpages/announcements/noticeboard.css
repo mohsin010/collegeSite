@@ -172,3 +172,9 @@ height: 300px;
 .group_id_display{
     margin-left: 1%;
 }
+#an-sele{
+    margin-left: -79% ;
+    border: 1px solid;
+    border-radius: 2px;
+    border-color: gray !important;
+}

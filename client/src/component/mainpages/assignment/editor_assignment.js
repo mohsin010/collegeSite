@@ -15,6 +15,7 @@ class AssignmentEditor extends Component {
         this.state = {
             no: '',
             title: '',
+            supervisorname: this.props.login.group.supervisor,
             topic: '',
             due_date: '',
             groupid: '',
@@ -23,15 +24,15 @@ class AssignmentEditor extends Component {
             obtain_marks: '',
             date:'',
             display3:true,
-            display4:false
+            display4:false,
+            groups:[]
         };
-        console.log(this.state.no);
 
         this.handleChange = this.handleChange.bind(this);
         this.submitAssignmentMarks = this.submitAssignmentMarks.bind(this)
 
 
-
+ 
     }
     pickFile = (e) => {
         this.setState({
@@ -151,6 +152,50 @@ class AssignmentEditor extends Component {
         })
     }
 
+    componentDidMount(){
+        if(this.props.login.loggedInUser.designation){
+            console.log(this.props.loggedInUser);
+            debugger;
+            let data = {
+                supervisorname : this.props.login.loggedInUser.name
+            }
+        fetch('/sup_groups_display', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'Application/Json'
+            },
+            body: JSON.stringify(data)
+        }).then((resp) => resp.json()).then((groups) => {
+            debugger;
+            if (groups) {
+                this.setState({
+                    groups: groups
+                })
+
+            } else {
+                alert('Groups Not Found');
+            }
+        })
+    }else{
+        fetch('/admin_groups_display', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'Application/Json'
+            },
+            body: JSON.stringify(this.state)
+        }).then((resp) => resp.json()).then((groups) => {
+            debugger;
+            if (groups) {
+                this.setState({
+                    groups: groups
+                })
+
+            } else {
+                alert('Groups Not Found');
+            }
+        })
+    }
+    }
 
 
 
@@ -173,7 +218,13 @@ class AssignmentEditor extends Component {
                                 </tr>
                                 <tr>
                                     <th className='e-a-t'>Group Id:</th>
-                                    <td ><input type='numeric' className='b-td' name='groupid' required='required' placeholder='Enter Group ID ' onChange={this.handleChange} value={this.state.groupid} /></td>
+                                    <td ><select  className='gid_select' name='groupid'  required='required'  onChange={this.handleChange} value={this.state.groupid} >
+                                        <option>Please Select</option>
+                                        {this.state.groups.map((group) =>{
+                                            return <option>{group.groupid}</option>
+                                        })}
+                                        </select>
+                                    </td>
                                     <th className='e-a-t'>File:</th>
                                     <td ><input type='file' className='b-td' ref='assigninput' name='file' onChange={this.pickFile} /></td>
                                     {/* <td className={'p-pic'}></td> */}
