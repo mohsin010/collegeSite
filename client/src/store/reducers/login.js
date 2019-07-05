@@ -109,7 +109,7 @@ const loginReducer = (state = initialState, action) => {
         case 'assignment_uploaded':
             return {
                 assignments: action.payload,
-                loggedInUser: {},
+                loggedInUser: { ...state.loggedInUser},
                 in_process: 'false'
             }
             break;

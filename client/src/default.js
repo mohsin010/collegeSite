@@ -28,8 +28,11 @@ class Default extends Component {
             payload: resp,
             type: 'user_signed_success'
           })
-          
-          this.props.history.push(this.props.history.location.pathname);
+          if(this.props.location.pathname == '/'){
+            this.props.history.push('/app');
+          }else{
+            this.props.history.push(this.props.history.location.pathname);
+          }
 
 
         } else {
