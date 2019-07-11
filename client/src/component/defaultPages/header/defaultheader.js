@@ -15,7 +15,7 @@ class DefaultHeader extends Component {
                     <div >
                         <Link to='/'>
                             <img className={'logo-pms'} src={PMS} />
-                        </Link>
+                        </Link> 
                     </div>
 
                     <div id={'title-div'}>

@@ -29,6 +29,7 @@ class Groups_Create extends Component {
             no: '',
             title: '',
             groups: [],
+            width: '50%'
 
         };
         this.handleChange = this.handleChange.bind(this);
@@ -73,9 +74,6 @@ class Groups_Create extends Component {
 
     deleteGroup = (group, evt) => {
 
-        // this.setState({
-        // [evt.target.name]:evt.target.value
-        // })
 
 
         let data = {
@@ -112,6 +110,27 @@ class Groups_Create extends Component {
             }
 
         });
+        fetch('/get_students', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'Application/json'
+            },
+            body: JSON.stringify(this.state)
+        }).then((resp) => resp.json()).then((students) => {
+
+            const filterStudents = students.filter(el=>{
+                return el.groupid == ''
+            })
+
+            if (filterStudents) {
+                this.setState({
+                    students: filterStudents 
+
+                });
+            } else {
+                this.setState({ display2: 'block' })
+            }
+        })
     }
 
     handleChange(student, evt) {
@@ -244,7 +263,7 @@ class Groups_Create extends Component {
             // groups = groups.sort((prev, next) => {
             //     return prev.rollno - next.rollno;
             // })
-            debugger;
+            // debugger;
             if (groups) {
                 this.setState({
 
@@ -269,10 +288,10 @@ class Groups_Create extends Component {
                         <form onSubmit={this.submit}>
                             <table className={'tbl-result'} id='make_groups'  >
                                 <tbody>
-                                    <tr>
+                                    {/* <tr>
                                         <th className='title_st'>No:</th>
                                         <td ><input type='text' className='group_id_g' name='no' required='required' placeholder='Enter No' value={this.state.no} onChange={this.change} /></td>
-                                    </tr>
+                                    </tr> */}
                                     <tr>
                                         <th className='title_st'>Group ID:</th>
                                         <td ><input type='text' className='group_id_g' name='groupid' required='required' placeholder='Enter Group ID' value={this.state.groupid} onChange={this.change} /></td>
@@ -372,9 +391,11 @@ class Groups_Create extends Component {
                                         {/* <hr /> */}
 
                                         <tr>
-                                            <th id='a_no'>No</th>
+                                            {/* <th id='a_no'>No</th> */}
                                             <th className='grp_id' >Group Id</th>
                                             <th className=''>Title</th>
+                                            <th className='sup_title'>Supervisor</th>
+                                            <th className=''>Progress</th>
                                             <th className='grp_id'>Members</th>
                                             <th className='grp_id' hidden={this.props.login.loggedInUser.rollno}>Delete</th>
 
@@ -384,9 +405,11 @@ class Groups_Create extends Component {
                                         {this.state.groups.map((group) => {
 
                                             return <tr>
-                                                <td  >{group.no}</td>
-                                                <td >{group.groupid}</td>
-                                                <td className='show_assign' className='tbl_group_val' >{group.title}</td>
+                                                {/* <td  >{group.no}</td> */}
+                                                <td className='grp_id_v'>{group.groupid}</td>
+                                                <td className='show_assign' className='tbl_group_val' id='project_title' >{group.title}</td>
+                                                <td className='show_assign' className='tbl_group_val' >{group.supervisor}</td>
+                                                <td className='show_assign' className='tbl_group_val' id='progress' ><div className='progress_container'><div className='progress_bar' style={{width: group.width}}>{this.state.width}</div></div></td>
                                                 {/* <td className='show_assign'>{assignment.topic}</td> */}
                                                 <td className='show_assign' >
                                                     {group.st_group.map((item) => {

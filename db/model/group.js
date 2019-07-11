@@ -6,7 +6,8 @@ let groupSchema = mongoose.Schema({
     supervisor: String,
     groupid: String,
     no: String,
-    title: String
+    title: String,
+    width: String
 
 })
 

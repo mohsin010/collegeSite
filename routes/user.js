@@ -45,9 +45,12 @@ router.get('/is_authenticated', function (req, res) {
 // <======================================== Supervisor Info Show below ===========================================>
 
 router.post('/st_supervisor_info', function (req, res) {
-    Faculty.findOne({ name: req.body.supervisor }, (err, rec) => {
+    Groups.findOne({st_group: req.body.rollno}, (err, rec) =>{
 
-        res.json(err || rec || { rec: "false" });
+        Faculty.findOne({ name: rec.supervisor }, (err, rec) => {
+    
+            res.json(err || rec || { rec: "false" });
+        })
     })
 })
 
@@ -207,8 +210,14 @@ router.post('/sup_post_msg', function (req, res) {
 
 router.post('/msg_display', function (req, res) {
     Discussion.find({ groupid: req.body.groupid }, (err, rec) => {
+        if(rec != []){
 
-        res.json(err || rec || { rec: "false" });
+             res.json(err || rec || { rec: "false" });
+        }else{
+            console.log('no discussion')
+        }
+
+
     })
 })
 router.post('/sup_msg_display', function (req, res) {
@@ -531,6 +540,16 @@ router.post('/sup_groups_display', function (req, res) {
     Groups.find({ supervisor: req.body.supervisorname }, (err, rec) => {
 
         res.json(err || rec || { rec: "false" });
+    })
+})
+router.post('/groups_progress_update', function (req, res) {
+
+    Groups.findOneAndUpdate({ groupid: req.body.groupid }, (req.body), (err, rec) => {
+        Groups.findOne({groupid: req.body.groupid}, (req, rec) =>{
+
+            res.json(err || rec || { rec: "false" });
+        })
+
     })
 })
 router.post('/admin_groups_display', function (req, res) {

@@ -42,7 +42,7 @@ class Header extends Component {
 
   render() {
     return (
-      <div id='head-main-c'>
+      <div id='head-main-c'> 
         <div className={'header'} id={'header'}>
           <div >
             <img id={'logo-pms'} src={PMS} onClick={this.auth} />

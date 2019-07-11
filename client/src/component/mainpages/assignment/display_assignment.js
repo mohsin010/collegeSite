@@ -17,12 +17,72 @@ class AssignmentDisplay extends Component {
             obtain_marks: '',
             display1: 'none',
             display2: 'none',
+            display3: '',
+            display4:'',
             // display3: false,
             // display4: false,
             file: '',
             title: '',
-            supervisor: ''
         };
+//         if (this.state.rollno) {
+//             fetch('/assignment_display', {
+//                 method: 'POST',
+//                 headers: {
+//                     'Content-Type': 'Application/json'
+//                 },
+//                 body: JSON.stringify(this.state)
+//             }).then((resp) => resp.json()).then((assignments) => {
+// debugger;
+//                 if (assignments[0].length != 0  ) {
+//                     // this.setState((prevState) => {
+//                     //     return{
+//                     //         assignment: [...prevState, assignments],
+//                     //         obtain_marks:assignments.obtain_marks,
+//                     //     display1: 'block',
+//                     //     }
+//                     // })
+
+//                     this.setState({
+
+//                         assignments: assignments,
+//                         obtain_marks: assignments.obtain_marks,
+//                         display3: assignments.display3,
+//                         display4: assignments.display4,
+//                         display1: 'block',
+//                     });
+//                 } else {
+//                     this.setState({ display2: 'block' })
+//                 }
+//             })
+//         }
+
+            // this.data = 'Hello';
+//             fetch('/st_groups_display1', {
+                
+
+//                 method: 'POST',
+//                 headers: {
+//                     'Content-Type': 'Application/json'
+//                 },
+//             // supervisor: 
+//             body: JSON.stringify(this.state)
+//             }).then((resp) => resp.json()).then((group) => {
+// debugger;
+//                 if (group) {
+//                     this.setState({
+//                         groupid: group.groupid,
+//                         title: group.title,
+//                         supervisor: group.supervisor
+//                     })
+//                     store.dispatch({
+//                         payload: group,
+//                         type: 'group_loaded'
+//                     })
+//                 } else {
+//                     console.log('Not Found any Reacord')
+//                 }
+
+//             })
 
 
 
@@ -34,59 +94,61 @@ class AssignmentDisplay extends Component {
             file: e.target.files[0]
         })
     }
-    componentDidMount() {
+    // componentDidMount() {
 
-        this.uploadSolvedAssinment = (assigment, e) => {
-            e.preventDefault();
+    uploadSolvedAssinment = (assigment, e) => {
+        e.preventDefault();
 
-            let data = this.state;
-            let no = assigment.no;
-            let groupid = assigment.groupid;
-            let formData = new FormData();
-            formData.append('a', no);
-            formData.append('b', groupid);
-            formData.append('date', new Date().toLocaleDateString());
-            formData.append('display3', false);
-            formData.append('display4', true);
+        let data = this.state;
+        let no = assigment.no;
+        let groupid = assigment.groupid;
+        let formData = new FormData();
+        formData.append('a', no);
+        formData.append('b', groupid);
+        formData.append('date', new Date().toLocaleDateString());
+        formData.append('display3', false);
+        formData.append('display4', true);
 
-            formData.append('file', e.target.files[0])
-            // let marks = {
-            //     assigment: {
-            //         groupid: data.groupid,
-            //         no: data.no,
-            //         obtain_marks: data.obtain_marks
-            //     }
-            // }
-            fetch('/submit_assignment', {
-                method: 'POST',
-                body: formData,
-            }).then((resp) => resp.json()).then((resp) => {
+        formData.append('file', e.target.files[0])
+        // let marks = {
+        //     assigment: {
+        //         groupid: data.groupid,
+        //         no: data.no,
+        //         obtain_marks: data.obtain_marks
+        //     }
+        // }
+        fetch('/submit_assignment', {
+            method: 'POST',
+            body: formData,
+        }).then((resp) => resp.json()).then((resp) => {
+            debugger;
+            if (resp.success == false) {
+                alert('Assignment Already Submitted')
 
-                if (resp.success == false) {
-                    alert('Assignment Already Submitted')
+            } else if (resp.success == true) {
+                // fetch('/sup_assignment_display', {
+                //     method: "POST"
 
-                } else if (resp.success == true) {
-                    // fetch('/sup_assignment_display', {
-                    //     method: "POST"
+                // }).then((resp) => {
+                //     return resp.json()
+                // }).then((res) => {
 
-                    // }).then((resp) => {
-                    //     return resp.json()
-                    // }).then((res) => {
+                // })
+                // this.refs.assigninput.value = '';
+                this.setState({
+                    display1: 'block',
+                    display2: 'none',
+                    display3:'none',
+                    display4:'block'
+                })
+                alert('Assignment Successfully Submitted');
 
-                    // })
-                    // this.refs.assigninput.value = '';
-                    this.setState({
-                        display1: 'block',
-                        display2: 'none'
-                    })
-                    alert('Assignment Successfully Submitted');
-
-                } else {
-                    alert('An error is occurd. Please try again')
-                }
-            })
-        }
+            } else {
+                alert('An error is occurd. Please try again')
+            }
+        })
     }
+
 
     deleteAssignment = (assignment, evt) => {
         // this.setState({
@@ -174,126 +236,196 @@ class AssignmentDisplay extends Component {
             })
         }
     }
-
+    
     componentDidMount() {
-        if (this.state.rollno) {
-            fetch('/assignment_display', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'Application/json'
-                },
-                body: JSON.stringify(this.state)
-            }).then((resp) => resp.json()).then((assignments) => {
-
-                if (assignments) {
-                    // this.setState((prevState) => {
-                    //     return{
-                    //         assignment: [...prevState, assignments],
-                    //         obtain_marks:assignments.obtain_marks,
-                    //     display1: 'block',
-                    //     }
-                    // })
-
-                    this.setState({
-
-                        assignments: assignments,
-                        obtain_marks: assignments.obtain_marks,
-                        display3: assignments.display3,
-                        display4: assignments.display4,
-                        display1: 'block',
-                    });
-                } else {
-                    this.setState({ display2: 'block' })
-                }
-            })
-
-            fetch('/st_groups_display', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'Application/json'
-                },
-                body: JSON.stringify(this.state)
-            }).then((resp) => resp.json()).then((group) => {
-
-                if (group) {
-                    this.setState({
-                        groupid: group.groupid,
-                        title: group.title,
-                        supervisor: group.supervisor
-                    })
-                    store.dispatch({
-                        payload: group,
-                        type: 'group_loaded'
-                    })
-                } else {
-                    console.log('Not Found any Reacord')
-                }
-
-            })
-
-        } else if(this.props.login.loggedInUser.designation) {
-            // debugger;
-            // console.log(this.props.login.group);
-            let data ={
-                name : this.props.login.loggedInUser.name
-            }
-            fetch('/sup_assignment_display', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'Application/json'
-                },
-                body: JSON.stringify(data)
-            }).then((resp) => resp.json()).then((assignments) => {
-
-                assignments = assignments.sort((prev, next) => {
-                    return prev.rollno - next.rollno;
-                })
-
-                if (assignments) {
-                    this.setState({
-
-                        assignments: assignments,
-                        display3: assignments.display3,
-                        display4: assignments.display4,
-                        display1: 'block',
-                    });
-
-                } else {
-                    this.setState({ display2: 'block' })
-                }
-            })
-        }else{
-            fetch('/admin_assignment_display', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'Application/json'
-                },
-                body: JSON.stringify(this.state)
-            }).then((resp) => resp.json()).then((assignments) => {
-
-                assignments = assignments.sort((prev, next) => {
-                    return prev.rollno - next.rollno;
-                })
-
-                if (assignments) {
-                    this.setState({
-
-                        assignments: assignments,
-                        display3: assignments.display3,
-                        display4: assignments.display4,
-                        display1: 'block',
-                    });
-
-                } else {
-                    this.setState({ display2: 'block' })
-                }
-            })
-        }
+     
         }
     
 
+    // componentDidMount() {
+//        if (this.props.login.loggedInUser.designation) {
+//             // debugger;
+//             // console.log(this.props.login.group);
+//             let data = {
+//                 name: this.props.login.loggedInUser.name
+//             }
+//             fetch('/sup_assignment_display', {
+//                 method: 'POST',
+//                 headers: {
+//                     'Content-Type': 'Application/json'
+//                 },
+//                 body: JSON.stringify(data)
+//             }).then((resp) => resp.json()).then((assignments) => {
+
+//                 assignments = assignments.sort((prev, next) => {
+//                     return prev.rollno - next.rollno;
+//                 })
+// // debugger;
+//                 if (assignments) {
+//                     this.setState({
+
+//                         assignments: assignments,
+//                         display3: assignments.display3,
+//                         display4: assignments.display4,
+//                         display1: 'block',
+//                     });
+
+//                 } else {
+//                     this.setState({ 
+//                         display1:'none',
+//                         display2: 'block' })
+//                 }
+//             })
+//         } else {
+//             fetch('/admin_assignment_display', {
+//                 method: 'POST',
+//                 headers: {
+//                     'Content-Type': 'Application/json'
+//                 },
+//                 body: JSON.stringify(this.state)
+//             }).then((resp) => resp.json()).then((assignments) => {
+
+//                 assignments = assignments.sort((prev, next) => {
+//                     return prev.rollno - next.rollno;
+//                 })
+
+//                 if (assignments) {
+//                     this.setState({
+
+//                         assignments: assignments,
+//                         display3: assignments.display3,
+//                         display4: assignments.display4,
+//                         display1: 'block',
+//                     });
+
+//                 } else {
+//                     this.setState({ display2: 'block' })
+//                 }
+//             })
+//         }
+//     }
+componentDidMount(){
+    if (this.state.rollno) {
+        fetch('/assignment_display', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'Application/json'
+            },
+            body: JSON.stringify(this.state)
+        }).then((resp) => resp.json()).then((assignments) => {
+
+            if (assignments) {
+                // this.setState((prevState) => {
+                //     return{
+                //         assignment: [...prevState, assignments],
+                //         obtain_marks:assignments.obtain_marks,
+                //     display1: 'block',
+                //     }
+                // })
+
+                this.setState({
+
+                    assignments: assignments,
+                    obtain_marks: assignments.obtain_marks,
+                    display3: assignments.display3,
+                    display4: assignments.display4,
+                    display1: 'block',
+                });
+            } else {
+                this.setState({ display2: 'block' })
+            }
+        })
+
+        fetch('/st_groups_display', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'Application/json'
+            },
+            body: JSON.stringify(this.state)
+        }).then((resp) => resp.json()).then((group) => {
+
+            if (group) {
+                this.setState({
+                    groupid: group.groupid,
+                    title: group.title,
+                    supervisor: group.supervisor
+                })
+                store.dispatch({
+                    payload: group,
+                    type: 'group_loaded'
+                })
+            } else {
+                console.log('Not Found any Reacord')
+            }
+
+        })
+
+    } else if(this.props.login.loggedInUser.designation) {
+        // debugger;
+        // console.log(this.props.login.group);
+        let data ={
+            name : this.props.login.loggedInUser.name
+        }
+        fetch('/sup_assignment_display', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'Application/json'
+            },
+            body: JSON.stringify(data)
+        }).then((resp) => resp.json()).then((assignments) => {
+
+            assignments = assignments.sort((prev, next) => {
+                return prev.rollno - next.rollno;
+            })
+
+            if (assignments) {
+                this.setState({
+
+                    assignments: assignments,
+                    display3: assignments.display3,
+                    display4: assignments.display4,
+                    display1: 'block',
+                });
+
+            } else {
+                this.setState({ display2: 'block' })
+            }
+        })
+    }else{
+        fetch('/admin_assignment_display', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'Application/json'
+            },
+            body: JSON.stringify(this.state)
+        }).then((resp) => resp.json()).then((assignments) => {
+
+            assignments = assignments.sort((prev, next) => {
+                return prev.rollno - next.rollno;
+            })
+
+            if (assignments) {
+                this.setState({
+
+                    assignments: assignments,
+                    display3: assignments.display3,
+                    display4: assignments.display4,
+                    display1: 'block',
+                });
+
+            } else {
+                this.setState({ display2: 'block' })
+            }
+        })
+    }
+   
+}
+
+
 
     render() {
+       
+        // } else
 
         return (
             <div>
@@ -342,10 +474,12 @@ class AssignmentDisplay extends Component {
                                         <td className='show_assign' hidden={this.props.login.loggedInUser.rollno}>{assignment.groupid}</td>
                                         <td className='show_assign'>{assignment.title}</td>
                                         {/* <td className='show_assign'>{assignment.topic}</td> */}
-                                        <td ><a href={assignment.file} download id='f-dowload'>(Download File)</a></td>
+                                        <td ><a href={assignment.file} download  id='f-dowload'>(Download File)</a></td>
                                         <td id='d-date'>{assignment.due_date}</td>
-                                        {/* onChange={this.uploadSolvedAssinment.bind(this, assignment)} */}
-                                        <td ><input type='file' name='subfile' ref='assigninput' style={{ display: assignment.display3 ? 'block' : 'none' }} value={this.state.subfile} />
+
+                                        <td ><input type='file' name='subfile' ref='assigninput' style={{ display: assignment.display3 ? 'block' : 'none' }}
+                                            onChange={this.uploadSolvedAssinment.bind(this, assignment)}
+                                            value={this.state.subfile} />
                                             <a href={assignment.file} download id='f-dowload' style={{ display: assignment.display4 ? 'block' : 'none' }}>(Download File)</a>
                                             <br />
                                             <span id='sub_d' style={{ display: assignment.display4 ? 'block' : 'none' }}>Submit Date: {assignment.date}</span>

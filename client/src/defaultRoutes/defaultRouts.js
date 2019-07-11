@@ -30,6 +30,7 @@ import Post_Msg from '../component/mainpages/discussion/post_msg';
 import Sup_Signup from '../component/mainpages/signup/sup_signup'; 
 import  Groups from '../component/mainpages/groups/groups';
 import ConnectedDisplay_contacts from '../component/mainpages/contact/contact';
+import Supervisor_groups from '../component/mainpages/groups/supervisor_groups';
 
 
 import logOut from '../component/mainpages/signout/signout';
@@ -68,6 +69,8 @@ const CustomDefaultRouts = (props) => (
       <Route path='/app/announcements' component={ConnectedAnnouncement} />
       <Route path='/app/discussion' component={Discussion} />
       <Route path='/app/contacts' component={ConnectedViewContacs} />
+      <Route path='/app/supervisor_goups' component={Supervisor_groups} />
+
 
       <Route path='/post_msg' component={Post_Msg} />
 

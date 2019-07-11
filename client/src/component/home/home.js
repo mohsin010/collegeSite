@@ -44,7 +44,6 @@ class Home_Comp extends Component {
             
     }
     componentDidMount(){
-        debugger;
         fetch('/update_user_group', {
             method: 'POST',
             headers: {
@@ -94,7 +93,9 @@ class Home_Comp extends Component {
 
                 </div>
                 <div id='flex-main-container' hidden={!this.props.login.loggedInUser.phone }  >
-                    <h4 align='left' id='flex-heading'>Group ID</h4>
+                <h4 align='left' id='flex-heading' hidden={this.props.login.loggedInUser.rollno}>Supervisor Panel</h4>
+
+                    <h4 align='left' id='flex-heading' hidden={this.props.login.loggedInUser.designation} >{this.props.login.loggedInUser.groupid}</h4>
 
                     <div class="flex-container" id='btn_info_conatainer'>
                         <div><Link to='/app/instructor'><img src={btn_info} className='btn_image' id='btn_info' />  </Link>
@@ -108,6 +109,9 @@ class Home_Comp extends Component {
                         </div>
                         <div><Link to='/app/announcements'><img src={btn_Announcements} className='btn_image' />  </Link>
                             <p className='description'>Announcements</p>
+                        </div>
+                        <div hidden={this.props.login.loggedInUser.rollno}><Link to='/app/supervisor_goups'><img src={btn_group} className='btn_image' />  </Link>
+                            <p className='description'>Groups</p>
                         </div>
                         
                     </div>

@@ -35,7 +35,7 @@
 
   }
   #j_img{
-      width: 100%;
+      width: 80%;
   }
   /* style="width:100%"
   style="margin: 24px 0;" */
@@ -45,7 +45,7 @@
     font-size: 18px;
   }
   #detail{
-    background-color: red;
+    /* background-color: red; */
     width: 100%;
     height: 70px;
     margin-top: 40px;

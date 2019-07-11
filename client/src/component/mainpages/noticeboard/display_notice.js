@@ -161,7 +161,7 @@ class Display_notic extends React.Component {
                                     </div>
 
                                 </div>
-                                <button className='btnn-disp' title='delete' hidden={this.props.login.loggedInUser.rollno} onClick={this.deleteAssignment.bind(this, assignment)}>Delete</button>
+                                <button className='btnn-disp' title='delete' hidden={this.props.login.loggedInUser.rollno || !this.props.login.loggedInUser.cnic} onClick={this.deleteAssignment.bind(this, assignment)}>Delete</button>
                                 <hr id='disp_hr' />
                             </div>
                             // return <tr>

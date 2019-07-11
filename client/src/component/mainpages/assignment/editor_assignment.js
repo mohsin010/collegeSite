@@ -15,7 +15,7 @@ class AssignmentEditor extends Component {
         this.state = {
             no: '',
             title: '',
-            supervisorname: this.props.login.group.supervisor,
+            supervisorname: this.props.login.loggedInUser.supervisor,
             topic: '',
             due_date: '',
             groupid: '',
@@ -30,6 +30,7 @@ class AssignmentEditor extends Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.submitAssignmentMarks = this.submitAssignmentMarks.bind(this)
+        // this.loadStudentsGroup();
 
 
  
@@ -61,7 +62,6 @@ class AssignmentEditor extends Component {
 
 
     submitAssignment = (e) => {
-        debugger;
 
         e.preventDefault();
         let data = this.state;
@@ -88,7 +88,7 @@ class AssignmentEditor extends Component {
             method: 'POST',
             body: formData,
         }).then((resp) => resp.json()).then((resp) => {
-            debugger;
+            ;
             if (resp.success == false) {
                 alert('Assignment Already Assigned')
 
@@ -152,10 +152,17 @@ class AssignmentEditor extends Component {
         })
     }
 
-    componentDidMount(){
+    // loadStudentsGroup = () =>{
+      
+    // }
+
+
+
+
+    render() {
         if(this.props.login.loggedInUser.designation){
             console.log(this.props.loggedInUser);
-            debugger;
+            ;
             let data = {
                 supervisorname : this.props.login.loggedInUser.name
             }
@@ -166,7 +173,7 @@ class AssignmentEditor extends Component {
             },
             body: JSON.stringify(data)
         }).then((resp) => resp.json()).then((groups) => {
-            debugger;
+            debugger
             if (groups) {
                 this.setState({
                     groups: groups
@@ -184,7 +191,7 @@ class AssignmentEditor extends Component {
             },
             body: JSON.stringify(this.state)
         }).then((resp) => resp.json()).then((groups) => {
-            debugger;
+            ;
             if (groups) {
                 this.setState({
                     groups: groups
@@ -195,12 +202,6 @@ class AssignmentEditor extends Component {
             }
         })
     }
-    }
-
-
-
-
-    render() {
         return (
             <div className='main-c'>
                 {/* style={{border: '2px solid black' }} */}

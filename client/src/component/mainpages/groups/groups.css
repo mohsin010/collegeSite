@@ -72,9 +72,65 @@
     margin-right: 15px;
     font-size: 95%;
 }
+.sup_title{
+    width: 25%;
+}
 .grp_id{
-    width: 15%;
+    width: 10%;
 }
 .tbl_group_val{
     text-align: left !important;
+    text-transform: capitalize ;
+}
+.grp_id_v{
+    text-transform: uppercase ;
+
+}
+#progress{
+    width: 15%;
+}
+#project_title{
+    font-size: 90%;
+    /* align-content: center;  */
+    /* width: 30%; */
+}
+.progress_container{
+    width: 90%;
+    height: 15px;
+    font-size: 10px;
+    margin-left: 5%;
+    border: 0.5px solid lightgray ;
+    border-radius: 5px;
+}
+.progress_bar{
+
+    background-color: rgb(85, 85, 238);
+    width: 0%;
+    height: 15px;
+    border-radius: 5px;
+    text-align: center;
+    color: whitesmoke;
+    /* height: inherit;
+    width: inherit; */
+
+}
+.progress_inpt_cont{
+    margin-left: 8%;
+}
+.progress_inpt{
+    width: 15%;
+    margin-left: 30%;
+}
+.fasave > button{
+    color: white;
+    margin-left: 10px !important;
+    background-color: blue;
+    height: 21px;
+
+    border-radius: 4px;
+    /* width: 5./0px; */
+
+}
+.fontaws{
+    /* height: 100px; */
 }

@@ -26,6 +26,7 @@
   #flex-heading{
       margin-left: 2%;
       color: rgb(32, 32, 243);
+      text-transform: uppercase;
 
   }
   .description{

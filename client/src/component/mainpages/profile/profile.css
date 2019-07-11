@@ -148,4 +148,9 @@ tr{
     width: 100%;
     background: #4CAF50;
   }
+  .bnt_save_change{
+    margin-left: 0% !important;
+    width: 41% !important;
+  }
+  
   

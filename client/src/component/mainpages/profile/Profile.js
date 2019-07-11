@@ -21,7 +21,7 @@ class Profile extends Component {
             enddate: this.props.login.loggedInUser.enddate,
             cnic: this.props.login.loggedInUser.cnic,
             designation: this.props.login.loggedInUser.designation,
-            g_id: this.props.login.loggedInUser.g_id,
+            g_id: this.props.login.group.groupid,
             type: 'password',
             score: 'null'
 
@@ -61,22 +61,28 @@ class Profile extends Component {
             [evt.target.name]: evt.target.value,
             [evt.target.name]: evt.target.value,
             [evt.target.name]: evt.target.value
-        }, () => {
-            fetch('/update_profile', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(this.state)
-            }).then((resp) => resp.json()).then((resp) => {
+        })
 
-                store.dispatch({
-                    type: 'update_profile_success',
-                    payload: resp
-                });
+    }
+    saveChanges =  (e) => {
+        e.preventDefault();
+        fetch('/update_profile', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(this.state)
+        }).then((resp) => resp.json()).then((resp) => {
+
+            // this.setState({
+            //     password: resp.password
+            // })
+
+            store.dispatch({
+                type: 'update_profile_success',
+                payload: resp
             });
         });
-
     }
 
 
@@ -105,7 +111,7 @@ class Profile extends Component {
                                 <th className={'p-th'}>Father Name</th>
                                 <td className={'p-td'}><span>{this.state.fname}</span></td>
                                 <th className={'p-th'}>Group ID</th>
-                                <td className={'p-td'}><span>{this.state.g_id}</span></td>
+                                <td className={'p-td'} ><span>{this.state.g_id}</span></td>
                                 {/* <td className={'p-pic'}></td> */}
 
                             </tr>
@@ -127,7 +133,7 @@ class Profile extends Component {
                                 <th className={'p-th'}>Session</th>
                                 <td className={'p-td'}><span>{this.state.startdate} <b>To</b> {this.state.enddate}</span></td>
                                 <th className={'p-th'}>Password</th>
-                                <td className={'p-td'}> <input type={this.state.type} name='password' className="password__input" onChange={(event) => { this.handleInput(event); this.passwordStrength(event); }} value={this.state.password} />
+                                <td className={'p-td'}> <input type={this.state.type} name='password' className="password__input" onChange= { this.handleInput } value={this.state.password} />
 
                                     {/* onChange={this.passwordStrength} */}
                                     <span className="password__show" onClick={this.showHide}>{this.state.type === 'password' ? 'Show' : 'Hide'}</span>
@@ -135,6 +141,12 @@ class Profile extends Component {
                                 </td>
 
                             </tr>
+                            <tr>
+                           <td></td>
+                           <td></td>
+
+                               <td></td>
+                               <td><button id='btn_n_editor' className='bnt_save_change' onClick={this.saveChanges}>Save Changes</button></td></tr>
 
                         </tbody> 
                     </table> 
@@ -156,7 +168,7 @@ class Profile extends Component {
                                 <th className={'p-th'}>Father Name</th>
                                 <td className={'p-td'}><span>{this.state.fname}</span></td>
                                 <th className={'p-th'}>Password</th>
-                                <td className={'p-td'}> <input type={this.state.type} name='password' className="password__input" onChange={(event) => { this.handleInput(event); this.passwordStrength(event); }} value={this.state.password} /> 
+                                <td className={'p-td'}> <input type={this.state.type} name='password' className="password__input" onChange= { this.handleInput} value={this.state.password} /> 
                                 <span className="password__show" onClick={this.showHide}>{this.state.type === 'password' ? 'Show' : 'Hide'}</span>
                                     <span className="password__strength" value={this.state.score} />
                                     </td>
@@ -175,7 +187,12 @@ class Profile extends Component {
                                 <th className={'p-th'}>Email</th>
                                 <td className={'p-td'}><input placeholder={'Email no here'} name='email' onChange={this.handleInput} value={this.state.email} /></td>
                             </tr>
-                           
+                           <tr>
+                           <td></td>
+                           <td></td>
+
+                               <td></td>
+                               <td><button id='btn_n_editor' className='bnt_save_change' onClick={this.saveChanges}>Save Changes</button></td></tr>
 
                         </tbody>
                     </table>
@@ -195,11 +212,16 @@ class Profile extends Component {
                             </tr>
                             <tr>
                                 <th className={'p-th'}>Password</th>
-                                <td className={'p-td'}> <input type={this.state.type} name='password' className="password__input" onChange={(event) => { this.handleInput(event); this.passwordStrength(event); }} value={this.state.password} /> 
+                                <td className={'p-td'}> <input type={this.state.type} name='password' className="password__input" onChange= { this.handleInput} value={this.state.password} /> 
                                 <span className="password__show" onClick={this.showHide}>{this.state.type === 'password' ? 'Show' : 'Hide'}</span>
                                     <span className="password__strength" value={this.state.score} />
                                     </td>
                             </tr>
+                            <tr>
+                          
+
+                               <td></td>
+                               <td><button id='btn_n_editor' className='bnt_save_change' onClick={this.saveChanges}>Save Changes</button></td></tr>
                             
 
                         </tbody>

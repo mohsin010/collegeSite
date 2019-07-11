@@ -27,7 +27,7 @@ class Discussion extends Component {
             // display:false 
         };
 
-        this.submitData();
+        // this.submitData();
     }
 
     deleteAssignment = (msg, evt) => {
@@ -95,7 +95,7 @@ class Discussion extends Component {
 
     }
     // 03213492509
-    submitData = () => {
+   componentDidMount() {
 
         if(this.props.login.loggedInUser.rollno){
 

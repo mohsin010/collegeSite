@@ -104,7 +104,7 @@ class Contacts extends Component {
                 <th className='td_head_1'>Isue</th>
                 <th className='th_email'>Email</th>
                 <th className='th_phone'>Phone No</th>
-                <th hidden={!this.props.login.loggedInUser.cnic || this.props.login.loggedInUser.cnic }>Delete</th>
+                <th hidden={!this.props.login.loggedInUser.cnic  }>Delete</th>
               </tr>
               {this.state.contacts.map((contact) => {
 
@@ -114,7 +114,7 @@ class Contacts extends Component {
                       {contact.issue} </td>
                     <td className='td_cont' >{contact.email}</td>
                     <td className='td_cont'>{contact.num}</td>
-                    <td  hidden={!this.props.login.loggedInUser.cnic || this.props.login.loggedInUser.cnic }>
+                    <td  hidden={!this.props.login.loggedInUser.cnic  }>
                       <button className='btnn-del' title='delete'  onClick={this.deleteContact.bind(this, contact)}><FontAwesomeIcon icon={faTrash} /></button>
                     </td>
                     {/* hidden={this.props.login.loggedInUser.rollno} */}
