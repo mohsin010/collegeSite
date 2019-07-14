@@ -1,7 +1,9 @@
 let mongoose = require('mongoose');
 
-mongoose.connect('mongodb+srv://mohsin:<password>@cluster0-m7tgs.mongodb.net/test?retryWrites=true&w=majority', function(err, connection){
+const url = process.env.MONGODB_URI/consumerdb || 'mongodb://127.0.0.1:27017/consumerdb'
+
+mongoose.connect( url, function(err, connection){
     console.log(err||connection);
 });
 
-  
+ 
