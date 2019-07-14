@@ -111,6 +111,13 @@ if(process.env.NODE_ENV === 'production'){
 
 
 app.use(express.static('./'))
-const port = process.env.port || 8080;
+// const port = process.env.port || 8080;
 
-app.listen(port, () => console.log('Server Running at:http://localhost:8080'));
+// app.listen(port, () => console.log('Server Running at', port));
+
+app.set( 'port', ( process.env.PORT || 8080 ));
+
+// Start node server
+app.listen( app.get( 'port' ), function() {
+  console.log( 'Node server is running on port ' + app.get( 'port' ));
+  });
