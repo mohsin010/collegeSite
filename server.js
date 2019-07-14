@@ -7,6 +7,7 @@ let userRoutes = require('./routes/user');
 let passport = require('passport');
 let cookieParser = require('cookie-parser');
 let expressSession = require('express-session');
+let path = require('path');
 
 
 require('./db/config')
@@ -101,7 +102,15 @@ app.use('/', userRoutes);
 //     res.end('Hellow bhai log');
 // })
 
+if(process.env.NODE_ENV === 'production'){
+    app.use(express.static('client/build'))
+    app.get('*', (req, res) =>{
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    });
+}
+
 
 app.use(express.static('./'))
+const port = process.env.port || 8080;
 
-app.listen(8080, () => console.log('Server Running at:http://localhost:8080'));
+app.listen(port, () => console.log('Server Running at:http://localhost:8080'));
