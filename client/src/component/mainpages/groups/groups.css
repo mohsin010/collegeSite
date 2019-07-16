@@ -118,18 +118,25 @@
     margin-left: 8%;
 }
 .progress_inpt{
-    width: 15%;
-    margin-left: 30%;
+    width: 20%;
+    /* margin-left: 30%; */
+    /* margin-right: 10px; */
+    float: right;
+    height: 16px;
 }
 .fasave > button{
     color: white;
-    margin-left: 10px !important;
+    float: right;
+    /* margin-left: 5px !important; */
     background-color: blue;
     height: 21px;
 
     border-radius: 4px;
     /* width: 5./0px; */
 
+}
+.w_disp{
+    margin-left: 0%;
 }
 .fontaws{
     /* height: 100px; */

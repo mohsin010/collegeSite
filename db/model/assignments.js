@@ -6,6 +6,7 @@ let assignmentsSchema = mongoose.Schema({
     due_date: String,
     title: String,
     groupid: String,
+    supervisorname: String,
     file: String,
     subfile: String,
     total_marks: String,

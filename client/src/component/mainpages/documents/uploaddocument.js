@@ -116,7 +116,7 @@ class Display_document extends React.Component {
             <div className='main-c-editor' id='main-title-disp'  >
                 {/* <div id='nn_Assignment' style={{ display: this.state.display2 }} ><span>No Assignment Assigned Yet</span></div> */}
                 {/* <div  style={{ display: this.state.display1 }}> */}
-                <div className='pcontainer' align='left' ><span className='ptitle'>Upload Documents</span></div>
+                <div className='pcontainer' align='left' ><span className='ptitle'>Documents</span></div>
                 <div >
 
                     <div id='n-main-disp'>

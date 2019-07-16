@@ -110,6 +110,8 @@ const loginReducer = (state = initialState, action) => {
             return {
                 assignments: action.payload,
                 loggedInUser: { ...state.loggedInUser},
+                group: { ...state.group},
+                messageId:{...state.messageId},
                 in_process: 'false'
             }
             break;

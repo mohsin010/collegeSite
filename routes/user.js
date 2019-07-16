@@ -516,16 +516,35 @@ router.post('/assignment_display', function (req, res) {
 })
 
 router.post('/sup_assignment_display', function (req, res) {
-    Groups.findOne({ supervisor: req.body.name }, (req, rec) => {
-        if (rec) {
+    // var recArr
+    // Groups.find({ supervisor: req.body.name }, (err, rec) => {
+    //     // if (rec) {
+    //         //   res.writeHead(200, {'Content_Type':'Application/json'})
+    //         recArr = []
+            
+    //         for(let i = 0; i < rec.length; i++){
+                
+                Assignments.find({ supervisorname: req.body.name }, (err, rec) => {
 
-            Assignments.find({ groupid: rec.groupid }, (err, rec) => {
+                    // recArr.push(rec)
+            res.json(err || rec || { rec: "false" });
 
-                res.json(err || rec || { rec: "false" });
-            })
-        }
+                    
 
-    })
+                    
+                    // console.log(recArr)
+                    
+                })
+                // return recArr
+            // }
+            // res.end();
+        // }
+        // console.log(recArr)
+
+        
+        
+    // })
+    // res.json(recArr);
 
 
 })

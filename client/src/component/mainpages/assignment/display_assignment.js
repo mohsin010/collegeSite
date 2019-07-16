@@ -12,77 +12,77 @@ class AssignmentDisplay extends Component {
         this.state = {
             rollno: this.props.login.loggedInUser.rollno,
             no: '',
-            groupid: this.props.login.group.groupid,
+            // groupid: this.props.login.group.groupid,
             assignments: [],
             obtain_marks: '',
             display1: 'none',
             display2: 'none',
             display3: '',
-            display4:'',
+            display4: '',
             // display3: false,
             // display4: false,
             file: '',
             title: '',
         };
-//         if (this.state.rollno) {
-//             fetch('/assignment_display', {
-//                 method: 'POST',
-//                 headers: {
-//                     'Content-Type': 'Application/json'
-//                 },
-//                 body: JSON.stringify(this.state)
-//             }).then((resp) => resp.json()).then((assignments) => {
-// debugger;
-//                 if (assignments[0].length != 0  ) {
-//                     // this.setState((prevState) => {
-//                     //     return{
-//                     //         assignment: [...prevState, assignments],
-//                     //         obtain_marks:assignments.obtain_marks,
-//                     //     display1: 'block',
-//                     //     }
-//                     // })
+        //         if (this.state.rollno) {
+        //             fetch('/assignment_display', {
+        //                 method: 'POST',
+        //                 headers: {
+        //                     'Content-Type': 'Application/json'
+        //                 },
+        //                 body: JSON.stringify(this.state)
+        //             }).then((resp) => resp.json()).then((assignments) => {
+        // debugger;
+        //                 if (assignments[0].length != 0  ) {
+        //                     // this.setState((prevState) => {
+        //                     //     return{
+        //                     //         assignment: [...prevState, assignments],
+        //                     //         obtain_marks:assignments.obtain_marks,
+        //                     //     display1: 'block',
+        //                     //     }
+        //                     // })
 
-//                     this.setState({
+        //                     this.setState({
 
-//                         assignments: assignments,
-//                         obtain_marks: assignments.obtain_marks,
-//                         display3: assignments.display3,
-//                         display4: assignments.display4,
-//                         display1: 'block',
-//                     });
-//                 } else {
-//                     this.setState({ display2: 'block' })
-//                 }
-//             })
-//         }
+        //                         assignments: assignments,
+        //                         obtain_marks: assignments.obtain_marks,
+        //                         display3: assignments.display3,
+        //                         display4: assignments.display4,
+        //                         display1: 'block',
+        //                     });
+        //                 } else {
+        //                     this.setState({ display2: 'block' })
+        //                 }
+        //             })
+        //         }
 
-            // this.data = 'Hello';
-//             fetch('/st_groups_display1', {
-                
+        // this.data = 'Hello';
+        //             fetch('/st_groups_display1', {
 
-//                 method: 'POST',
-//                 headers: {
-//                     'Content-Type': 'Application/json'
-//                 },
-//             // supervisor: 
-//             body: JSON.stringify(this.state)
-//             }).then((resp) => resp.json()).then((group) => {
-// debugger;
-//                 if (group) {
-//                     this.setState({
-//                         groupid: group.groupid,
-//                         title: group.title,
-//                         supervisor: group.supervisor
-//                     })
-//                     store.dispatch({
-//                         payload: group,
-//                         type: 'group_loaded'
-//                     })
-//                 } else {
-//                     console.log('Not Found any Reacord')
-//                 }
 
-//             })
+        //                 method: 'POST',
+        //                 headers: {
+        //                     'Content-Type': 'Application/json'
+        //                 },
+        //             // supervisor: 
+        //             body: JSON.stringify(this.state)
+        //             }).then((resp) => resp.json()).then((group) => {
+        // debugger;
+        //                 if (group) {
+        //                     this.setState({
+        //                         groupid: group.groupid,
+        //                         title: group.title,
+        //                         supervisor: group.supervisor
+        //                     })
+        //                     store.dispatch({
+        //                         payload: group,
+        //                         type: 'group_loaded'
+        //                     })
+        //                 } else {
+        //                     console.log('Not Found any Reacord')
+        //                 }
+
+        //             })
 
 
 
@@ -138,8 +138,8 @@ class AssignmentDisplay extends Component {
                 this.setState({
                     display1: 'block',
                     display2: 'none',
-                    display3:'none',
-                    display4:'block'
+                    display3: 'none',
+                    display4: 'block'
                 })
                 alert('Assignment Successfully Submitted');
 
@@ -236,135 +236,138 @@ class AssignmentDisplay extends Component {
             })
         }
     }
-    
+
     componentDidMount() {
-     
-        }
-    
+
+    }
+
 
     // componentDidMount() {
-//        if (this.props.login.loggedInUser.designation) {
-//             // debugger;
-//             // console.log(this.props.login.group);
-//             let data = {
-//                 name: this.props.login.loggedInUser.name
-//             }
-//             fetch('/sup_assignment_display', {
-//                 method: 'POST',
-//                 headers: {
-//                     'Content-Type': 'Application/json'
-//                 },
-//                 body: JSON.stringify(data)
-//             }).then((resp) => resp.json()).then((assignments) => {
+    //        if (this.props.login.loggedInUser.designation) {
+    //             // debugger;
+    //             // console.log(this.props.login.group);
+    //             let data = {
+    //                 name: this.props.login.loggedInUser.name
+    //             }
+    //             fetch('/sup_assignment_display', {
+    //                 method: 'POST',
+    //                 headers: {
+    //                     'Content-Type': 'Application/json'
+    //                 },
+    //                 body: JSON.stringify(data)
+    //             }).then((resp) => resp.json()).then((assignments) => {
 
-//                 assignments = assignments.sort((prev, next) => {
-//                     return prev.rollno - next.rollno;
-//                 })
-// // debugger;
-//                 if (assignments) {
-//                     this.setState({
+    //                 assignments = assignments.sort((prev, next) => {
+    //                     return prev.rollno - next.rollno;
+    //                 })
+    // // debugger;
+    //                 if (assignments) {
+    //                     this.setState({
 
-//                         assignments: assignments,
-//                         display3: assignments.display3,
-//                         display4: assignments.display4,
-//                         display1: 'block',
-//                     });
+    //                         assignments: assignments,
+    //                         display3: assignments.display3,
+    //                         display4: assignments.display4,
+    //                         display1: 'block',
+    //                     });
 
-//                 } else {
-//                     this.setState({ 
-//                         display1:'none',
-//                         display2: 'block' })
-//                 }
-//             })
-//         } else {
-//             fetch('/admin_assignment_display', {
-//                 method: 'POST',
-//                 headers: {
-//                     'Content-Type': 'Application/json'
-//                 },
-//                 body: JSON.stringify(this.state)
-//             }).then((resp) => resp.json()).then((assignments) => {
+    //                 } else {
+    //                     this.setState({ 
+    //                         display1:'none',
+    //                         display2: 'block' })
+    //                 }
+    //             })
+    //         } else {
+    //             fetch('/admin_assignment_display', {
+    //                 method: 'POST',
+    //                 headers: {
+    //                     'Content-Type': 'Application/json'
+    //                 },
+    //                 body: JSON.stringify(this.state)
+    //             }).then((resp) => resp.json()).then((assignments) => {
 
-//                 assignments = assignments.sort((prev, next) => {
-//                     return prev.rollno - next.rollno;
-//                 })
+    //                 assignments = assignments.sort((prev, next) => {
+    //                     return prev.rollno - next.rollno;
+    //                 })
 
-//                 if (assignments) {
-//                     this.setState({
+    //                 if (assignments) {
+    //                     this.setState({
 
-//                         assignments: assignments,
-//                         display3: assignments.display3,
-//                         display4: assignments.display4,
-//                         display1: 'block',
-//                     });
+    //                         assignments: assignments,
+    //                         display3: assignments.display3,
+    //                         display4: assignments.display4,
+    //                         display1: 'block',
+    //                     });
 
-//                 } else {
-//                     this.setState({ display2: 'block' })
-//                 }
-//             })
-//         }
-//     }
-componentDidMount(){
-    if (this.state.rollno) {
-        fetch('/assignment_display', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'Application/json'
-            },
-            body: JSON.stringify(this.state)
-        }).then((resp) => resp.json()).then((assignments) => {
+    //                 } else {
+    //                     this.setState({ display2: 'block' })
+    //                 }
+    //             })
+    //         }
+    //     }
+    componentDidMount() {
+        if (this.props.login.loggedInUser.rollno) {
+            fetch('/assignment_display', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'Application/json'
+                },
+                body: JSON.stringify(this.state)
+            }).then((resp) => resp.json()).then((assignments) => {
 
-            if (assignments) {
-                // this.setState((prevState) => {
-                //     return{
-                //         assignment: [...prevState, assignments],
-                //         obtain_marks:assignments.obtain_marks,
-                //     display1: 'block',
-                //     }
-                // })
-
-                this.setState({
-
-                    assignments: assignments,
-                    obtain_marks: assignments.obtain_marks,
-                    display3: assignments.display3,
-                    display4: assignments.display4,
-                    display1: 'block',
-                });
-            } else {
-                this.setState({ display2: 'block' })
-            }
-        })
-
-        fetch('/st_groups_display', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'Application/json'
-            },
-            body: JSON.stringify(this.state)
-        }).then((resp) => resp.json()).then((group) => {
-
-            if (group) {
-                this.setState({
-                    groupid: group.groupid,
-                    title: group.title,
-                    supervisor: group.supervisor
+                assignments = assignments.sort((prev, next) => {
+                    return next.no - prev.no;
                 })
-                store.dispatch({
-                    payload: group,
-                    type: 'group_loaded'
-                })
-            } else {
-                console.log('Not Found any Reacord')
-            }
 
-        })
+                if (assignments) {
+                    // this.setState((prevState) => {
+                    //     return{
+                    //         assignment: [...prevState, assignments],
+                    //         obtain_marks:assignments.obtain_marks,
+                    //     display1: 'block',
+                    //     }
+                    // })
 
-    } else if(this.props.login.loggedInUser.designation) {
-        // debugger;
-        // console.log(this.props.login.group);
-        let data ={
-            name : this.props.login.loggedInUser.name
+                    this.setState({
+
+                        assignments: assignments,
+                        obtain_marks: assignments.obtain_marks,
+                        display3: assignments.display3,
+                        display4: assignments.display4,
+                        display1: 'block',
+                    });
+                } else {
+                    this.setState({ display2: 'block' })
+                }
+            })
+
+            fetch('/st_groups_display', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'Application/json'
+                },
+                body: JSON.stringify(this.state)
+            }).then((resp) => resp.json()).then((group) => {
+
+                if (group) {
+                    this.setState({
+                        groupid: group.groupid,
+                        title: group.title,
+                        supervisor: group.supervisor
+                    })
+                    store.dispatch({
+                        payload: group,
+                        type: 'group_loaded'
+                    })
+                } else {
+                    console.log('Not Found any Reacord')
+                }
+
+            })
+
+        }else if(this.props.login.loggedInUser.designation){
+
+        let data = {
+            name: this.props.login.loggedInUser.name
         }
         fetch('/sup_assignment_display', {
             method: 'POST',
@@ -373,14 +376,13 @@ componentDidMount(){
             },
             body: JSON.stringify(data)
         }).then((resp) => resp.json()).then((assignments) => {
-
+debugger;
             assignments = assignments.sort((prev, next) => {
-                return prev.rollno - next.rollno;
+                return next.no - prev.no;
             })
 
             if (assignments) {
                 this.setState({
-
                     assignments: assignments,
                     display3: assignments.display3,
                     display4: assignments.display4,
@@ -391,40 +393,51 @@ componentDidMount(){
                 this.setState({ display2: 'block' })
             }
         })
-    }else{
-        fetch('/admin_assignment_display', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'Application/json'
-            },
-            body: JSON.stringify(this.state)
-        }).then((resp) => resp.json()).then((assignments) => {
+        }else  {
+            fetch('/admin_assignment_display', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'Application/json'
+                },
+                body: JSON.stringify(this.state)
+            }).then((resp) => resp.json()).then((assignments) => {
 
-            assignments = assignments.sort((prev, next) => {
-                return prev.rollno - next.rollno;
+                assignments = assignments.sort((prev, next) => {
+                    return prev.no - next.no;
+                })
+
+                if (assignments) {
+                    this.setState({
+
+                        assignments: assignments,
+                        display3: assignments.display3,
+                        display4: assignments.display4,
+                        display1: 'block',
+                    });
+
+                } else {
+                    this.setState({ display2: 'block' })
+                }
             })
+        }
+        // else if(this.props.login.loggedInUser.designation) {
+        // debugger;
+        // console.log(this.props.login.group);
 
-            if (assignments) {
-                this.setState({
+        // }
 
-                    assignments: assignments,
-                    display3: assignments.display3,
-                    display4: assignments.display4,
-                    display1: 'block',
-                });
-
-            } else {
-                this.setState({ display2: 'block' })
-            }
-        })
     }
-   
-}
 
 
 
     render() {
+
+        // this.setState({
+        //     assignments : this.props.login.assignments
+        // })
+        // if(this.props.login.loggedInUser.designation){
        
+
         // } else
 
         return (
@@ -474,7 +487,7 @@ componentDidMount(){
                                         <td className='show_assign' hidden={this.props.login.loggedInUser.rollno}>{assignment.groupid}</td>
                                         <td className='show_assign'>{assignment.title}</td>
                                         {/* <td className='show_assign'>{assignment.topic}</td> */}
-                                        <td ><a href={assignment.file} download  id='f-dowload'>(Download File)</a></td>
+                                        <td ><a href={assignment.file} download id='f-dowload'>(Download File)</a></td>
                                         <td id='d-date'>{assignment.due_date}</td>
 
                                         <td ><input type='file' name='subfile' ref='assigninput' style={{ display: assignment.display3 ? 'block' : 'none' }}
@@ -508,7 +521,7 @@ let ConnectedAssignmentDisplay = connect((store) => {
 
     return {
         login: store.loginReducer,
-        assignments: store.login,
+        // assignments: store.loginReducer,
         group: store.group
 
     }

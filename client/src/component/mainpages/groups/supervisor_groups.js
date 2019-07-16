@@ -37,7 +37,7 @@ class Supervisor_groups_con extends Component {
                    
                     this.setState({
                         // groups: groups
-                        width: group.width
+                        width: ''
                     })
     
     
@@ -48,7 +48,12 @@ class Supervisor_groups_con extends Component {
             });
     }
 
-    componentDidMount(){
+    // componentDidMount(){
+      
+    // }
+
+
+    render() {
         let data = {
             supervisorname: this.props.login.loggedInUser.name
         }
@@ -72,10 +77,6 @@ class Supervisor_groups_con extends Component {
                 }
     
             });
-    }
-
-
-    render() {
         return (
 
 
@@ -109,8 +110,8 @@ class Supervisor_groups_con extends Component {
                                         <td className='show_assign' className='tbl_group_val' id='project_title' >{group.title}</td>
                                         <td className='show_assign' className='tbl_group_val' id='progress' >
                                             <span className='progress_inpt_cont'>
-                                            <span><input type='numeric' name='width' value={group.width} onChange={this.handleChange} className='progress_inpt' /></span>
                                             <span className='fasave'><button onClick={this.saveChanges.bind(this, group)}><FontAwesomeIcon className='fontaws' icon={faSave} /></button></span>
+                                            <span><span className='w_disp'>{group.width}</span><input type='numeric' name='width'  onChange={this.handleChange} className='progress_inpt' /></span>
                                             </span>
                                         </td>
                                         {/* <td className='show_assign'>{assignment.topic}</td> */}

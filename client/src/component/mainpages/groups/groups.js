@@ -29,7 +29,7 @@ class Groups_Create extends Component {
             no: '',
             title: '',
             groups: [],
-            width: '50%'
+            width: ''
 
         };
         this.handleChange = this.handleChange.bind(this);
@@ -409,7 +409,7 @@ class Groups_Create extends Component {
                                                 <td className='grp_id_v'>{group.groupid}</td>
                                                 <td className='show_assign' className='tbl_group_val' id='project_title' >{group.title}</td>
                                                 <td className='show_assign' className='tbl_group_val' >{group.supervisor}</td>
-                                                <td className='show_assign' className='tbl_group_val' id='progress' ><div className='progress_container'><div className='progress_bar' style={{width: group.width}}>{this.state.width}</div></div></td>
+                                                <td className='show_assign' className='tbl_group_val' id='progress' ><div className='progress_container'><div className='progress_bar' style={{width: group.width}}>{group.width}</div></div></td>
                                                 {/* <td className='show_assign'>{assignment.topic}</td> */}
                                                 <td className='show_assign' >
                                                     {group.st_group.map((item) => {

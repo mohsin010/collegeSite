@@ -71,9 +71,10 @@ class AssignmentEditor extends Component {
         formData.append('topic', data.topic);
         formData.append('due_date', data.due_date);
         formData.append('groupid', data.groupid);
+        formData.append('supervisorname', this.props.login.loggedInUser.name);
         formData.append('display3', data.display3);
         formData.append('display4', data.display4);
-        formData.append('date', data.date)
+        formData.append('date', data.date);
         formData.append('file', data.file);
         formData.append('subfile', data.subfile);
         formData.append('obtain_marks', data.obtain_marks)
@@ -99,10 +100,10 @@ class AssignmentEditor extends Component {
                 }).then((resp) => {
                     return resp.json()
                 }).then((res) => {
-                    // store.dispatch({
-                    //     type: 'assignment_uploaded',
-                    //     payload: res
-                    // });
+                    store.dispatch({
+                        type: 'assignment_uploaded',
+                        payload: res
+                    });
                 })
                 this.refs.assigninput.value = '';
                 this.setState({
@@ -173,7 +174,7 @@ class AssignmentEditor extends Component {
             },
             body: JSON.stringify(data)
         }).then((resp) => resp.json()).then((groups) => {
-            debugger
+            // debugger
             if (groups) {
                 this.setState({
                     groups: groups
