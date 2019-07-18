@@ -27,6 +27,20 @@ button{
 .a:hover, .a:active, #anchor:hover  {
     background-color: white;
     color:  rgb(52, 69, 218);
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+.active, .active:active{
+  
+    background-color: white;
+    color:  rgb(52, 69, 218) !important;
+    border-bottom: 1.5px  solid rgb(52, 69, 218);
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+.inactive{
+    color: white;
+    background-color:  rgb(52, 69, 218);
 }
 .a{
     height: 50%;

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import './groups.css';
+// import './groups.css';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlusSquare, faMinusSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 
-class Groups_Create extends Component {
+class Editor_Vivaa extends Component {
 
     constructor(props) {
         super(props);
@@ -26,10 +26,12 @@ class Groups_Create extends Component {
 
             supervisor: '',
             groupid: '',
-            no: '',
-            title: '',
             groups: [],
-            width: ''
+            vivas: [],
+            width: '',
+            startDate: '',
+            endDate: '',
+            vivaDate:''
 
         };
         this.handleChange = this.handleChange.bind(this);
@@ -60,8 +62,8 @@ class Groups_Create extends Component {
 
 
         this.setState({
-            students: [
-                ...this.state.students,
+            groups: [
+                ...this.state.groups,
                 student
             ],
             selectedStudents: this.state.selectedStudents
@@ -72,24 +74,22 @@ class Groups_Create extends Component {
 
     // Delete Group
 
-    deleteGroup = (group, evt) => {
+    deleteGroup = (viva, evt) => {
+
         this.setState({
-            students : [
-                ...this.state.students,
-                group
+            groups: [
+                ...this.state.groups,
+                viva
             ]
         })
 
-        console.log(this.state.students);
-
-
         let data = {
 
-            groupid: group.groupid,
-            no: group.no,
+            no: viva._id,
+            // no: group.no,
         }
 
-        fetch('/delete_group', {
+        fetch('/delete_viva', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -98,18 +98,18 @@ class Groups_Create extends Component {
         }).then((resp) => resp.json()).then((resp) => {
             if (resp) {
 
-                let target = this.state.groups.find((group) => {
-                    return resp._id == group._id;
+                let target = this.state.vivas.find((viva) => {
+                    return resp._id == viva._id;
                 })
 
-                let index = this.state.groups.indexOf(target)
+                let index = this.state.vivas.indexOf(target)
 
 
-                this.state.groups.splice(index, 1)
+                this.state.vivas.splice(index, 1)
                 this.setState({
-                    groups: this.state.groups
+                    vivas: this.state.vivas
                 })
-                alert('Group Deleted Successfully')
+                alert('Viva Deleted Successfully')
 
 
             } else {
@@ -139,20 +139,26 @@ class Groups_Create extends Component {
             }
         })
     }
+    handleChange2 = (e) =>{
+        this.setState({
+            [e.target.name] : e.target.value
+
+        })
+    }
 
     handleChange(student, evt) {
         let newChild = evt.target.value;
 
         // alert(newChild);
 
-        let target = this.state.students.find((student) => {
-            return student.rollno == newChild;
+        let target = this.state.groups.find((group) => {
+            return group.groupid == newChild;
         })
 
-        let index = this.state.students.indexOf(target)
+        let index = this.state.groups.indexOf(target)
 
 
-        this.state.students.splice(index, 1)
+        this.state.groups.splice(index, 1)
         // this.setState({
 
         // })
@@ -164,7 +170,7 @@ class Groups_Create extends Component {
                 ...this.state.selectedStudents,
                 target
             ],
-            students: this.state.students
+            groups: this.state.groups
 
 
             // supervisor: evt.target.value
@@ -177,16 +183,16 @@ class Groups_Create extends Component {
 
 
         let data = {
-            st_group: this.state.selectedStudents.map((item) => {
-                return item.rollno;
+            groupid: this.state.selectedStudents.map((item) => {
+                return item.groupid;
             }),
-            supervisor: this.state.supervisor,
-            groupid: this.state.groupid,
-            no: this.state.no,
-            title: this.state.title
+            // groupid: this.state.groupid,
+            startDate: this.state.startDate,
+            endDate: this.state.endDate,
+            vivaDate: this.state.vivaDate
         }
 
-        fetch('/add_group', {
+        fetch('/add_viva', {
             method: 'POST',
             headers: {
                 'Content-Type': 'Application/json'
@@ -200,19 +206,57 @@ class Groups_Create extends Component {
             } else {
                 this.setState({
                     selectedStudents: [],
-                    supervisor: '',
-                    groupid: '',
+                    startDate: '',
+                    endDate: '',
                     no: '',
                     title: ''
 
                 });
-                alert('Group Successfully Created');
+                alert('Viva Successfully Created');
             }
         })
     }
     componentDidMount() {
+        fetch('/groups_display', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'Application/json'
+            },
+            body: JSON.stringify(this.state)
+        }).then((resp) => resp.json()).then((groups) => {
 
-        if (!this.props.login.loggedInUser.department) {
+            // groups = groups.sort((prev, next) => {
+            //     return prev.rollno - next.rollno;
+            // })
+            // debugger;
+            const filterStudents = groups.filter(el=>{
+                return el.no == ''
+            })
+
+            if (filterStudents) {
+                this.setState({
+                    groups: filterStudents 
+
+                });
+            } else {
+                console.log('Err')
+               
+            }
+            // if (groups) {
+            //     this.setState({
+
+            //         groups: groups,
+            //         // display3: groups.display3,
+            //         // display4: groups.display4,
+            //         // display1: 'block',
+            //     });
+            // } else {
+            //     // this.setState({ display2: 'block' })
+            //     console.log('Err')
+            // }
+        })
+
+        // if (!this.props.login.loggedInUser.department) {
             fetch('/get_students', {
                 method: 'POST',
                 headers: {
@@ -235,46 +279,46 @@ class Groups_Create extends Component {
                 }
             })
 
-            fetch('/get_supervisors', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'Application/json'
-                },
-                body: JSON.stringify(this.state)
-            }).then((resp) => resp.json()).then((supervisors) => {
+            // fetch('/get_supervisors', {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'Application/json'
+            //     },
+            //     body: JSON.stringify(this.state)
+            // }).then((resp) => resp.json()).then((supervisors) => {
 
-                if (supervisors) {
-                    this.setState({
-                        supervisors: supervisors
-                    });
-                } else {
-                    // this.setState({ display2: 'block' })
-                    console.log('Err')
+            //     if (supervisors) {
+            //         this.setState({
+            //             supervisors: supervisors
+            //         });
+            //     } else {
+            //         // this.setState({ display2: 'block' })
+            //         console.log('Err')
 
-                }
-            })
+            //     }
+            // })
         }
-    }
+    // }
 
 
     render() {
 
-        fetch('/groups_display', {
+        fetch('/viva_display', {
             method: 'POST',
             headers: {
                 'Content-Type': 'Application/json'
             },
             body: JSON.stringify(this.state)
-        }).then((resp) => resp.json()).then((groups) => {
+        }).then((resp) => resp.json()).then((viva) => {
 
             // groups = groups.sort((prev, next) => {
             //     return prev.rollno - next.rollno;
             // })
             // debugger;
-            if (groups) {
+            if (viva) {
                 this.setState({
 
-                    groups: groups,
+                    vivas: viva,
                     // display3: groups.display3,
                     // display4: groups.display4,
                     // display1: 'block',
@@ -299,36 +343,29 @@ class Groups_Create extends Component {
                                         <th className='title_st'>No:</th>
                                         <td ><input type='text' className='group_id_g' name='no' required='required' placeholder='Enter No' value={this.state.no} onChange={this.change} /></td>
                                     </tr> */}
-                                    <tr>
-                                        <th className='title_st'>Group ID:</th>
-                                        <td ><input type='text' className='group_id_g' name='groupid' required='required' placeholder='Enter Group ID' value={this.state.groupid} onChange={this.change} /></td>
-                                    </tr>
-                                    <tr>
-                                        <th className='title_st'>Project Title:</th>
-                                        <td ><input type='text' className='group_id_g' name='title' required='required' placeholder='Enter Project Title' value={this.state.title} onChange={this.change} /></td>
-                                    </tr>
+                                  
                                     <tr>
 
 
-                                        <th className='' id='st_list' >Students List:</th>
+                                        <th className='' id='st_list' >Groups List:</th>
                                         <td  >
                                             <select id='multi_st_list' multiple='multiple' value={this.state.selectedStudents}  >
                                                 {/* <option value=' select student'>Select Student</option> */}
-                                                {this.state.students.map((student) => {
+                                                {this.state.groups.map((group) => {
 
-                                                    return <option value={student.rollno} onDoubleClick={this.handleChange.bind(this, student)}>{student.rollno}</option>
+                                                    return <option value={group.groupid} onDoubleClick={this.handleChange.bind(this, group)}>{group.groupid}</option>
                                                 }
                                                 )}
 
                                             </select>
                                         </td>
                                         <td className='st_list'  ><div id='st_list_container'>
-                                            <span className='st_list_title' >St_List</span>
+                                            <span className='st_list_title' >Selected</span>
                                             <br />
                                             <br />
                                             {this.state.selectedStudents.map((student) => {
                                                 return <sapn>
-                                                    <span className='st_list_item'> {student.rollno} </span>
+                                                    <span className='st_list_item'> {student.groupid} </span>
                                                     <span><FontAwesomeIcon icon={faTrash} onDoubleClick={this.deleterollno.bind(this, student)} /></span>
                                                     <br />
                                                 </sapn>
@@ -338,19 +375,15 @@ class Groups_Create extends Component {
                                         {/* <td></td> */}
                                     </tr>
                                     <tr>
-                                        <th className='title_st' id='sup_list' >Supervisors:</th>
-                                        <td className='sup_list_drop'>
-
-                                            <select name='supervisor' value={this.state.supervisor} onChange={this.change}>
-                                                <option>Select Supervisor</option>
-                                                {this.state.supervisors.map((supervisor) => {
-
-                                                    return <option value={supervisor.name}>{supervisor.name}</option>
-                                                }
-                                                )}
-                                            </select>
-                                        </td>
+                                        <td></td>
+                                            <td><input type='date' name='startDate' value={this.state.startDate} required onChange={this.handleChange2} /></td>
                                     </tr>
+                                    <tr>
+                                    <td></td>
+
+                                            <td><input type='date' name='endDate' value={this.state.endDate} required onChange={this.handleChange2}  /></td>
+                                    </tr>
+                                   
                                     <br />
                                     <tr id='main_tr_group'>
                                         <td></td>
@@ -400,31 +433,31 @@ class Groups_Create extends Component {
                                         <tr>
                                             {/* <th id='a_no'>No</th> */}
                                             <th className='grp_id' >Group Id</th>
-                                            <th className=''>Title</th>
-                                            <th className='sup_title'>Supervisor</th>
-                                            <th className=''>Progress</th>
-                                            <th className='grp_id'>Members</th>
+                                            <th className='grp_id' >Viva Dataes</th>
+                                            <th className='grp_id' >Viva date</th>
                                             <th className='grp_id' hidden={this.props.login.loggedInUser.rollno}>Delete</th>
 
                                         </tr>
 
 
-                                        {this.state.groups.map((group) => {
+                                        {this.state.vivas.map((viva) => {
 
                                             return <tr>
                                                 {/* <td  >{group.no}</td> */}
-                                                <td className='grp_id_v'>{group.groupid}</td>
-                                                <td className='show_assign' className='tbl_group_val' id='project_title' >{group.title}</td>
-                                                <td className='show_assign' className='tbl_group_val' >{group.supervisor}</td>
-                                                <td className='show_assign' className='tbl_group_val' id='progress' ><div className='progress_container'><div className='progress_bar' style={{width: group.width}}>{group.width}</div></div></td>
-                                                {/* <td className='show_assign'>{assignment.topic}</td> */}
-                                                <td className='show_assign' >
-                                                    {group.st_group.map((item) => {
-                                                        return <span >{item}<br /></span>
+                                                
+                                                <td className='grp_id_v'>
+                                                {viva.groupid.map((item) =>{
+                                                    return <span>{item}</span>
+                                                })
 
-                                                    })}
+                                                }
                                                 </td>
-                                                <td hidden={this.props.login.loggedInUser.rollno} ><button id='btn_delete' onClick={this.deleteGroup.bind(this, group)}><FontAwesomeIcon icon={faTrash} /></button></td>
+                                                <td className='grp_id_v'>{viva.startDate} <b>to</b>  {viva.endDate}</td>
+                                                <td className='grp_id_v'>{viva.vivaDate}</td>
+
+                                                {/* <td className='show_assign'>{assignment.topic}</td> */}
+                                              
+                                                <td hidden={this.props.login.loggedInUser.rollno} ><button id='btn_delete' onClick={this.deleteGroup.bind(this, viva)}><FontAwesomeIcon icon={faTrash} /></button></td>
                                             </tr>
 
                                         })
@@ -449,14 +482,105 @@ class Groups_Create extends Component {
     }
 }
 
-let Groups = connect((store) => {
+let Editor_Viva = connect((store) => {
 
     return {
         login: store.loginReducer,
         assignments: store.login
 
     }
-})(Groups_Create);
+})(Editor_Vivaa);
 
 
-export default Groups;
+export default Editor_Viva;
+
+
+
+// import React, { Component } from 'react';
+// import './viva.css'
+
+// class Editor_Viva extends Component {
+//     constructor(props){
+//         super(props)
+//         this.state = {
+//             groupid: '',
+//             startDate: '',
+//             endDate: '',
+//             vivaDate:''
+//         }
+//     }
+//     handleChange(evt) {
+//         // let { value, min, max } = evt.target;
+//         // value = Math.max(Number(min), Math.min(Number(max), Number(value)));
+
+
+//         this.setState({
+//             [evt.target.name]: evt.target.value,
+//         })
+//     }
+//     submitAssignment = (e) => {
+
+//         e.preventDefault();
+       
+//         fetch('/viva', {
+//             method: 'POST',
+//             body: JSON.stringify(this.state),
+//         }).then((resp) => resp.json()).then((resp) => {
+//             ;
+//             if (resp.success == false) {
+//                 alert('Assignment Already Assigned')
+
+//             } else if (resp.groupid) {
+               
+
+
+
+//                 alert('Assignment Successfully Published to :' + resp.groupid);
+
+//             } else {
+//                 alert('An error is occurd. Please try again')
+//             }
+//         })
+//     }
+//     render() {
+//         return (
+//             <div>
+//                 <div id='main_viva' >
+//                 <div id='container_h_viva'><span id='title_txt'>Create Viva Schedule</span></div>
+//                 <div id='main_edit_assign'>
+//                     <form onSubmit={this.submitAssignment}>
+//                         <table className='tbl-result' >
+//                             <tbody>
+//                                 <tr>
+//                                     <th className='e-a-t'>Group Id:</th>
+//                                     <td ><select  className='gid_select' name='groupid'  required='required'  onChange={this.handleChange} value={this.state.groupid} >
+//                                         <option>Please Select</option>
+//                                         {this.state.groups.map((group) =>{
+//                                             return <option>{group.groupid}</option>
+//                                         })}
+//                                         </select>
+//                                     </td>
+//                                     <th className='e-a-t'>Start Date:</th>
+//                                     <td ><input type='date' className='b-td' name='startDate' required   onChange={this.handleChange} value={this.state.startDate} /></td>
+//                                     <th className='e-a-t'>End Date:</th>
+//                                     <td ><input type='date' className='b-td' name='endDate' required onChange={this.handleChange} value={this.state.endDate} /></td>
+//                                 </tr>
+                               
+//                                 <tr>
+//                                     <td >
+//                                         <input type='submit' className={'r-btn'} value='Publish Schedule' />
+//                                     </td>
+//                                 </tr>
+//                             </tbody>
+//                         </table>
+//                     </form>
+//                 </div>
+                
+//             </div>
+//             </div>
+
+//         );
+//     }
+// }
+
+// export default Editor_Viva;

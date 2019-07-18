@@ -35,6 +35,7 @@
 }
 .group_id_g{
     width: 100% !important;
+    /* margin-left: 10px; */
 }
 #main_tr_group{
     /* margin-top: 10px; */
@@ -66,7 +67,7 @@
 }
 .st_list_item{
     /* background-color: rgb(160, 159, 159); */
-    /* margin-top: 50px; */
+    /* margin-top: 50px; */ 
     color: rgb(51, 51, 255);
     margin-left: 40%;
     margin-right: 15px;

@@ -152,6 +152,7 @@
     margin-top: 0px;
     color: rgb(47, 5, 163);
     font-size: 100%;
+    /* padding: 1px; */
     /* display: inline-flexbox; */
 }
 
@@ -168,6 +169,8 @@
 #r-serach{
     width: 100%;  
     margin-left: cal(25% - 50%);
+    /* padding-top: 2px !important; */
+
 }
 
 .tbl-result-view{

@@ -14,6 +14,7 @@ let Announcement = require('../db/model/announcement');
 let Discussion = require('../db/model/discussion');
 let Contacts = require('../db/model/contacts');
 let Groups = require('../db/model/group');
+let Viva = require('../db/model/viva');
 const multer = require('multer');
 let path = require('path');
 let crypto = require('crypto');
@@ -42,6 +43,54 @@ var upload = multer({ storage: storage })
 router.get('/is_authenticated', function (req, res) {
     res.json(req.user || {});
 });
+// <======================================== Viva Section ===========================================>
+router.post('/add_viva', function (req, res){
+    Viva.findOne({ groupid: req.body.groupid[0] }, req.body, (err, rec) => {
+        if (rec) {
+            res.json({ success: false })
+        } else {
+
+            let newViva = new Viva(req.body);
+            newViva.save((err, rec) => {
+                res.json(err || rec || { success: true });
+            })
+
+        }
+
+    })
+})
+
+router.post('/viva_display', function (req, res) {
+    Viva.find((err, rec) => {
+
+        res.json(err || rec || { rec: "false" });
+    })
+})
+router.post('/st_viva_display', function (req, res) {
+    Viva.findOne({groupid: req.body.groupid} ,(err, rec) => {
+
+        res.json(err || rec || { rec: "false" });
+    })
+})
+router.post('/delete_viva', function (req, res) {
+
+    Viva.findOneAndDelete({ _id: req.body.no }, req.body, (err, rec) => {
+
+        Groups.updateMany({ no: req.body.no }, { no: "" }, function (err, users) {
+
+            if (users) {
+                res.json(users)
+            } else {
+                // res.json({success : false})
+                console.log('Contact Not Found');
+            }
+
+
+        })
+
+
+    })
+})
 // <======================================== Supervisor Info Show below ===========================================>
 
 router.post('/st_supervisor_info', function (req, res) {
@@ -615,11 +664,25 @@ router.post('/update_profile', function (req, res) {
 router.post('/update_user_group', function (req, res) {
 
     // Groups.update({ $pull: { $st_group } })
+    Viva.aggregate([{ $unwind: '$groupid' }], (err, rec) => {
+        if (rec) {
+            for (let i = 0; i < rec.length; i++) {
+                
+                Groups.findOneAndUpdate({ groupid: rec[i].groupid }, ({ no: rec[i]._id }), (err, rec) => {
+
+                    // console.log(rec);
+                    // res.json({ success: true });
+                })
+
+            }
+        }
+    })
 
 
     Groups.aggregate([{ $unwind: '$st_group' }], (err, rec) => {
         if (rec) {
             for (let i = 0; i < rec.length; i++) {
+
                 User.findOneAndUpdate({ rollno: rec[i].st_group }, ({ groupid: rec[i].groupid }), (err, rec) => {
 
                     // console.log(rec);

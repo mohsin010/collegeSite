@@ -39,7 +39,7 @@ class Result extends React.Component {
             <div className='main-c' id='s-view'  >
                 <div id='r-serach'>
                     <p align='left' id={'result-title'} className={'p-r'}><b>Result</b></p>
-                    <div id='r-search2' >
+                    <div id='r-search2' > 
 
                         <form  >
                             <table className='tbl-result'>

@@ -31,6 +31,7 @@ import Sup_Signup from '../component/mainpages/signup/sup_signup';
 import  Groups from '../component/mainpages/groups/groups';
 import ConnectedDisplay_contacts from '../component/mainpages/contact/contact';
 import Supervisor_groups from '../component/mainpages/groups/supervisor_groups';
+import Connected_View_viva from '../component/mainpages/viva/view_viva';
 
 
 import logOut from '../component/mainpages/signout/signout';
@@ -70,6 +71,9 @@ const CustomDefaultRouts = (props) => (
       <Route path='/app/discussion' component={Discussion} />
       <Route path='/app/contacts' component={ConnectedViewContacs} />
       <Route path='/app/supervisor_goups' component={Supervisor_groups} />
+      <Route path='/app/viva_schedule' component={Connected_View_viva} />
+
+      
 
 
       <Route path='/post_msg' component={Post_Msg} />
