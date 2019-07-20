@@ -130,13 +130,7 @@ class AssignmentEditor extends Component {
 
     submitAssignmentMarks = (e) => {
         e.preventDefault();
-        // let data = this.state;
-
-        // let assignment = {
-        //     no:data.no,
-        //     rollno:data.rollno,
-        //     obtain_marks: data.obtain_marks
-        // }
+        
         fetch('/assignments_marks', {
             method: 'POST',
             headers: {
@@ -152,12 +146,6 @@ class AssignmentEditor extends Component {
             }
         })
     }
-
-    // loadStudentsGroup = () =>{
-      
-    // }
-
-
 
 
     render() {
@@ -205,17 +193,19 @@ class AssignmentEditor extends Component {
     }
         return (
             <div className='main-c'>
-                {/* style={{border: '2px solid black' }} */}
                 <div className='pcontainer-editor-r' align='left' ><p id={'user-type'} className={'p-r'}><b> Upload Assignment</b></p></div>
 
                 <div id='main_edit_assign'>
                     <form onSubmit={this.submitAssignment}>
-                        <table className='tbl-result' >
+                        <table className='tbl-assignment' cellSpacing='8' >
                             <tbody>
                                 <tr>
                                     <th className='e-a-t'>No:</th>
                                     <td ><input type='number' className='b-td' name='no' required='required' placeholder='Enter No' onChange={this.handleChange} value={this.state.no} /></td>
-                                    <th className='e-a-t'>Title:</th>
+                                   
+                                </tr>
+                                <tr>
+                                <th className='e-a-t'>Title:</th>
                                     <td ><input type='text' className='b-td' name='title' required='required' placeholder='Enter Title' onChange={this.handleChange} value={this.state.title} /></td>
                                 </tr>
                                 <tr>
@@ -227,11 +217,13 @@ class AssignmentEditor extends Component {
                                         })}
                                         </select>
                                     </td>
-                                    <th className='e-a-t'>File:</th>
-                                    <td ><input type='file' className='b-td' ref='assigninput' name='file' onChange={this.pickFile} /></td>
-                                    {/* <td className={'p-pic'}></td> */}
-                                    {/* onChange={this.getBase64 }  */}
+                                    
 
+                                </tr>
+                                <tr>
+                                <th className='e-a-t'>File:</th>
+                                    <td ><input type='file' className='b-td' ref='assigninput' name='file' onChange={this.pickFile} /></td>
+                                    
                                 </tr>
                                 <tr>
                                     <th className='e-a-t'>Due Date:</th>
@@ -246,7 +238,7 @@ class AssignmentEditor extends Component {
                                 </tr>
                                 <tr>
                                     <td >
-                                        <input type='submit' className={'r-btn'} value='Publish Assignment' />
+                                        <input type='submit' className={'assign-btn'} value='Publish Assignment' />
                                     </td>
                                 </tr>
                             </tbody>

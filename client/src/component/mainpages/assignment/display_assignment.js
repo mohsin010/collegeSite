@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import fileDownload from 'js-file-download';
+
 import store from '../../../store/store';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlusSquare, faMinusSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
@@ -12,80 +14,17 @@ class AssignmentDisplay extends Component {
         this.state = {
             rollno: this.props.login.loggedInUser.rollno,
             no: '',
-            // groupid: this.props.login.group.groupid,
             assignments: [],
             obtain_marks: '',
             display1: 'none',
             display2: 'none',
-            display3: '',
-            display4: '',
-            // display3: false,
-            // display4: false,
+            display3: true,
+            display4: false,
+            search: '',
             file: '',
             title: '',
+            display: false  
         };
-        //         if (this.state.rollno) {
-        //             fetch('/assignment_display', {
-        //                 method: 'POST',
-        //                 headers: {
-        //                     'Content-Type': 'Application/json'
-        //                 },
-        //                 body: JSON.stringify(this.state)
-        //             }).then((resp) => resp.json()).then((assignments) => {
-        // debugger;
-        //                 if (assignments[0].length != 0  ) {
-        //                     // this.setState((prevState) => {
-        //                     //     return{
-        //                     //         assignment: [...prevState, assignments],
-        //                     //         obtain_marks:assignments.obtain_marks,
-        //                     //     display1: 'block',
-        //                     //     }
-        //                     // })
-
-        //                     this.setState({
-
-        //                         assignments: assignments,
-        //                         obtain_marks: assignments.obtain_marks,
-        //                         display3: assignments.display3,
-        //                         display4: assignments.display4,
-        //                         display1: 'block',
-        //                     });
-        //                 } else {
-        //                     this.setState({ display2: 'block' })
-        //                 }
-        //             })
-        //         }
-
-        // this.data = 'Hello';
-        //             fetch('/st_groups_display1', {
-
-
-        //                 method: 'POST',
-        //                 headers: {
-        //                     'Content-Type': 'Application/json'
-        //                 },
-        //             // supervisor: 
-        //             body: JSON.stringify(this.state)
-        //             }).then((resp) => resp.json()).then((group) => {
-        // debugger;
-        //                 if (group) {
-        //                     this.setState({
-        //                         groupid: group.groupid,
-        //                         title: group.title,
-        //                         supervisor: group.supervisor
-        //                     })
-        //                     store.dispatch({
-        //                         payload: group,
-        //                         type: 'group_loaded'
-        //                     })
-        //                 } else {
-        //                     console.log('Not Found any Reacord')
-        //                 }
-
-        //             })
-
-
-
 
     }
     picFile = (e) => {
@@ -98,6 +37,11 @@ class AssignmentDisplay extends Component {
 
     uploadSolvedAssinment = (assigment, e) => {
         e.preventDefault();
+        debugger;
+        this.setState({
+            display3: false,
+            display4: true
+        })
 
         let data = this.state;
         let no = assigment.no;
@@ -110,13 +54,7 @@ class AssignmentDisplay extends Component {
         formData.append('display4', true);
 
         formData.append('file', e.target.files[0])
-        // let marks = {
-        //     assigment: {
-        //         groupid: data.groupid,
-        //         no: data.no,
-        //         obtain_marks: data.obtain_marks
-        //     }
-        // }
+
         fetch('/submit_assignment', {
             method: 'POST',
             body: formData,
@@ -126,20 +64,11 @@ class AssignmentDisplay extends Component {
                 alert('Assignment Already Submitted')
 
             } else if (resp.success == true) {
-                // fetch('/sup_assignment_display', {
-                //     method: "POST"
-
-                // }).then((resp) => {
-                //     return resp.json()
-                // }).then((res) => {
-
-                // })
-                // this.refs.assigninput.value = '';
                 this.setState({
                     display1: 'block',
                     display2: 'none',
                     display3: 'none',
-                    display4: 'block'
+                    display4: "block"
                 })
                 alert('Assignment Successfully Submitted');
 
@@ -151,11 +80,6 @@ class AssignmentDisplay extends Component {
 
 
     deleteAssignment = (assignment, evt) => {
-        // this.setState({
-        // [evt.target.name]:evt.target.value
-        // })
-
-
         let data = {
 
             groupid: assignment.groupid,
@@ -193,10 +117,6 @@ class AssignmentDisplay extends Component {
     }
     handleInput = (assignment, evt) => {
 
-        // this.setState({
-        // [evt.target.name]:evt.target.value
-        // })
-
         assignment.obtain_marks = evt.target.value;
         this.setState({
             assignments: this.state.assignments
@@ -221,7 +141,6 @@ class AssignmentDisplay extends Component {
                     obtain_marks: resp.obtain_marks
                 })
 
-
             } else {
                 alert('Error is Occured');
             }
@@ -229,82 +148,21 @@ class AssignmentDisplay extends Component {
         });
     }
 
-    componentWillReceiveProps(nextprops) {
-        if (nextprops.assignments) {
-            this.setState({
-
-            })
-        }
-    }
-
-    componentDidMount() {
+   
+    updateSearch = (e) => {
+        this.setState({
+            search: e.target.value.substr(0, 20)
+        });
 
     }
+    restSearch = (e) => {
+        this.setState({
+            search: ''
+        })
+    }
+    
 
-
-    // componentDidMount() {
-    //        if (this.props.login.loggedInUser.designation) {
-    //             // debugger;
-    //             // console.log(this.props.login.group);
-    //             let data = {
-    //                 name: this.props.login.loggedInUser.name
-    //             }
-    //             fetch('/sup_assignment_display', {
-    //                 method: 'POST',
-    //                 headers: {
-    //                     'Content-Type': 'Application/json'
-    //                 },
-    //                 body: JSON.stringify(data)
-    //             }).then((resp) => resp.json()).then((assignments) => {
-
-    //                 assignments = assignments.sort((prev, next) => {
-    //                     return prev.rollno - next.rollno;
-    //                 })
-    // // debugger;
-    //                 if (assignments) {
-    //                     this.setState({
-
-    //                         assignments: assignments,
-    //                         display3: assignments.display3,
-    //                         display4: assignments.display4,
-    //                         display1: 'block',
-    //                     });
-
-    //                 } else {
-    //                     this.setState({ 
-    //                         display1:'none',
-    //                         display2: 'block' })
-    //                 }
-    //             })
-    //         } else {
-    //             fetch('/admin_assignment_display', {
-    //                 method: 'POST',
-    //                 headers: {
-    //                     'Content-Type': 'Application/json'
-    //                 },
-    //                 body: JSON.stringify(this.state)
-    //             }).then((resp) => resp.json()).then((assignments) => {
-
-    //                 assignments = assignments.sort((prev, next) => {
-    //                     return prev.rollno - next.rollno;
-    //                 })
-
-    //                 if (assignments) {
-    //                     this.setState({
-
-    //                         assignments: assignments,
-    //                         display3: assignments.display3,
-    //                         display4: assignments.display4,
-    //                         display1: 'block',
-    //                     });
-
-    //                 } else {
-    //                     this.setState({ display2: 'block' })
-    //                 }
-    //             })
-    //         }
-    //     }
-    componentDidMount() {
+    render() {
         if (this.props.login.loggedInUser.rollno) {
             fetch('/assignment_display', {
                 method: 'POST',
@@ -319,13 +177,6 @@ class AssignmentDisplay extends Component {
                 })
 
                 if (assignments) {
-                    // this.setState((prevState) => {
-                    //     return{
-                    //         assignment: [...prevState, assignments],
-                    //         obtain_marks:assignments.obtain_marks,
-                    //     display1: 'block',
-                    //     }
-                    // })
 
                     this.setState({
 
@@ -364,36 +215,35 @@ class AssignmentDisplay extends Component {
 
             })
 
-        }else if(this.props.login.loggedInUser.designation){
+        } else if (this.props.login.loggedInUser.designation) {
 
-        let data = {
-            name: this.props.login.loggedInUser.name
-        }
-        fetch('/sup_assignment_display', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'Application/json'
-            },
-            body: JSON.stringify(data)
-        }).then((resp) => resp.json()).then((assignments) => {
-debugger;
-            assignments = assignments.sort((prev, next) => {
-                return next.no - prev.no;
-            })
-
-            if (assignments) {
-                this.setState({
-                    assignments: assignments,
-                    display3: assignments.display3,
-                    display4: assignments.display4,
-                    display1: 'block',
-                });
-
-            } else {
-                this.setState({ display2: 'block' })
+            let data = {
+                name: this.props.login.loggedInUser.name
             }
-        })
-        }else  {
+            fetch('/sup_assignment_display', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'Application/json'
+                },
+                body: JSON.stringify(data)
+            }).then((resp) => resp.json()).then((assignments) => {
+                assignments = assignments.sort((prev, next) => {
+                    return next.no - prev.no;
+                })
+
+                if (assignments) {
+                    this.setState({
+                        assignments: assignments,
+                        display3: assignments.display3,
+                        display4: assignments.display4,
+                        display1: 'block',
+                    });
+
+                } else {
+                    this.setState({ display2: 'block' })
+                }
+            })
+        } else {
             fetch('/admin_assignment_display', {
                 method: 'POST',
                 headers: {
@@ -420,32 +270,47 @@ debugger;
                 }
             })
         }
-        // else if(this.props.login.loggedInUser.designation) {
-        // debugger;
-        // console.log(this.props.login.group);
+      
+        var display = false;
+        var filterdAssignment = this.state.assignments.filter(
+            (assignment) => {
+                if (assignment.groupid.indexOf(this.state.search)) {
 
-        // }
+                    return assignment.groupid.toLowerCase().indexOf(this.state.search) !== -1;
+                } else {
+                    // alert('not founn')
+                    // this.setState({
+                    //    display: true
+                    // })
+                    display = true
+                    return assignment.groupid.toLowerCase().indexOf(this.state.search) !== -1;
 
-    }
+                    // return alert('not found')
+                }
 
 
+            }
+        )
 
-    render() {
-
-        // this.setState({
-        //     assignments : this.props.login.assignments
-        // })
-        // if(this.props.login.loggedInUser.designation){
-       
-
-        // } else
 
         return (
             <div>
+                
                 <div id='nn_Assignment' style={{ display: this.state.display2 }} ><span>No Assignment Assigned Yet</span></div>
                 <div id='assignment_main_container' style={{ display: this.state.display1 }}>
                     <div >
-                        <div className='pcontainer-editor-r' align='left' ><p id={'user-type'} className={'p-r'}><b> Assignment</b></p></div>
+                        <div className='pcontainer-editor-r' align='left' ><p id={'user-type'} className={'p-r'}><b> Assignment</b>
+                        </p>
+                        </div>
+                        <div className='searching_assignment' hidden={this.props.login.loggedInUser.rollno}>
+                            <span className='search-ass-conatiner'>
+                        <input type='text' placeholder='Search by No or GroupId' onChange={this.updateSearch} value={this.state.search} className='search-ass-input' />
+                        {/* <button onClick={this.updateSearch} className='search-ass-btn'>Search</button> */}
+                        <button onClick={this.restSearch} className='search-ass-reset'>Reset</button>
+
+                        </span>
+                            </div>
+                        {/* <p>Hello</p> */}
                         <table id='p_detail' hidden={!this.props.login.loggedInUser.rollno}>
                             <tr>
                                 <th className='p_head'>Group Id</th>
@@ -461,30 +326,25 @@ debugger;
                             </tr>
                         </table>
                         <table id='tbl-assignment' >
-                            {/* <hr className='hr' />                     */}
                             <tbody>
-                                {/* <caption>Instructor's Info</caption> */}
-                                {/* <hr /> */}
 
                                 <tr>
                                     <th id='a_no'>No</th>
                                     <th hidden={this.props.login.loggedInUser.rollno}>Group Id</th>
                                     <th className='a_topic_title'>Title</th>
-                                    {/* <th className='a_topic_title'>Topic</th> */}
                                     <th className='a_marks'>Assignment</th>
                                     <th className='a_marks'>Due Date</th>
                                     <th className='a_marks' id='submit_assign'>Submit</th>
                                     <th className='a_marks'>Marks Obtained</th>
                                     <th hidden={this.props.login.loggedInUser.rollno}>Delete</th>
-
                                 </tr>
-
-
-                                {this.state.assignments.map((assignment) => {
+                                
+                                
+                                {filterdAssignment.map((assignment) => {
 
                                     return <tr>
                                         <td >{assignment.no}</td>
-                                        <td className='show_assign' hidden={this.props.login.loggedInUser.rollno}>{assignment.groupid}</td>
+                                        <td className='case' hidden={this.props.login.loggedInUser.rollno}>{assignment.groupid}</td>
                                         <td className='show_assign'>{assignment.title}</td>
                                         {/* <td className='show_assign'>{assignment.topic}</td> */}
                                         <td ><a href={assignment.file} download id='f-dowload'>(Download File)</a></td>
@@ -508,6 +368,10 @@ debugger;
                                 }
                             </tbody>
                         </table>
+                            <div className='td_nf' style={{ display: display ? 'none' : 'block' }}>
+                                    <span  ><span >Record Not Found</span></span>
+
+                                </div>
                     </div>
                 </div>
             </div>

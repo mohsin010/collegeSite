@@ -23,6 +23,8 @@ class Discussion extends Component {
             supervisorname: this.props.login.loggedInUser.name,
             display1: 'none',
             display2: 'none',
+            search:'',
+            display: false
 
             // display:false 
         };
@@ -173,15 +175,55 @@ class Discussion extends Component {
     }
 
     }
+    updateSearch = (e) => {
+        this.setState({
+            search: e.target.value.substr(0, 20)
+        });
+
+    }
+    restSearch = (e) => {
+        this.setState({
+            search: ''
+        })
+    }
 
 
     render() {
+         
+    var display = false;
+    var filterdMsgs = this.state.msgs.filter(
+        (msg) => {
+            if (msg.groupid.indexOf(this.state.search)) {
+
+                return msg.groupid.toLowerCase().indexOf(this.state.search) !== -1;
+            } else {
+                // alert('not founn')
+                // this.setState({
+                //    display: true
+                // })
+                display = true
+                return msg.groupid.toLowerCase().indexOf(this.state.search) !== -1;
+
+                // return alert('not found')
+            }
+
+
+        }
+    )
         return (
             <div>
                 <div id='msg_disp_container'>
                     <div className='pcontainer' align='left' ><span className='ptitle'>Discussions</span></div>
                     <div id='post_btn_container' hidden={!this.props.login.loggedInUser.rollno}><Link to='/post_msg'><img src={post} id='post_btn' title='Post Message' /></Link></div>
                     <div id='msg_list_container'>
+                    <div className='searching_assignment' hidden={this.props.login.loggedInUser.rollno}>
+                            <span className='search-ass-conatiner'>
+                        <input type='text' placeholder='Search by GroupId' onChange={this.updateSearch} value={this.state.search} className='search-ass-input' />
+                        {/* <button onClick={this.updateSearch} className='search-ass-btn'>Search</button> */}
+                        <button onClick={this.restSearch} className='search-ass-reset'>Reset</button>
+
+                        </span>
+                            </div>
                         <div className='pcontainer' id='msg_list' align='left' ><span className='ptitle'>Messages List</span></div>
                         <div id='nn_Assignment' style={{ display: this.state.display2 }} ><span>No Message Yet</span></div>
                         <div>
@@ -193,7 +235,7 @@ class Discussion extends Component {
                                     <th className='td_head_3' hidden={this.props.login.loggedInUser.rollno}>Delete</th>
 
                                 </tr>
-                                {this.state.msgs.map((msg) => {
+                                {filterdMsgs.map((msg) => {
 
                                     return <>
                                         <tr className='tr_msg'>
@@ -239,6 +281,10 @@ class Discussion extends Component {
                                 })}
 
                             </table>
+                            <div className='td_nf' style={{ display: display ? 'none' : 'block' }}>
+                                    <span  ><span >Record Not Found</span></span>
+
+                                </div>
                         </div>
 
                     </div>

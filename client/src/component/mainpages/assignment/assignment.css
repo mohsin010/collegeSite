@@ -16,6 +16,7 @@
     width: 98.8%;
     margin-left: 0.5%;
     margin-top:  3px;
+    overflow-x:auto;
 }
 #assignment_container{
 
@@ -35,7 +36,26 @@
     margin-top: 10px;
     margin-bottom: 0.3%;
     margin-left: 0.5%;
+    
     /* padding: 20px; */
+}
+.tbl-assignment{
+    width: 50%;
+    color: rgb(47, 5, 163);
+    text-align: left;
+    padding-left: 2%;
+    /* padding: 5%; */
+
+
+}
+.tbl-assignment>tr{
+    /* color: rgb(47, 5, 163); */
+    /* width: 10%; */
+    
+}
+.tbl-assignment>th{
+    /* color: rgb(47, 5, 163); */
+    /* width: 10% !important; */
 }
 #tbl-assignment>tbody>tr>th{
     text-align: center;
@@ -109,6 +129,22 @@
     width: 97%;
     /* margin-right: 10px; */
 }
+.bt-b{
+    width: 68%;
+}
+.assign-btn{
+    color: white;
+    height: 27px;
+    /* width: 80%; */
+    margin-left: 105.5%;
+    background-color: rgba(17, 65, 197,0.8);
+    border: none;
+    border-radius: 2px;
+
+}
+.assign-btn:hover{
+    background-color: rgba(17, 65, 197, 1);
+} 
 #btn_delete:hover{
     background-color: rgba(17, 65, 197, 1);
     /* color: rgb(6, 6, 165); */
@@ -118,10 +154,13 @@
     width: 5%;
 }
 .e-a-t{
-    padding-left: 15% !important;
+    margin-left: 5% !important;
 }
 .show_assign{
-    text-transform:capitalize;
+    text-transform: capitalize;
+}
+.case{
+    text-transform: uppercase;
 }
 /* #marks:nth-child(even) {background-color: #c9c4c4;} */
 #p_detail{
@@ -147,5 +186,31 @@
     font-size: 80%;
 }
 .gid_select{
-    width: 99.5% !important;
+    width: 98.2% !important;
+}
+.td_nf{
+    width: 99%;
+    margin-left: 0.5%;
+    height: 25px;
+    text-align: center;
+    color: rgb(235, 6, 6);
+    font-size: 90%;
+    background-color: rgb(162, 167, 240);
+}
+.searching_assignment{
+    /* background-color: red; */
+    /* position: absolute; */
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: right;
+}
+.search-ass-conatiner{
+margin-right: 2%;
+/* marginb */
+}
+.search-ass-reset{
+    background-color: rgb(206, 199, 199);
+    border: 1px solid black;
+    height: 21px;
+    margin-left: 1%;
 }

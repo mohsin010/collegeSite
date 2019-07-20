@@ -66,19 +66,13 @@ class Signin extends Component {
 						<label id={'pass2'}>Password</label>
 						<input id={'passinpt2'} required={'required'} type='password' name='password' placeholder='Please enter your password' onChange={this.handleInput} />
 						<br></br>
-						{/* <label id={'statusLabel2'}>Status</label> */}
-						{/* <select name={'status'} id={'status2'} required  onChange={this.handleInput}>
-																												<option value='' >Select Status</option>
-																												<option value='admin'>Admin</option>
-																										<option value='teacher'>Teacher</option>
-																												<option value='student'>Student</option>
-																								</select> */}
+						
 						<br></br>
 
 						<br></br>
 						<input id={'btn9'} type='submit' name='LogIn' value={'Login'} />
 						<br></br>
-						<a href={"#"} id={'anchor2'}>Forget Password?</a>
+						{/* <a href={"#"} id={'anchor2'}>Forget Password?</a> */}
 
 					</form>
 				</div>

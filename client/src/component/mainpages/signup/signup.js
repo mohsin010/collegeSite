@@ -76,39 +76,39 @@ class Signup extends Component {
                         <div id={'submaincontainer1'}>
                             <form onSubmit={this.submitForm}>
                                 <label id={'namlabel'}>Name</label>
-                                <input id={'name'} type='text' name='name' placeholder='Name' onChange={this.handleInput} />
+                                <input id={'name'} type='text' name='name' required placeholder='Name' onChange={this.handleInput} />
                                 <br></br>
 
                                 <label id={'flabel'}>F Name</label>
-                                <input id={'fnam'} type='text'  name='fname' placeholder='Father Name' onChange={this.handleInput} />
+                                <input id={'fnam'} type='text'  name='fname' required placeholder='Father Name' onChange={this.handleInput} />
                                 <br></br>
 
                                 <label id={'emaillabel'}>Email</label>
-                                <input id={'email'} type='email' name='email' placeholder='eg. (someone@example.com)' onChange={this.handleInput} />
+                                <input id={'email'} type='email' name='email' required placeholder='eg. (someone@example.com)' onChange={this.handleInput} />
                                 <br></br>
 
                                 <label id={'phonelabel'}>Phone</label>
-                                <input id={'phone'} type='tel' name='phone' placeholder='eg.(0000-0000000)' pattern='[0-9]{4}-[0-9]{7}' onChange={this.handleInput} />
+                                <input id={'phone'} type='tel' name='phone' required placeholder='eg.(0000-0000000)' pattern='[0-9]{4}-[0-9]{7}' onChange={this.handleInput} />
                                 <br></br>
                                 <label id={'pass'}>Password</label>
-                                <input id={'passinpt1'} type='password' name='password' placeholder='Password' onChange={this.handleInput} />
+                                <input id={'passinpt1'} type='password' required name='password' placeholder='Password' onChange={this.handleInput} />
                                 <br></br>
                                 
                                 <label id={'rollnolabel'}>Roll No</label>
-                                <input type='number' name='rollno' placeholder='Roll No' onChange={this.handleInput} />
+                                <input type='number' name='rollno' placeholder='Roll No' required onChange={this.handleInput} />
                                 <br></br>
                                  
                                 <label id={'cniclabel'}>Cnic</label>
-                                <input type='numeric' maxLength='13' minLength='13' name='cnic' placeholder='eg. (0000000000000)' onChange={this.handleInput} />
+                                <input type='numeric' maxLength='13' minLength='13' required name='cnic' placeholder='eg. (0000000000000)' onChange={this.handleInput} />
                                 <br></br>
                                 <label id={'deptlabel'}>Department</label>
-                                <select name='department' id={'department'} onChange={this.handleInput} >
+                                <select name='department' id={'department'} required onChange={this.handleInput} >
                                     <option>Select Your Department</option>
                                     <option>Computer Science</option>
                                 </select>
                                 <br></br>
                                 <label id={'prolabel'}>Program</label>
-                                <select name='program' id={'program'} onChange={this.handleInput} >
+                                <select name='program' id={'program'} required onChange={this.handleInput} >
                                     <option>Select Your Program</option>
                                     <option>BS Computer Science</option>
                                 </select>
@@ -116,10 +116,10 @@ class Signup extends Component {
                                 <label id={'sessionlabel'}>Session</label>
                                 <br></br>
                                 <label id={'from'}>From</label>
-                                <input type='date' name='startdate' id={'fromdate'} onChange={this.handleInput} ></input>
+                                <input type='date' name='startdate' id={'fromdate'} required onChange={this.handleInput} ></input>
                                 <br></br>
                                 <label id={'to'}>To</label>
-                                <input type='date' name='enddate' id={'enddate'} onChange={this.handleInput} ></input>
+                                <input type='date' name='enddate' id={'enddate'} required onChange={this.handleInput} ></input>
                                 <br></br>
 
                                 {/* Form Ends */}

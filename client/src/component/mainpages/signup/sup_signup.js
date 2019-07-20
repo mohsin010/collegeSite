@@ -146,7 +146,7 @@ class Sup_Signup extends Component {
                                 </select>
                                 <br></br>
                                 <label id={'descrlabel'}>Description</label>
-                                <textarea rows="4" cols="45" type='textarea' name='description'  value={this.state.description} required placeholder='Description' onChange={this.handleInput} />
+                                <textarea rows="4" cols="45" type='textarea' name='description' required value={this.state.description} required placeholder='Description' onChange={this.handleInput} />
                                 <br></br>
                                 <label id={'inpt_file_pic'}>Profile Picture</label>
                                 <input  type='file' name='file'   required  onChange={this.pickFile} />

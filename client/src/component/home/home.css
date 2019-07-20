@@ -1,14 +1,16 @@
-#flex-main-container{
+#flex-main-container, #flex-main-container2{
+   display: flex;
+   flex-wrap: wrap;
     border-bottom: 1px solid rgb(9, 9, 212);
     width: 98.8%;
     margin-left: 0.5%;
 }
 .flex-container {
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     width: 94%;
     margin-left: 3%;
-    /* background-color: DodgerBlue; */
+    /* background-color: DodgerBlue; */ 
   }
   
   .flex-container > div {
@@ -33,6 +35,12 @@
       font-size: 50%;
       color: rgb(32, 32, 243);
       font-weight: 430; 
+      /* word-wrap: break-word; */
+      /* overflow-wrap: break-word; */
+      /* overflow-wrap: break-word; */
+      /* width: max-content; */
+      /* text-align: center; */
+      /* text-align: center; */
       /* margin-top: 0%; */
   }
   .descriptio{
@@ -42,6 +50,10 @@
   }
   #btn_info-dec{
     margin-top: 9%;
+}
+.content-set{
+      width: max-content;
+
 }
 /* #btn_info_conatainer{
     margin-top: 10px;

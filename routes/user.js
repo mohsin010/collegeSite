@@ -17,6 +17,10 @@ let Groups = require('../db/model/group');
 let Viva = require('../db/model/viva');
 const multer = require('multer');
 let path = require('path');
+let Path = require('path');
+
+let Fs = require('fs');
+let Axios = require('axios')
 let crypto = require('crypto');
 
 
@@ -43,6 +47,30 @@ var upload = multer({ storage: storage })
 router.get('/is_authenticated', function (req, res) {
     res.json(req.user || {});
 });
+
+
+router.post('/download_file', function(req, res){
+    async function download(){
+        const url = 'https://www.google.com/search?q=image&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjPqb_59L_jAhVzs3EKHX38DZQQ_AUIESgB#imgrc=aT1lQMo5nzpYfM:'
+        const path = Path.resolve(__dirname, '../file')
+
+        const response = await Axios({
+            url,
+            method: 'POST',
+            responseType: 'stream'
+          })
+        
+          response.data.pipe(writer)
+        
+          return new Promise((resolve, reject) => {
+            writer.on('finish', resolve)
+            writer.on('error', reject)
+        })
+    }
+      download().then(()=>{
+         console.log('File Downloaded')
+     })
+})
 // <======================================== Viva Section ===========================================>
 router.post('/add_viva', function (req, res){
     Viva.findOne({ groupid: req.body.groupid[0] }, req.body, (err, rec) => {
@@ -68,8 +96,13 @@ router.post('/viva_display', function (req, res) {
 })
 router.post('/st_viva_display', function (req, res) {
     Viva.findOne({groupid: req.body.groupid} ,(err, rec) => {
+        if(!rec){
+            res.json({success: false})
+        }else{
 
-        res.json(err || rec || { rec: "false" });
+            res.json(err || rec || { success: "true" });
+        }
+
     })
 })
 router.post('/delete_viva', function (req, res) {
@@ -89,6 +122,13 @@ router.post('/delete_viva', function (req, res) {
         })
 
 
+    })
+})
+
+router.post('/st_viva_select', function (req, res) {
+    Viva.findOneAndUpdate({groupid: req.body.groupid}, (req.body) ,(err, rec) => {
+
+        res.json(err || rec || { rec: "false" });
     })
 })
 // <======================================== Supervisor Info Show below ===========================================>

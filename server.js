@@ -109,8 +109,8 @@ if(process.env.NODE_ENV === 'production'){
     });
 }
 
-
 app.use(express.static('./'))
+// console.log(__dirname + './up');
 // const port = process.env.port || 8080;
 
 // app.listen(port, () => console.log('Server Running at', port));

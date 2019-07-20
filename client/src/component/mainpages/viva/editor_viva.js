@@ -31,7 +31,9 @@ class Editor_Vivaa extends Component {
             width: '',
             startDate: '',
             endDate: '',
-            vivaDate:''
+            vivaDate:'',
+            display1: true,
+            display2: false
 
         };
         this.handleChange = this.handleChange.bind(this);
@@ -181,7 +183,7 @@ class Editor_Vivaa extends Component {
     submit = (e) => {
         e.preventDefault();
 
-
+debugger;
         let data = {
             groupid: this.state.selectedStudents.map((item) => {
                 return item.groupid;
@@ -189,7 +191,10 @@ class Editor_Vivaa extends Component {
             // groupid: this.state.groupid,
             startDate: this.state.startDate,
             endDate: this.state.endDate,
-            vivaDate: this.state.vivaDate
+            vivaDate: this.state.vivaDate,
+            display1: this.state.display1,
+            display2: this.state.display2
+
         }
 
         fetch('/add_viva', {
@@ -335,7 +340,7 @@ class Editor_Vivaa extends Component {
 
                 <div id='msg_disp_container'>
                     <div>
-                        <div className='pcontainer-editor-r' id='create_group' align='left' ><p id={'user-type'} className={'p-r'}><b> Create Group</b></p></div>
+                        <div className='pcontainer-editor-r' id='create_group' align='left' ><p id={'user-type'} className={'p-r'}><b> Create Viva</b></p></div>
                         <form onSubmit={this.submit}>
                             <table className={'tbl-result'} id='make_groups'  >
                                 <tbody>
@@ -347,7 +352,7 @@ class Editor_Vivaa extends Component {
                                     <tr>
 
 
-                                        <th className='' id='st_list' >Groups List:</th>
+                                        <th className='' id='st_list' >Viva List:</th>
                                         <td  >
                                             <select id='multi_st_list' multiple='multiple' value={this.state.selectedStudents}  >
                                                 {/* <option value=' select student'>Select Student</option> */}
@@ -358,7 +363,7 @@ class Editor_Vivaa extends Component {
                                                 )}
 
                                             </select>
-                                        </td>
+                                        </td> 
                                         <td className='st_list'  ><div id='st_list_container'>
                                             <span className='st_list_title' >Selected</span>
                                             <br />

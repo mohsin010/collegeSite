@@ -13,6 +13,7 @@ class Display_announce extends React.Component {
             assignments: [],
             display1: 'none',
             display2: 'none',
+            search:'',
             currentAnnouncement: {},
             announementIndex: 0
         };
@@ -113,6 +114,17 @@ class Display_announce extends React.Component {
     //                         </div>
     // }
 
+    updateSearch = (e) => {
+        this.setState({
+            search: e.target.value.substr(0, 20)
+        });
+
+    }
+    restSearch = (e) => {
+        this.setState({
+            search: ''
+        })
+    }
 
     render() {
 
@@ -186,6 +198,26 @@ class Display_announce extends React.Component {
                 }
             })
         }
+        var display = false;
+    var filterAnnouncements = this.state.assignments.filter(
+        (annuncement) => {
+            if (annuncement.groupid.indexOf(this.state.search)) {
+
+                return annuncement.groupid.toLowerCase().indexOf(this.state.search) !== -1;
+            } else {
+                // alert('not founn')
+                // this.setState({
+                //    display: true
+                // })
+                display = true
+                return annuncement.groupid.toLowerCase().indexOf(this.state.search) !== -1;
+
+                // return alert('not found')
+            }
+
+
+        }
+    )
 
 
         return (
@@ -196,12 +228,21 @@ class Display_announce extends React.Component {
                     <div id='nn_Assignment' style={{ display: this.state.display2 }} ><span>No Announcement Yet</span></div>
                     {/* <div  style={{ display: this.state.display1 }}> */}
                     <div className='pcontainer' align='left' ><span className='ptitle'>Announcement</span></div>
+                    <div className='searching_assignment'>
+                            <span className='search-ass-conatiner'>
+                        <input type='text' placeholder='Search by GroupId' onChange={this.updateSearch} value={this.state.search} className='search-ass-input' />
+                        {/* <button onClick={this.updateSearch} className='search-ass-btn'>Search</button> */}
+                        <button onClick={this.restSearch} className='search-ass-reset'>Reset</button>
+
+                        </span>
+                            </div>
                     <div hidden={!this.props.login.loggedInUser.rollno}>
                         {this.state.assignments.map((assignment, index) => {
                             return <div className={index != this.state.announementIndex ? 'hide' : ''} dangerouslySetInnerHTML={{ __html: assignment.body }}> 
                             </div>
 
                         })}
+                        
 
                         <div id='btn-navigate-container'>
                             <button className='btn-navigate' id='btn-newest' onClick={this.getOldest} title='Go to newest annuncements'></button>
@@ -219,7 +260,7 @@ class Display_announce extends React.Component {
 
                         <div  >
                             <div>
-                                {this.state.assignments.map((assignment) => {
+                                {filterAnnouncements.map((assignment) => {
 
 
                                     return <div >
@@ -264,6 +305,10 @@ class Display_announce extends React.Component {
 
                                 })
                                 }
+                                <div className='td_nf' style={{ display: display ? 'none' : 'block' }}>
+                                    <span  ><span >Record Not Found</span></span>
+
+                                </div>
                             </div>
 
                         </div>

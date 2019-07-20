@@ -4,7 +4,9 @@ let vivaSchema = mongoose.Schema({
     groupid: [],
     startDate: String,
     endDate: String,
-    vivaDate: String
+    vivaDate: String,
+    display1: Boolean,
+    display2: Boolean
     
 })
 
