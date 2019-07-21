@@ -198,7 +198,7 @@ class AssignmentEditor extends Component {
                 <div id='main_edit_assign'>
                     <form onSubmit={this.submitAssignment}>
                         <table className='tbl-assignment' cellSpacing='8' >
-                            <tbody>
+                            <tbody> 
                                 <tr>
                                     <th className='e-a-t'>No:</th>
                                     <td ><input type='number' className='b-td' name='no' required='required' placeholder='Enter No' onChange={this.handleChange} value={this.state.no} /></td>
@@ -210,7 +210,7 @@ class AssignmentEditor extends Component {
                                 </tr>
                                 <tr>
                                     <th className='e-a-t'>Group Id:</th>
-                                    <td ><select  className='gid_select' name='groupid'  required='required'  onChange={this.handleChange} value={this.state.groupid} >
+                                    <td ><select  className='gid_select b-td' name='groupid'  required='required'  onChange={this.handleChange} value={this.state.groupid} >
                                         <option>Please Select</option>
                                         {this.state.groups.map((group) =>{
                                             return <option>{group.groupid}</option>

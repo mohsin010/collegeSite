@@ -3,6 +3,8 @@
     top: 0;
     background-color: white;
     overflow: hidden;
+    min-width: 400px;
+
 }
 #header{
     /* background-color: red; */
