@@ -224,11 +224,11 @@ class Display_announce extends React.Component {
 
             // id='assignment_main_container'
             <div>
-                <div className='main-c-editor' id='main-title-disp' style={{ display: this.state.display1 }}  >
+                <div className='main-c-editor c_overflow' id='main-title-disp' style={{ display: this.state.display1 }}  >
                     <div id='nn_Assignment' style={{ display: this.state.display2 }} ><span>No Announcement Yet</span></div>
                     {/* <div  style={{ display: this.state.display1 }}> */}
                     <div className='pcontainer' align='left' ><span className='ptitle'>Announcement</span></div>
-                    <div className='searching_assignment'>
+                    <div className='searching_assignment' hidden={this.props.login.loggedInUser.rollno}>
                             <span className='search-ass-conatiner'>
                         <input type='text' placeholder='Search by GroupId' onChange={this.updateSearch} value={this.state.search} className='search-ass-input' />
                         {/* <button onClick={this.updateSearch} className='search-ass-btn'>Search</button> */}

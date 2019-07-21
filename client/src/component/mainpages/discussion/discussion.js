@@ -19,7 +19,7 @@ class Discussion extends Component {
         super(props);
         this.state = {
             msgs: [],
-            groupid: this.props.login.group.groupid,
+            groupid: this.props.login.loggedInUser.groupid,
             supervisorname: this.props.login.loggedInUser.name,
             display1: 'none',
             display2: 'none',

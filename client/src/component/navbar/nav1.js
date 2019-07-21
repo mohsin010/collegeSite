@@ -22,6 +22,12 @@ class Example extends Component {
             }
         }
         e.target.className = classes.replace('a', 'a active');
+        // console.log(this.location)
+        // if(this.props.history == '/app'){
+        //     while (els[0]) {
+        //         els[0].classList.remove('active')
+        //     }
+        // }
     }
 
     changeColor = (e) => {
@@ -73,9 +79,12 @@ class Example extends Component {
                         <a href='mailto:sherazmohsin257@gmail.com' target='_blank' className={'a'} id='anchor' onClick={(e) => this.toggleClass(e)} >
                             Mail
                                     </a>
-                        <button id='btn_logout' className={'a'} onClick={logOut} onClick={(e) => this.toggleClass(e)}>
+                                    <span onClick={(e) => this.toggleClass(e)}>
+
+                        <button id='btn_logout' className={'a'} onClick={logOut} >
                             Sign Out
                                     </button>
+                                    </span>
                         {/* <span>Item 3</span>
                         <span>Item 4</span>
                         <span>Item 1</span>

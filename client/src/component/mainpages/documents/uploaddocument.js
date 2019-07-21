@@ -11,6 +11,7 @@ class Display_document extends React.Component {
             assignments: [],
             display1: 'none',
             display2: 'none',
+            search:''
         };
 
 
@@ -54,11 +55,42 @@ class Display_document extends React.Component {
 
         });
     }
+    updateSearch = (e) => {
+        this.setState({
+            search: e.target.value.substr(0, 20)
+        });
+
+    }
+    restSearch = (e) => {
+        this.setState({
+            search: ''
+        })
+    }
 
 
 
 
     render() {
+        var display = false;
+    var filterdDoc = this.state.assignments.filter(
+        (doc) => {
+            if (doc.linkadress.indexOf(this.state.search)) {
+
+                return doc.linkadress.toLowerCase().indexOf(this.state.search) !== -1;
+            } else {
+                // alert('not founn')
+                // this.setState({
+                //    display: true
+                // })
+                display = true
+                return doc.linkadress.toLowerCase().indexOf(this.state.search) !== -1;
+
+                // return alert('not found')
+            }
+
+
+        }
+    )
         if (this.state.rollno) {
             fetch('/document_display', {
                 method: 'POST',
@@ -117,10 +149,18 @@ class Display_document extends React.Component {
                 {/* <div id='nn_Assignment' style={{ display: this.state.display2 }} ><span>No Assignment Assigned Yet</span></div> */}
                 {/* <div  style={{ display: this.state.display1 }}> */}
                 <div className='pcontainer' id='title-doc' align='left' ><span className='ptitle'>Documents</span></div>
+                <div className='searching_assignment'>
+                            <span className='search-ass-conatiner'>
+                        <input type='text' placeholder='Search By Title' onChange={this.updateSearch} value={this.state.search} className='search-ass-input' />
+                        {/* <button onClick={this.updateSearch} className='search-ass-btn'>Search</button> */}
+                        <button onClick={this.restSearch} className='search-ass-reset'>Reset</button>
+
+                        </span>
+                            </div>
                 <div >
 
                     <div id='n-main-disp'>
-                        {this.state.assignments.map((assignment) => {
+                        {filterdDoc.map((assignment) => {
 
                             return <div >
 
@@ -160,7 +200,10 @@ class Display_document extends React.Component {
                         }
                     </div>
 
+                    <div className='td_nf' style={{ display: display ? 'none' : 'block' }}>
+                                    <span  ><span >Record Not Found</span></span>
 
+                                </div>
                 </div>
             </div>
         )

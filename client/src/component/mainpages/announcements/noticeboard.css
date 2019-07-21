@@ -202,6 +202,9 @@ height: 300px;
     min-width: 110px;
     border-radius: 2px;
 }
+.c_overflow{
+ overflow-x: hidden;   
+}
 /* .btn_announce{
     text-align: left;
 

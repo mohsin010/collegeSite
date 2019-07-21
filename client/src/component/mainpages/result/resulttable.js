@@ -16,7 +16,8 @@ class ResultDisplay extends Component {
             marks: '',
             grade: '',
             display1: 'none',
-            display2: 'none'
+            display2: 'none',
+            search: ''
         };
 
 
@@ -82,8 +83,41 @@ class ResultDisplay extends Component {
         }
 
     }
+    updateSearch = (e) => {
+        this.setState({
+            search: e.target.value.substr(0, 20)
+        });
+
+    }
+    restSearch = (e) => {
+        this.setState({
+            search: ''
+        })
+    }
+    
 
     render() {
+
+        var display = false;
+    var filterdResult = this.state.assignments.filter(
+        (result) => {
+            if (result.groupId.indexOf(this.state.search)) {
+
+                return result.groupId.toLowerCase().indexOf(this.state.search) !== -1;
+            } else {
+                // alert('not founn')
+                // this.setState({
+                //    display: true
+                // })
+                display = true
+                return result.groupId.toLowerCase().indexOf(this.state.search) !== -1;
+
+                // return alert('not found')
+            }
+
+
+        }
+    )
         if (this.state.rollno) {
             fetch('/result_display', {
                 method: 'POST',
@@ -143,7 +177,14 @@ class ResultDisplay extends Component {
                     <div style={{ display: this.state.display2 }}>
 
                         <div className='pcontainer-editor-r' align='left' ><p id={'user-type'} className={'p-r'}><b>Result</b></p></div>
+                        <div className='searching_assignment'>
+                            <span className='search-ass-conatiner'>
+                        <input type='text' placeholder='Search By GroupId' onChange={this.updateSearch} value={this.state.search} className='search-ass-input' />
+                        {/* <button onClick={this.updateSearch} className='search-ass-btn'>Search</button> */}
+                        <button onClick={this.restSearch} className='search-ass-reset'>Reset</button>
 
+                        </span>
+                            </div>
                         <div >
 
                             <table id='tbl-assignment' className='tbl-marks' >
@@ -163,7 +204,7 @@ class ResultDisplay extends Component {
                                     </tr>
 
 
-                                    {this.state.assignments.map((assignment) => {
+                                    {filterdResult.map((assignment) => {
 
                                         return <tr>
                                             {/* <td>{assignment.no}</td> */}
@@ -180,6 +221,10 @@ class ResultDisplay extends Component {
                             </table>
                         </div>
                     </div>
+                        <div className='td_nf' style={{ display: display ? 'none' : 'block' }}>
+                                    <span  ><span >Record Not Found</span></span>
+
+                                </div>
                 </div>
             </div>
 
