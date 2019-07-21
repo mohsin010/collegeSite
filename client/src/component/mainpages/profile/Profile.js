@@ -206,6 +206,8 @@ class Profile extends Component {
                             <tr>
                                 <th className={'p-th'}>Name</th>
                                 <td className={'p-td'}><span>{this.state.name}</span></td>
+                                </tr>
+                                <tr>
                                 <th className={'p-th'}>CNIC</th>
                                 <td className={'p-td'}><span>{this.state.cnic}</span></td>
                                 {/* <td className={'p-pic'}  rowSpan={'4'}><span></span>Profile pic Placed here</td> */}

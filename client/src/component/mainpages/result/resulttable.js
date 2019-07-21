@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import store from '../../../store/reducers/login';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlusSquare, faMinusSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 
 class ResultDisplay extends Component {
@@ -169,7 +171,7 @@ class ResultDisplay extends Component {
                                             <td>{assignment.groupId}</td>
                                             <td >{assignment.marks}</td>
                                             <td >{assignment.grade}</td>
-                                            <td hidden={this.props.login.loggedInUser.rollno}><button id='btn_delete' onClick={this.deleteMarks.bind(this, assignment)}>Delete</button></td>
+                                            <td hidden={this.props.login.loggedInUser.rollno}><button id='btn_delete' onClick={this.deleteMarks.bind(this, assignment)}><FontAwesomeIcon icon={faTrash} /></button></td>
                                         </tr>
 
                                     })

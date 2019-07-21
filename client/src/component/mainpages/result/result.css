@@ -101,6 +101,7 @@
 .tbl-result, .tbl-result-view{
     margin-top: 10px;
     width: 60%;
+    min-width: 200px;
     margin-left: 0.5%;
     text-align: left;
     padding: 10px;
@@ -201,7 +202,7 @@
 .th-result{
     width: 10%;
 }
-.tbl-marks>tbody>tr:nth-child(odd) {background-color: #c9c4c4;}
+.tbl-marks>tbody>tr:nth-child(odd) {background-color: #b6ccf3ce;}
 
 
 .t-rd{

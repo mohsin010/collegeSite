@@ -9,7 +9,7 @@ class Editor_document extends Component {
         super(props);
         this.state = {
             linkadress: '',
-            file:'',
+            file: '',
             time: new Date().toDateString()
         };
         console.log(this.state.no);
@@ -17,9 +17,9 @@ class Editor_document extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.deleteComponent = this.deleteComponent.bind(this);
     }
-    pickFile=(e)=>{
+    pickFile = (e) => {
         this.setState({
-            file:e.target.files[0]
+            file: e.target.files[0]
         })
     }
 
@@ -30,57 +30,57 @@ class Editor_document extends Component {
 
         })
     }
-   
-componentDidMount(){
-    this.submitDocument = (e) => {
 
-        e.preventDefault();
-        let data = this.state;
-        let formData = new FormData();
-        
-        formData.append('file', data.file)
-        formData.append('components', data.components)
-        formData.append('linkadress',data.linkadress )
-        formData.append('time',data.time )
+    componentDidMount() {
+        this.submitDocument = (e) => {
 
-       
-        fetch('/documents', {
-            method: 'POST',
-            body: formData, 
-        }).then((resp) => resp.json()).then((resp) => {
-            if (resp) {
-                fetch('/sup_document_display', {
-                    method:"POST"
+            e.preventDefault();
+            let data = this.state;
+            let formData = new FormData();
 
-                }).then((resp)=>{
-                    return resp.json()
-                }).then((res)=>{
-                 this.refs.inputfile.value = '';
-                   
-                    this.setState({
-                        // component: '',
-                        linkadress: '',
-                        // file:''
-                        // time:''
+            formData.append('file', data.file)
+            formData.append('components', data.components)
+            formData.append('linkadress', data.linkadress)
+            formData.append('time', data.time)
+
+
+            fetch('/documents', {
+                method: 'POST',
+                body: formData,
+            }).then((resp) => resp.json()).then((resp) => {
+                if (resp) {
+                    fetch('/sup_document_display', {
+                        method: "POST"
+
+                    }).then((resp) => {
+                        return resp.json()
+                    }).then((res) => {
+                        this.refs.inputfile.value = '';
+
+                        this.setState({
+                            // component: '',
+                            linkadress: '',
+                            // file:''
+                            // time:''
+                        })
+
+                        // store.dispatch({
+                        //     type: 'assignment_uploaded',
+                        //     payload: res
+                        // });
                     })
 
-                    // store.dispatch({
-                    //     type: 'assignment_uploaded',
-                    //     payload: res
-                    // });
-                })
 
-        
-                alert('Document Successfully Published ');
+                    alert('Document Successfully Published ');
 
-            } else {
-                alert('Error is Occured');
-            }
-        })
+                } else {
+                    alert('Error is Occured');
+                }
+            })
+        }
     }
-}
-   
-       
+
+
 
 
     // createComponents = (ob, i) => {
@@ -91,12 +91,12 @@ componentDidMount(){
     //     })
     // }
 
-   
+
     checkComponent(item) {
-        return  item !== item;
+        return item !== item;
     }
     deleteComponent(e) {
-        console.log("Im e",e);
+        console.log("Im e", e);
         const component = this.state.components.filter((e) => e !== e)
 
         this.setState({ components: component })
@@ -108,24 +108,49 @@ componentDidMount(){
         return (
             // <p>{this.state.components.map(item => <h1>{item}</h1>)}</p>
             <div id='main-c_editor' className='main-c-editor'  >
-                <div className='pcontainer-editor' align='left' ><span  className='ptitle-editor'>Upload Documents</span></div>
-                <div id='upload-editor' >
-                    <form  id='form-inline-editor' onSubmit={this.submitDocument} >
+                <div className='pcontainer-editor' align='left' ><span className='ptitle-editor'>Upload Documents</span></div>
+                {/* <div id='' > */}
+                    {/* upload-editor */}
+                        <form  onSubmit={this.submitDocument} >
+                    <table className='tbl_doc' cellSpacing='8'>
+                            <tr>
+                                <th className='th_doc'>
 
-                    <label for=''>Document Title:</label>
-                    <input id='fae' required='required' type='text' name='linkadress' value={this.state.linkadress} onChange={this.handleChange} />
+                                    <label for=''>Document Title:</label>
+                                </th>
+                                <td>
 
-                    <label for=''>Upload Document:</label>
-                    <input id='fb' type='file' name='file' ref='inputfile' onChange={this.pickFile.bind(this)} />
-                    <input type='submit' className='btnn-editor' value={'Upload Document'} />
+                                    <input id='fae' placeholder='Document Title' required='required' type='text' name='linkadress' value={this.state.linkadress} onChange={this.handleChange} />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th className='th_doc'>
+
+                                    <label for=''>Upload File:</label>
+                                </th>
+                                <td>
+
+                                    <input id='fb' type='file' name='file' ref='inputfile' onChange={this.pickFile.bind(this)} />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <td>
+
+                                    <input type='submit' className='btnn-doc' value={'Upload'} />
+                                </td>
+                            </tr>
+                    </table>
+                        </form>
+
+
 
                     {/* <button id='fc' name='Submit' onClick={this.genNDiv} > Click </button> */}
 
-                    </form> 
- 
 
 
-                </div>
+
+                {/* </div> */}
 
                 {/* <div >
                     <table rules='' width='100%'>

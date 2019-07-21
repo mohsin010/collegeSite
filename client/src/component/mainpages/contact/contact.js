@@ -101,7 +101,7 @@ class Contacts extends Component {
             {/* <div id='nn_Assignment' style={{ display: this.state.display2 }} ><span>No Message Yet</span></div> */}
             <table id='tbl_msgs' className='tbl_disp_contact'>
               <tr id='th_msg' className='th_cont'>
-                <th className='td_head_1'>Isue</th>
+                <th className='td_head_1'>Isue</th> 
                 <th className='th_email'>Email</th>
                 <th className='th_phone'>Phone No</th>
                 <th hidden={!this.props.login.loggedInUser.cnic  }>Delete</th>

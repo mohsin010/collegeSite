@@ -69,7 +69,6 @@ class Notice extends Component {
             <div id='main-c'>
                 <div id='pcontainer' ><span id='ptitle'>Notice Board</span></div>
                
-
                 <div >
                     <table rules='' width='100%'>
                         {/* <tbody id={"container"}> */}

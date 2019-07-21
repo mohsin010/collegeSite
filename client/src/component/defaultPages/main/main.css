@@ -1,31 +1,29 @@
 .main-container{
-    /* background-color: red; */
-    height: 520px;
+    height: auto;
+    border-bottom: 5px solid rgb(9, 36, 116);
     width: 99%;
-    min-width: 10%;
+    min-width: 400px;
+
+    /* min-width: 10%; */
     margin: 0.01%;
     margin-top: 0%;
     padding: 0%;
     background-color: rgb(9, 36, 116);
-    /* background-color: rgb(9, 36, 116); */
     margin-left: 0.5%;
-    /* margin-top: 200px; */
-    /* position: absolute; */
-    
-
-  
     /* animation: mymove 50s infinite;    */
 } 
 
 
 .submain-container{
     height: 500px;
+    /* max-height: inherit; */
     max-width: 400px;
     min-width: 400px;
     /* margin-top: 9px; */
     margin-left: calc(50% - 200px);
+    /* margin-top: 10px; */
     background-color: rgb(243, 241, 236);
-    border-radius: 60px;
+    border-radius: 20px;
     /* border-top-left-radius: 100px; */
     animation: my2ndmove 5s infinite;   
     
@@ -61,12 +59,13 @@
 }
 .signin{
     /* position: absolute; */
-    background-color: red;
+    /* background-color: red; */
     width: 80%;
     height: 300px;
     /* background-color: red; */
     /* margin-top: 120px; */
     margin-left: 9%;
+    /* margin-top: 50px; */
     border-bottom-right-radius: inherit;
 }
 #anchor5{

@@ -28,13 +28,14 @@ input[type=number]::-webkit-outer-spin-button {
 }
 #tbl_contacts{
     width: 50% !important;
+    min-width: 303px;
 }
 #btn_contact{
     margin-left: 106%;
 }
 .tbl_disp_contact{
     width: inherit !important;
-    overflow-x: auto;
+    overflow-x: auto !important;
 }
 .th_cont{
     margin-right: 5% ;

@@ -90,13 +90,16 @@ class UploadResult extends Component {
             <div className='main-c'>
                 <div className='pcontainer-editor-r' align='left' ><p id={'user-type'} className={'p-r'}><b> Upload Result</b></p></div>
 
-                <form onSubmit={this.submitData}>
+                <form onSubmit={this.submitData}> 
                     <table className={'tbl-result'} >
                         <tbody>
                             <tr>
                                 <th className='t-rd' >Roll No:</th>
                                 <td  >
                                     <input type='numeric' className='r-td' name='rollno' required='required'  placeholder='Enter Roll no' value={this.state.rollno} onChange={this.handleChange} /></td>
+                                    
+                                </tr>
+                                <tr>
                                 <th className='t-rd'>Group ID:</th>
                                 <td ><input type='text' className='r-td' name='groupId' required='required' placeholder='Enter Group ID' value={this.state.groupId} onChange={this.handleChange} /></td>
                             </tr>
@@ -104,6 +107,8 @@ class UploadResult extends Component {
                             <tr>
                                 <th className='t-rd' >Marks:</th>
                                 <td ><input type='number' className='r-td' name='marks' required='required' placeholder='Enter Marks' value={this.state.marks} onChange={this.handleChange} /></td>
+                                </tr>
+                                <tr>
                                 <th className='t-rd'>Grade:</th>
                                 <td ><input type='text' className='r-td' name='grade' required='required' placeholder='Enter Grade' value={this.state.grade} onChange={this.handleChange} /></td>
 

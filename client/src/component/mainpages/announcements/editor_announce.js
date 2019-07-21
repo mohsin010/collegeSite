@@ -172,7 +172,7 @@ class Editor_announce_edit extends Component {
             <div className="App">
                 <div id='main-c'>
                     <div id='pcontainer'  ><span id='ntitle' className='pcontainer_ral'>Upload Announcement</span></div>
-                    <table className='tbl_announcement'>
+                    <table className='tbl_announcement' cellSpacing='9'>
                         <tr>
                             <th className='th_a'>
 
@@ -180,7 +180,7 @@ class Editor_announce_edit extends Component {
                             </th>
                             <td className='td_title1'>
 
-                                <input style={{ borderColor: this.state.titleerr ? 'red' : 'inherit' }} type='text' name='title' required='required' value={this.state.title} onChange={this.changeHandler} />
+                                <input className='title_not' placeholder='Enter Title' style={{ borderColor: this.state.titleerr ? 'red' : 'inherit' }} type='text' name='title' required='required' value={this.state.title} onChange={this.changeHandler} />
                             </td>
                         </tr>
                         <tr>

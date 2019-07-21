@@ -197,6 +197,11 @@ height: 300px;
 .td_title1{
     text-align: left;
 }
+.title_not{
+    width: 90%;
+    min-width: 110px;
+    border-radius: 2px;
+}
 /* .btn_announce{
     text-align: left;
 
