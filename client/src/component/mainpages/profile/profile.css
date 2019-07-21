@@ -16,7 +16,7 @@ tr{
 }
 .tbl-profile  th{
     background-color: rgba(235, 245, 253, 0.918);
-
+    overflow-x: auto;
     padding: 0.5%;
     font-size: 13PX;;
     width: 10%;
