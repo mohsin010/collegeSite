@@ -22,7 +22,7 @@ class Signin extends Component {
 			[evt.target.name]: evt.target.value,
 			[evt.target.name]: evt.target.value,
 		})
-	}
+	} 
 
 
 	submitForm = (e) => {
@@ -57,7 +57,7 @@ class Signin extends Component {
 			<div>
 				<div id={'maincontainer'}>
 					{/* <h2>Login</h2> */}
-					<form onSubmit={this.submitForm}>
+					<form onSubmit={this.submitForm} className='signin_form'>
 						<p id='err_msg'></p>
 
 						<label id={'idlabel2'}>CNIC</label>

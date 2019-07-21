@@ -31,7 +31,7 @@ class Editor_Vivaa extends Component {
             width: '',
             startDate: '',
             endDate: '',
-            vivaDate:'',
+            vivaDate: '',
             display1: true,
             display2: false
 
@@ -127,13 +127,13 @@ class Editor_Vivaa extends Component {
             body: JSON.stringify(this.state)
         }).then((resp) => resp.json()).then((students) => {
 
-            const filterStudents = students.filter(el=>{
+            const filterStudents = students.filter(el => {
                 return el.groupid == ''
             })
 
             if (filterStudents) {
                 this.setState({
-                    students: filterStudents 
+                    students: filterStudents
 
                 });
             } else {
@@ -141,9 +141,9 @@ class Editor_Vivaa extends Component {
             }
         })
     }
-    handleChange2 = (e) =>{
+    handleChange2 = (e) => {
         this.setState({
-            [e.target.name] : e.target.value
+            [e.target.name]: e.target.value
 
         })
     }
@@ -183,7 +183,7 @@ class Editor_Vivaa extends Component {
     submit = (e) => {
         e.preventDefault();
 
-debugger;
+        debugger;
         let data = {
             groupid: this.state.selectedStudents.map((item) => {
                 return item.groupid;
@@ -234,18 +234,18 @@ debugger;
             //     return prev.rollno - next.rollno;
             // })
             // debugger;
-            const filterStudents = groups.filter(el=>{
+            const filterStudents = groups.filter(el => {
                 return el.no == ''
             })
 
             if (filterStudents) {
                 this.setState({
-                    groups: filterStudents 
+                    groups: filterStudents
 
                 });
             } else {
                 console.log('Err')
-               
+
             }
             // if (groups) {
             //     this.setState({
@@ -262,47 +262,47 @@ debugger;
         })
 
         // if (!this.props.login.loggedInUser.department) {
-            fetch('/get_students', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'Application/json'
-                },
-                body: JSON.stringify(this.state)
-            }).then((resp) => resp.json()).then((students) => {
+        fetch('/get_students', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'Application/json'
+            },
+            body: JSON.stringify(this.state)
+        }).then((resp) => resp.json()).then((students) => {
 
-                const filterStudents = students.filter(el=>{
-                    return el.groupid == ''
-                })
-
-                if (filterStudents) {
-                    this.setState({
-                        students: filterStudents 
-
-                    });
-                } else {
-                    this.setState({ display2: 'block' })
-                }
+            const filterStudents = students.filter(el => {
+                return el.groupid == ''
             })
 
-            // fetch('/get_supervisors', {
-            //     method: 'POST',
-            //     headers: {
-            //         'Content-Type': 'Application/json'
-            //     },
-            //     body: JSON.stringify(this.state)
-            // }).then((resp) => resp.json()).then((supervisors) => {
+            if (filterStudents) {
+                this.setState({
+                    students: filterStudents
 
-            //     if (supervisors) {
-            //         this.setState({
-            //             supervisors: supervisors
-            //         });
-            //     } else {
-            //         // this.setState({ display2: 'block' })
-            //         console.log('Err')
+                });
+            } else {
+                this.setState({ display2: 'block' })
+            }
+        })
 
-            //     }
-            // })
-        }
+        // fetch('/get_supervisors', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'Application/json'
+        //     },
+        //     body: JSON.stringify(this.state)
+        // }).then((resp) => resp.json()).then((supervisors) => {
+
+        //     if (supervisors) {
+        //         this.setState({
+        //             supervisors: supervisors
+        //         });
+        //     } else {
+        //         // this.setState({ display2: 'block' })
+        //         console.log('Err')
+
+        //     }
+        // })
+    }
     // }
 
 
@@ -348,47 +348,55 @@ debugger;
                                         <th className='title_st'>No:</th>
                                         <td ><input type='text' className='group_id_g' name='no' required='required' placeholder='Enter No' value={this.state.no} onChange={this.change} /></td>
                                     </tr> */}
-                                  
+
                                     <tr>
 
 
-                                        <th className='' id='st_list' >Viva List:</th>
+                                        <th className='' id='st_list' >Groups List:</th>
                                         <td  >
-                                            <select id='multi_st_list' multiple='multiple' value={this.state.selectedStudents}  >
-                                                {/* <option value=' select student'>Select Student</option> */}
-                                                {this.state.groups.map((group) => {
+                                            <table>
+                                                <td>
+                                                    <select id='multi_st_list' multiple='multiple' value={this.state.selectedStudents}  >
+                                                        {/* <option value=' select student'>Select Student</option> */}
+                                                        {this.state.groups.map((group) => {
 
-                                                    return <option value={group.groupid} onDoubleClick={this.handleChange.bind(this, group)}>{group.groupid}</option>
-                                                }
-                                                )}
+                                                            return <option value={group.groupid} onDoubleClick={this.handleChange.bind(this, group)}>{group.groupid}</option>
+                                                        }
+                                                        )}
 
-                                            </select>
-                                        </td> 
-                                        <td className='st_list'  ><div id='st_list_container'>
-                                            <span className='st_list_title' >Selected</span>
-                                            <br />
-                                            <br />
-                                            {this.state.selectedStudents.map((student) => {
-                                                return <sapn>
-                                                    <span className='st_list_item'> {student.groupid} </span>
-                                                    <span><FontAwesomeIcon icon={faTrash} onDoubleClick={this.deleterollno.bind(this, student)} /></span>
+                                                    </select>
+                                                </td>
+                                                <td className='st_list'  ><div id='st_list_container'>
+                                                    <span className='st_list_title' >Selected</span>
                                                     <br />
-                                                </sapn>
-                                            })}
+                                                    <br />
+                                                    {this.state.selectedStudents.map((student) => {
+                                                        return <sapn>
+                                                            <span className='st_list_item'> {student.groupid} </span>
+                                                            <span><FontAwesomeIcon icon={faTrash} onDoubleClick={this.deleterollno.bind(this, student)} /></span>
+                                                            <br />
+                                                        </sapn>
+                                                    })}
 
-                                        </div></td>
+                                                </div></td>
+                                            </table>
+
+                                        </td>
+
                                         {/* <td></td> */}
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                            <td><input type='date' name='startDate' value={this.state.startDate} required onChange={this.handleChange2} /></td>
+                                        <th className='' id='st_list' >Start Date:</th>
+
+                                        <td><input type='date' name='startDate' value={this.state.startDate} required onChange={this.handleChange2} /></td>
                                     </tr>
                                     <tr>
-                                    <td></td>
+                                        <th className='' id='st_list' >End Date:</th>
 
-                                            <td><input type='date' name='endDate' value={this.state.endDate} required onChange={this.handleChange2}  /></td>
+
+                                        <td><input type='date' name='endDate' value={this.state.endDate} required onChange={this.handleChange2} /></td>
                                     </tr>
-                                   
+
                                     <br />
                                     <tr id='main_tr_group'>
                                         <td></td>
@@ -407,72 +415,72 @@ debugger;
                             </table>
 
 
-                        </form> 
+                        </form>
 
                     </div>
                 </div>
                 {/* <div id='nn_Assignment' style={{ display: this.state.display2 }} ><span>No Assignment Assigned Yet</span></div> */}
-                    <div className='group_list_disp'>
-                        <div className='pcontainer' id='groups_list' align='left'  ><span className='ptitle'>Groups List</span>
-                            <div className='groups_tbl'>
-                                <table id='p_detail' className='tbl_groups' hidden={!this.props.login.loggedInUser.rollno}>
+                <div className='group_list_disp'>
+                    <div className='pcontainer' id='groups_list' align='left'  ><span className='ptitle'>Groups List</span>
+                        <div className='groups_tbl'>
+                            <table id='p_detail' className='tbl_groups' hidden={!this.props.login.loggedInUser.rollno}>
+                                <tr>
+                                    <th className='p_head'>Group Id</th>
+                                    <td className='p_info'>Group id here</td>
+                                </tr>
+                                <tr>
+                                    <th className='p_head'>Title</th>
+                                    <td className='p_info'>Title here</td>
+                                </tr>
+                                <tr>
+                                    <th className='p_head'>Supervisor Name</th>
+                                    <td className='p_info'>Name here</td>
+                                </tr>
+                            </table>
+                            <table id='tbl-assignment' >
+                                {/* <hr className='hr' />                     */}
+                                <tbody>
+                                    {/* <caption>Instructor's Info</caption> */}
+                                    {/* <hr /> */}
+
                                     <tr>
-                                        <th className='p_head'>Group Id</th>
-                                        <td className='p_info'>Group id here</td>
+                                        {/* <th id='a_no'>No</th> */}
+                                        <th className='grp_id' >Group Id</th>
+                                        <th className='grp_id' >Viva Dataes</th>
+                                        <th className='grp_id' >Viva date</th>
+                                        <th className='grp_id' hidden={this.props.login.loggedInUser.rollno}>Delete</th>
+
                                     </tr>
-                                    <tr>
-                                        <th className='p_head'>Title</th>
-                                        <td className='p_info'>Title here</td>
-                                    </tr>
-                                    <tr>
-                                        <th className='p_head'>Supervisor Name</th>
-                                        <td className='p_info'>Name here</td>
-                                    </tr>
-                                </table>
-                                <table id='tbl-assignment' >
-                                    {/* <hr className='hr' />                     */}
-                                    <tbody>
-                                        {/* <caption>Instructor's Info</caption> */}
-                                        {/* <hr /> */}
-
-                                        <tr>
-                                            {/* <th id='a_no'>No</th> */}
-                                            <th className='grp_id' >Group Id</th>
-                                            <th className='grp_id' >Viva Dataes</th>
-                                            <th className='grp_id' >Viva date</th>
-                                            <th className='grp_id' hidden={this.props.login.loggedInUser.rollno}>Delete</th>
-
-                                        </tr>
 
 
-                                        {this.state.vivas.map((viva) => {
+                                    {this.state.vivas.map((viva) => {
 
-                                            return <tr>
-                                                {/* <td  >{group.no}</td> */}
-                                                
-                                                <td className='grp_id_v'>
-                                                {viva.groupid.map((item) =>{
+                                        return <tr>
+                                            {/* <td  >{group.no}</td> */}
+
+                                            <td className='grp_id_v'>
+                                                {viva.groupid.map((item) => {
                                                     return <span>{item}</span>
                                                 })
 
                                                 }
-                                                </td>
-                                                <td className='grp_id_v'>{viva.startDate} <b>to</b>  {viva.endDate}</td>
-                                                <td className='grp_id_v'>{viva.vivaDate}</td>
+                                            </td>
+                                            <td className='grp_id_v'>{viva.startDate} <b>to</b>  {viva.endDate}</td>
+                                            <td className='grp_id_v'>{viva.vivaDate}</td>
 
-                                                {/* <td className='show_assign'>{assignment.topic}</td> */}
-                                              
-                                                <td hidden={this.props.login.loggedInUser.rollno} ><button id='btn_delete' onClick={this.deleteGroup.bind(this, viva)}><FontAwesomeIcon icon={faTrash} /></button></td>
-                                            </tr>
+                                            {/* <td className='show_assign'>{assignment.topic}</td> */}
 
-                                        })
-                                        }
-                                    </tbody>
-                                </table>
+                                            <td hidden={this.props.login.loggedInUser.rollno} ><button id='btn_delete' onClick={this.deleteGroup.bind(this, viva)}><FontAwesomeIcon icon={faTrash} /></button></td>
+                                        </tr>
 
-                            </div>
+                                    })
+                                    }
+                                </tbody>
+                            </table>
+
                         </div>
                     </div>
+                </div>
 
 
 
@@ -526,7 +534,7 @@ export default Editor_Viva;
 //     submitAssignment = (e) => {
 
 //         e.preventDefault();
-       
+
 //         fetch('/viva', {
 //             method: 'POST',
 //             body: JSON.stringify(this.state),
@@ -536,7 +544,7 @@ export default Editor_Viva;
 //                 alert('Assignment Already Assigned')
 
 //             } else if (resp.groupid) {
-               
+
 
 
 
@@ -570,7 +578,7 @@ export default Editor_Viva;
 //                                     <th className='e-a-t'>End Date:</th>
 //                                     <td ><input type='date' className='b-td' name='endDate' required onChange={this.handleChange} value={this.state.endDate} /></td>
 //                                 </tr>
-                               
+
 //                                 <tr>
 //                                     <td >
 //                                         <input type='submit' className={'r-btn'} value='Publish Schedule' />
@@ -580,7 +588,7 @@ export default Editor_Viva;
 //                         </table>
 //                     </form>
 //                 </div>
-                
+
 //             </div>
 //             </div>
 

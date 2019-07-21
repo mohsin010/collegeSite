@@ -11,8 +11,8 @@
   color: rgb(9, 9, 148);
     font-weight: bold;
     /* margin-right:3%; */
-    margin-left: 2%;
-    float: left;
+    /* margin-left: 2%; */
+    /* float: left; */
 }
 #label>input{
   /* float: left; */
@@ -23,7 +23,7 @@
 
 #ckeditor-parent{
   width: 99%;
-  margin-left: 0.5%;
+  margin-left: -8.5%;
   
 }
 
@@ -37,5 +37,7 @@
   margin-top: 0%;
 }
 #ckeditor-child-title>label{
-  margin-left: 40%;
+  /* margin-left: 40%; */
+  margin: auto ;
+
 }

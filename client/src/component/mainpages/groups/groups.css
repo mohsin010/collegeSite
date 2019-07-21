@@ -17,6 +17,7 @@
 }
 #groups_list{
  /* margin-top: 10px; */
+ height: 30px !important;
 }
 
 #groups{
@@ -28,7 +29,8 @@
     margin-left: 10% !important;
 }
 #make_groups{
-    width: 30% !important;
+    width: 40% !important;
+    overflow-x: auto;
 }
 #p_detail > tr> td{
     text-align: left;
@@ -49,19 +51,24 @@
 .st_list, .sup_list{
     /* margin-left: 20px; */
     background-color: lightgray;
-    width: 50px !important;
-    height: 200px;
+    width: 100% !important;
+    height: 10px !important;
+    vertical-align: top;
 }
 #st_list_container{
     margin-top: 0%;
     /* background-color: red; */
-    height: 100%;
-    width: 200px;
+    /* height: 100px !important ; */
+    height: 100% !important;     
+    width: 100% !important;
     border: 1px solid rgb(58, 58, 190);
+    text-align: center;
+    /* margin-left: 10px;   */
 }
 .st_list_title{
     /* width: 1; */
-    margin-left: 40%;
+    /* margin-left: 25%; */
+    /* margin-right: 27%; */
     margin-bottom: 40px;
     color: rgb(5, 5, 126);
     font-weight: 600;

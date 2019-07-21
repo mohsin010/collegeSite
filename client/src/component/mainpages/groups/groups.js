@@ -74,7 +74,7 @@ class Groups_Create extends Component {
 
     deleteGroup = (group, evt) => {
         this.setState({
-            students : [
+            students: [
                 ...this.state.students,
                 group
             ]
@@ -125,13 +125,13 @@ class Groups_Create extends Component {
             body: JSON.stringify(this.state)
         }).then((resp) => resp.json()).then((students) => {
 
-            const filterStudents = students.filter(el=>{
+            const filterStudents = students.filter(el => {
                 return el.groupid == ''
             })
 
             if (filterStudents) {
                 this.setState({
-                    students: filterStudents 
+                    students: filterStudents
 
                 });
             } else {
@@ -221,13 +221,13 @@ class Groups_Create extends Component {
                 body: JSON.stringify(this.state)
             }).then((resp) => resp.json()).then((students) => {
 
-                const filterStudents = students.filter(el=>{
+                const filterStudents = students.filter(el => {
                     return el.groupid == ''
                 })
 
                 if (filterStudents) {
                     this.setState({
-                        students: filterStudents 
+                        students: filterStudents
 
                     });
                 } else {
@@ -302,6 +302,7 @@ class Groups_Create extends Component {
                                     <tr>
                                         <th className='title_st'>Group ID:</th>
                                         <td ><input type='text' className='group_id_g' name='groupid' required='required' placeholder='Enter Group ID' value={this.state.groupid} onChange={this.change} /></td>
+                                        {/* <td></td> */}
                                     </tr>
                                     <tr>
                                         <th className='title_st'>Project Title:</th>
@@ -312,29 +313,36 @@ class Groups_Create extends Component {
 
                                         <th className='' id='st_list' >Students List:</th>
                                         <td  >
-                                            <select id='multi_st_list' multiple='multiple' value={this.state.selectedStudents}  >
-                                                {/* <option value=' select student'>Select Student</option> */}
-                                                {this.state.students.map((student) => {
+                                            <table>
+                                                <td>
+                                                    <select id='multi_st_list' multiple='multiple' value={this.state.selectedStudents}  >
+                                                        {/* <option value=' select student'>Select Student</option> */}
+                                                        {this.state.students.map((student) => {
 
-                                                    return <option value={student.rollno} onDoubleClick={this.handleChange.bind(this, student)}>{student.rollno}</option>
-                                                }
-                                                )}
+                                                            return <option value={student.rollno} onDoubleClick={this.handleChange.bind(this, student)}>{student.rollno}</option>
+                                                        }
+                                                        )}
 
-                                            </select>
-                                        </td>
-                                        <td className='st_list'  ><div id='st_list_container'>
-                                            <span className='st_list_title' >St_List</span>
-                                            <br />
-                                            <br />
-                                            {this.state.selectedStudents.map((student) => {
-                                                return <sapn>
-                                                    <span className='st_list_item'> {student.rollno} </span>
-                                                    <span><FontAwesomeIcon icon={faTrash} onDoubleClick={this.deleterollno.bind(this, student)} /></span>
+                                                    </select>
+                                                </td>
+                                                <td className='st_list'  >
+                                                    <div id='st_list_container'>
+                                                    <span className='st_list_title' >St_List</span>
                                                     <br />
-                                                </sapn>
-                                            })}
+                                                    <br />
+                                                    {this.state.selectedStudents.map((student) => {
+                                                        return <sapn>
+                                                            <span className='st_list_item'> {student.rollno} </span>
+                                                            <span><FontAwesomeIcon icon={faTrash} onDoubleClick={this.deleterollno.bind(this, student)} /></span>
+                                                            <br />
+                                                        </sapn>
+                                                    })}
 
-                                        </div></td>
+                                                </div></td>
+                                            </table>
+
+                                        </td>
+
                                         {/* <td></td> */}
                                     </tr>
                                     <tr>
@@ -369,72 +377,72 @@ class Groups_Create extends Component {
                             </table>
 
 
-                        </form> 
+                        </form>
 
                     </div>
                 </div>
                 {/* <div id='nn_Assignment' style={{ display: this.state.display2 }} ><span>No Assignment Assigned Yet</span></div> */}
-                    <div className='group_list_disp'>
-                        <div className='pcontainer' id='groups_list' align='left'  ><span className='ptitle'>Groups List</span>
-                            <div className='groups_tbl'>
-                                <table id='p_detail' className='tbl_groups' hidden={!this.props.login.loggedInUser.rollno}>
-                                    <tr>
-                                        <th className='p_head'>Group Id</th>
-                                        <td className='p_info'>Group id here</td>
-                                    </tr>
-                                    <tr>
-                                        <th className='p_head'>Title</th>
-                                        <td className='p_info'>Title here</td>
-                                    </tr>
-                                    <tr>
-                                        <th className='p_head'>Supervisor Name</th>
-                                        <td className='p_info'>Name here</td>
-                                    </tr>
-                                </table>
-                                <table id='tbl-assignment' >
-                                    {/* <hr className='hr' />                     */}
-                                    <tbody>
-                                        {/* <caption>Instructor's Info</caption> */}
-                                        {/* <hr /> */}
+                <div className='group_list_disp'>
+                    <div className='pcontainer' id='groups_list' align='left'  ><span className='ptitle'>Groups List</span>
+                        <div className='groups_tbl'>
+                            <table id='p_detail' className='tbl_groups' hidden={!this.props.login.loggedInUser.rollno}>
+                                <tr>
+                                    <th className='p_head'>Group Id</th>
+                                    <td className='p_info'>Group id here</td>
+                                </tr>
+                                <tr>
+                                    <th className='p_head'>Title</th>
+                                    <td className='p_info'>Title here</td>
+                                </tr>
+                                <tr>
+                                    <th className='p_head'>Supervisor Name</th>
+                                    <td className='p_info'>Name here</td>
+                                </tr>
+                            </table>
+                            <table id='tbl-assignment' >
+                                {/* <hr className='hr' />                     */}
+                                <tbody>
+                                    {/* <caption>Instructor's Info</caption> */}
+                                    {/* <hr /> */}
 
-                                        <tr>
-                                            {/* <th id='a_no'>No</th> */}
-                                            <th className='grp_id' >Group Id</th>
-                                            <th className=''>Title</th>
-                                            <th className='sup_title'>Supervisor</th>
-                                            <th className=''>Progress</th>
-                                            <th className='grp_id'>Members</th>
-                                            <th className='grp_id' hidden={this.props.login.loggedInUser.rollno}>Delete</th>
+                                    <tr>
+                                        {/* <th id='a_no'>No</th> */}
+                                        <th className='grp_id' >Group Id</th>
+                                        <th className=''>Title</th>
+                                        <th className='sup_title'>Supervisor</th>
+                                        <th className=''>Progress</th>
+                                        <th className='grp_id'>Members</th>
+                                        <th className='grp_id' hidden={this.props.login.loggedInUser.rollno}>Delete</th>
 
+                                    </tr>
+
+
+                                    {this.state.groups.map((group) => {
+
+                                        return <tr>
+                                            {/* <td  >{group.no}</td> */}
+                                            <td className='grp_id_v'>{group.groupid}</td>
+                                            <td className='show_assign' className='tbl_group_val' id='project_title' >{group.title}</td>
+                                            <td className='show_assign' className='tbl_group_val' >{group.supervisor}</td>
+                                            <td className='show_assign' className='tbl_group_val' id='progress' ><div className='progress_container'><div className='progress_bar' style={{ width: group.width }}>{group.width}</div></div></td>
+                                            {/* <td className='show_assign'>{assignment.topic}</td> */}
+                                            <td className='show_assign' >
+                                                {group.st_group.map((item) => {
+                                                    return <span >{item}<br /></span>
+
+                                                })}
+                                            </td>
+                                            <td hidden={this.props.login.loggedInUser.rollno} ><button id='btn_delete' onClick={this.deleteGroup.bind(this, group)}><FontAwesomeIcon icon={faTrash} /></button></td>
                                         </tr>
 
+                                    })
+                                    }
+                                </tbody>
+                            </table>
 
-                                        {this.state.groups.map((group) => {
-
-                                            return <tr>
-                                                {/* <td  >{group.no}</td> */}
-                                                <td className='grp_id_v'>{group.groupid}</td>
-                                                <td className='show_assign' className='tbl_group_val' id='project_title' >{group.title}</td>
-                                                <td className='show_assign' className='tbl_group_val' >{group.supervisor}</td>
-                                                <td className='show_assign' className='tbl_group_val' id='progress' ><div className='progress_container'><div className='progress_bar' style={{width: group.width}}>{group.width}</div></div></td>
-                                                {/* <td className='show_assign'>{assignment.topic}</td> */}
-                                                <td className='show_assign' >
-                                                    {group.st_group.map((item) => {
-                                                        return <span >{item}<br /></span>
-
-                                                    })}
-                                                </td>
-                                                <td hidden={this.props.login.loggedInUser.rollno} ><button id='btn_delete' onClick={this.deleteGroup.bind(this, group)}><FontAwesomeIcon icon={faTrash} /></button></td>
-                                            </tr>
-
-                                        })
-                                        }
-                                    </tbody>
-                                </table>
-
-                            </div>
                         </div>
                     </div>
+                </div>
 
 
 

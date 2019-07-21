@@ -11,13 +11,14 @@
     padding: 0.1%;
 }
 #upload{
-    height: 6vh;
+    height: 30px;
     background-color: rgb(202, 192, 192);
     padding-top: 0.4%;
 }
 #pcontainer{
     background-color: rgb(140, 157, 233);
-    height: 5vh;
+    height: 30px;
+    text-align: left;
     align-content: initial;
     padding: 0.3%;  
     padding-top: 0.5%;
@@ -108,17 +109,20 @@ height: 300px;
     background-color: rgba(17, 65, 197,0.8);
     color: white;
     border: none;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     width: 20%;
     height: 30px;
-    margin-left: -62%;
+    /* margin-left: -62%; */
     /* float: left; */
     /* border: none; */
     border-radius: 4px;
+    margin: auto;
 }
 .pcontainer_ral{
-    margin-left: -87% !important;
+        margin: auto !important;
+        text-align: left;
+    /* margin-left: -87% !important; */
 }
 #btn-navigate-container{
     /* background-color: blueviolet; */
@@ -173,8 +177,28 @@ height: 300px;
     margin-left: 1%;
 }
 #an-sele{
-    margin-left: -79% ;
+    /* margin-left: -79% ; */
     border: 1px solid;
     border-radius: 2px;
     border-color: gray !important;
 }
+
+.tbl_announcement{
+    width: 100%;
+}
+.tbl_announcement>tr:last-child{
+   /* padding-bottom: 10px;   */
+   text-align: left;
+}
+.th_a{
+    text-align: left;
+    /* margin-bottom: 10px; */
+}
+.td_title1{
+    text-align: left;
+}
+/* .btn_announce{
+    text-align: left;
+
+
+} */

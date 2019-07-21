@@ -81,24 +81,27 @@ class UploadContacts extends Component {
                 <div className='pcontainer-editor-r' align='left' ><p id={'user-type'} className={'p-r'}><b> Upload Contacts</b></p></div>
 
                 <form onSubmit={this.submitData}>
-                    <table className={'tbl-result'} >
+                    <table className={'tbl-result'} id='tbl_contacts'  >
                         <tbody>
                             <tr>
-                                <th className='t-rd' >Issue:</th>
+                                <th className='t-rd th_cont' >Issue:</th>
                                 <td  >
-                                    <input type='text' className='r-td' name='issue' required placeholder='Enter Issue Name' value={this.state.issue} onChange={this.handleChange} /></td>
-                                <th className='t-rd'>Email:</th>
-                                <td ><input type='text' className='r-td' name='email' required placeholder='Enter Email' value={this.state.email} onChange={this.handleChange} /></td>
+                                    <input type='text' className='r-td td_cont' name='issue' required placeholder='Enter Issue Name' value={this.state.issue} onChange={this.handleChange} /></td>
+                                </tr>
+                                <tr>    
+                                <th className='t-rd th_cont'>Email:</th>
+                                <td ><input type='text' className='r-td td_cont' name='email' required placeholder='Enter Email' value={this.state.email} onChange={this.handleChange} /></td>
                             </tr>
 
                             <tr>
-                                <th className='t-rd' >Phone:</th>
-                                <td ><input type='number' className='r-td' name='num' required='required' placeholder='Enter Phone' value={this.state.num} onChange={this.handleChange} /></td>
+                                <th className='t-rd th_cont' >Phone:</th>
+                                <td ><input type='number' className='r-td td_cont' name='num' required='required' placeholder='Enter Phone' value={this.state.num} onChange={this.handleChange} /></td>
                                
                             </tr>
                             <tr>
+                                {/* <th></th> */}
                                 <td >
-                                    <input type='submit' className={'r-btn'} value='Save' />
+                                    <input type='submit' className={'r-btn'} id='btn_contact' value='Save' />
                                 </td>
                             </tr>
                         </tbody>

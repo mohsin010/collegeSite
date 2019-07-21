@@ -1,7 +1,7 @@
 /* input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
-    margin: 0;
+    margin: 0; 
 } */
 .t-rd::-webkit-inner-spin-button, 
 .t-rd::-webkit-outer-spin-button { 
@@ -12,7 +12,7 @@ input[type=number]::-webkit-outer-spin-button {
     font-size: 120%;
 }
 .th_phone, .th_email{
-    width: 40% !important; 
+    width: 40% ; 
 
 }
 .td_cont{
@@ -22,4 +22,23 @@ input[type=number]::-webkit-outer-spin-button {
 .cont_disp_cont{
  width: 98.7% !important;
  margin-left: 0.5%;
+}
+#display_contact{
+    height: 30px !important;
+}
+#tbl_contacts{
+    width: 50% !important;
+}
+#btn_contact{
+    margin-left: 106%;
+}
+.tbl_disp_contact{
+    width: inherit !important;
+    overflow-x: auto;
+}
+.th_cont{
+    margin-right: 5% ;
+}
+.td_cont{
+    min-width: 100px;
 }

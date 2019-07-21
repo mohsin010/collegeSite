@@ -95,11 +95,11 @@ class Contacts extends Component {
     return (
       <div>
         <div id='msg_disp_container' className='cont_disp_cont'>
-          <div className='pcontainer' align='left' ><span className='ptitle'>Important Contacts</span></div>
+          <div className='pcontainer' align='left' id='display_contact' ><span className='ptitle'>Important Contacts</span></div>
           <div id='msg_list_container'>
             {/* <div className='pcontainer' id='msg_list' align='left' ><span className='ptitle'>Messages List</span></div> */}
             {/* <div id='nn_Assignment' style={{ display: this.state.display2 }} ><span>No Message Yet</span></div> */}
-            <table id='tbl_msgs'>
+            <table id='tbl_msgs' className='tbl_disp_contact'>
               <tr id='th_msg' className='th_cont'>
                 <th className='td_head_1'>Isue</th>
                 <th className='th_email'>Email</th>
@@ -111,7 +111,7 @@ class Contacts extends Component {
                 return <>
                   <tr className='tr_msg'>
                     <td className='td_cont_issu' >
-                      {contact.issue} </td>
+                      {contact.issue} </td> 
                     <td className='td_cont' >{contact.email}</td>
                     <td className='td_cont'>{contact.num}</td>
                     <td  hidden={!this.props.login.loggedInUser.cnic  }>
