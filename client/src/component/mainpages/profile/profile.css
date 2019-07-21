@@ -159,4 +159,7 @@ tr{
   .pro_input{
     width: 50%;
   }
+  .profile-heading{
+    height: 30px !important;
+  }
   

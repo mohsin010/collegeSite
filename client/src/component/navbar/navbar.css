@@ -4,6 +4,29 @@
     width: 99%;
     margin-left: 0.5%;
 }
+.nav_main_sec{
+    display: flex;
+    flex-wrap: nowrap;
+    /* position: fixed; */
+}
+.item_container{
+    background-color: red;
+    width: auto;
+}
+.nav_main_sec > a:-webkit-any-link{
+    text-decoration: none;
+    cursor: pointer;
+    color: inherit;
+    height: 50%;
+    margin-left: 50px;
+    padding: 11px 20px;
+    color: white;
+    text-align: center; 
+    text-decoration: none;
+    display: inline-block;
+    font-size: 90%;
+    font-family: 'Times New Roman', Times, serif;
+}
 
 button{
     height: 30px;
@@ -46,7 +69,9 @@ button{
     height: 50%;
     margin-left: 50px;
     padding: 11px 20px;
-    color: white;
+    color:  rgb(52, 69, 218) !important;
+
+    /* color: white; */
     text-align: center; 
     text-decoration: none;
     display: inline-block;
@@ -55,6 +80,12 @@ button{
 }
 #btn_logout{
    outline-style: none;
+}
+
+@media (max-width: 500px){
+    .jUCstG {
+        display: block !important;
+    }
 }
 
 

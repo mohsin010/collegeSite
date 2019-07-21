@@ -92,8 +92,8 @@ class Profile extends Component {
 
         return (
             <div>
-                <div id='p-main-cont'>
-                <div className='pcontainer' align='left' ><span className='ptitle'>Profile</span></div>
+                <div id='p-main-cont'> 
+                <div className='pcontainer profile-heading' align='left' ><span className='ptitle'>Profile</span></div>
 
                 <div hidden={!this.props.login.loggedInUser.rollno}>
                 

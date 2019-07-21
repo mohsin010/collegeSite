@@ -19,6 +19,7 @@
     "react-dom": "^16.8.6",
     "react-nl2br": "^0.4.0",
     "react-redux": "^7.1.0",
+    "react-responsive-navbar": "^1.0.11",
     "react-router-dom": "^5.0.0",
     "react-scripts": "^3.0.1"
   },

@@ -18,15 +18,15 @@ class Nav extends Component {
         }
         this.myref = React.createRef();
     }
-    toggleClass(e){
+    toggleClass(e) {
         let classes = 'a';
-        let els = document.getElementsByClassName(' a active');
-        if(els){
+        let els = document.getElementsByClassName('a active');
+        if (els) {
             while (els[0]) {
                 els[0].classList.remove('active')
             }
         }
-        e.target.className = classes.replace('a','a active');
+        e.target.className = classes.replace('a', 'a active');
     }
 
     changeColor = (e) => {
@@ -34,80 +34,88 @@ class Nav extends Component {
         this.setState({
 
             selected: !this.state.selected
-        }) 
+        })
         console.log(e);
         // console.log(this.state.selected.name);
-        if (this.state.selected && this.state.selected.name == e ) {
+        if (this.state.selected && this.state.selected.name == e) {
             this.setState({
                 selected: null
 
             })
-        } 
+        }
 
-           
-        
+
+
 
     }
 
     render() {
         return (<div className={'nav-main'}>
 
-            <table className={'tbl'} cellSpacing={'0'} cellPadding={'0'} border={'0'}>
+            {/* <table className={'tbl'} cellSpacing={'0'} cellPadding={'0'} border={'0'}>
                 <tbody>
                     <tr>
-                        <td>
-                            {/* <button> */}
-                            <Link to='/app' name='home' className={'a active'}  onClick={ (e) => this.toggleClass(e)}>
+                        <td> */}
+            <div className='nav_main_sec'>
+                {/* <div className='item_container ' onClick={(e) => this.toggleClass(e)}> */}
 
-                                Home
+                    <Link to='/app' name='home' className={'a active'} >
+
+                        Home
                                     </Link>
-                            {/* </button> */}
-                        </td>
-                        <td>
+                    {/* </td>
+                        <td> */}
+                {/* </div> */}
+                {/* <div className='item_container' onClick={(e) => this.toggleClass(e)}> */}
+                    <Link to='/profile' name='profile' className={'a'} >
 
-                            <Link to='/profile' name='profile' className={'a '}  onClick={(e) => this.toggleClass(e)}>
-
-                                Profile
+                        Profile
                          </Link>
-                        </td>
-                        {/* <td>
-                        <Link to='/schedule/meeting' className={'a'}>
-                            Meeting Schedule
-                            </Link>      
-                    </td> */}
-                        <td>
-                            <Link to='/noticeboard' name='noticeboard' className={'a '} onClick={(e) => this.toggleClass(e)}>
-                                Notice Board
+                    {/* </td>
+                     
+                        <td>  */}
+                {/* </div> */}
+                {/* <div className='item_container' onClick={(e) => this.toggleClass(e)}> */}
+                    <Link to='/noticeboard' name='noticeboard' className={'a'}>
+                        Notice Board
                                     </Link>
-                        </td>
-                        <td>
-                            <Link to='/documents' className={'a'} onClick={(e) => this.toggleClass(e)}>
-                                Documents
+                    {/* </td>
+                        <td> */}
+                        {/* </div> */}
+                        {/* <div className='item_container' onClick={(e) => this.toggleClass(e)}> */}
+                    <Link to='/documents' className={'a'} >
+                        Documents
                                     </Link>
-                        </td>
-                        <td>
-                            <Link to='/result' className={'a'} onClick={(e) => this.toggleClass(e)}>
-                                Result
+                    {/* </td>
+                        <td> */}
+                {/* </div> */}
+                {/* <div className='item_container' onClick={(e) => this.toggleClass(e)}> */}
+                    <Link to='/result' className={'a'} >
+                        Result
                                     </Link>
-                        </td>
-                        <td>
-                            {/* <a href='www.google.com'> */}
-                            <a href='mailto:sherazmohsin257@gmail.com' target='_blank' className={'a'} id='anchor' onClick={(e) => this.toggleClass(e)}>
-                                {/* <a href={'mailto:Sherazmohsin257@gmail.com'}>Mail</a> */}Mail
+                    {/* </td>
+                        <td> */}
+                {/* </div> */}
+                {/* <div className='item_container' onClick={(e) => this.toggleClass(e)}> */}
+                    <a href='mailto:sherazmohsin257@gmail.com' target='_blank' className={'a'} id='anchor' >
+                        Mail
                                     </a>
-                            {/* </a> */}
-                        </td>
-                        <td>
-                            <button id='btn_logout' className={'a'} onClick={(e) => this.toggleClass(e)} onClick={logOut}>
-                                Sign Out
+                    {/* </td>
+                        <td> */}
+                {/* </div> */}
+                {/* <div className='item_container' onClick={(e) => this.toggleClass(e)}> */}
+                    <button id='btn_logout' className={'a'}  onClick={logOut}>
+                        Sign Out
                                     </button>
-                        </td>
+                {/* </div> */}
+                {/* </td>
 
-
+                    
                     </tr>
                 </tbody>
-            </table>
+             </table> */}
 
+            </div>
 
         </div>
         )

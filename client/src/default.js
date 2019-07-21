@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import CustomDefaultRouts from './defaultRoutes/defaultRouts';
 import Nav from './component/navbar/navbar';
+import Example from './component/navbar/nav1'
 import Header from '../src/component/header/header';
 import Home from '../src/component/home/home';
 import store from './store/store';
@@ -81,7 +82,7 @@ class Default extends Component {
       <div className="default">
         <Header />
         <div hidden={!this.props.login.loggedInUser.cnic}>
-          <Nav />
+          <Example />
         </div>
         {/* <div hidden={!this.props.login.loggedInUser._id}>
             <Home />
