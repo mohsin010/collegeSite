@@ -9,18 +9,22 @@
 
 }
 .label_msg{
-    vertical-align: vertical;
+    vertical-align: top;
+    text-align: left;
+    width: 70%;
+    /* width: 69.3%; */
+    /* min-width: 170px; */
     color: rgba(1, 1, 163, 0.979);
     font-weight: 700;
-    margin-right: 10%;
-    margin-left: 5%;
+    /* margin-right: 6%;
+    margin-left: 5%; */
     /* margin-bottom: 10px; */
     float: left;
     /* margin-top: 10px; */
 }
 #label_msg{
-    margin-top: 30px;
-    margin-right: 9.4%;
+    /* margin-top: 30px;
+    margin-right: 5.5%; */
 }
 #msg_container{
     /* background-color: red; */
@@ -30,25 +34,33 @@
 }
 
 .msg_subject{
-    width: 40.4%;
+    width: 70%;
+    /* width: 69.3%; */
+    min-width: 160px;
     border: 1px solid gainsboro !important;
+    border-radius: 2px;
 
     /* border: none; */
     
 }
 #to{
-    margin-left: 2.9%;
+    /* margin-left: 2.9%; */
 
 }
 .to{
     /* color: rgb(27, 146, 27); */
-    margin-left: 2%;
+    /* margin-left: 2%; */
     font-weight: 500;
     font-size: 80%;
 }
 #msg_textarea{
-    margin-top: 35px;
-    border: 2px solid gainsboro !important;
+    width: 69.3%;
+    /* min-width: 150px; */
+    min-width: 160px;
+
+    height: 100px;
+    /* margin-top: 35px; */
+    border: 1px solid gainsboro !important;
     /* box-shadow: 2px 2px  rgb(111, 114, 253); */
 }
 #msg_controler{
@@ -56,7 +68,7 @@
     /* background-color: red; */
     width: 20%;
     margin-top: 19px;
-    margin-left: 19.2%; 
+    /* margin-left: 19.2%;  */
     /* padding: 10px; */
 
 }
@@ -64,7 +76,12 @@
 .msg_control{
     margin-right: 20px;
 }
-
+.label_to{
+    margin-right: 6.5%;
+}
+.tbl_disc{
+    width: 80%;
+}
 #msg_post{
     background-image: url('../../../data/postmsg.png');
     background-repeat: no-repeat;
@@ -213,4 +230,7 @@
 }
 .btnn-del:hover{
     opacity: 0.8;
+}
+#msg_edit{
+    height: 30px;
 }

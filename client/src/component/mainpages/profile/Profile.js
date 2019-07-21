@@ -146,7 +146,7 @@ class Profile extends Component {
                            <td></td>
 
                                <td></td>
-                               <td><button id='btn_n_editor' className='bnt_save_change' onClick={this.saveChanges}>Save Changes</button></td></tr>
+                               <td><button id='btn_n_editor' className='bnt_save_change' onClick={this.saveChanges}>Save</button></td></tr>
 
                         </tbody> 
                     </table> 

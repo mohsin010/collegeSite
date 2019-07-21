@@ -52,9 +52,9 @@ class Post_Msg extends Component {
         this.id = this.components.join("");
         return this.id;
     }
-    change = (e) =>{
+    change = (e) => {
         this.setState({
-            [e.target.name] : e.target.value
+            [e.target.name]: e.target.value
 
         })
     }
@@ -183,33 +183,66 @@ class Post_Msg extends Component {
         return (
             <div id='msg_container_main'>
                 <div>
-                    <div className='pcontainer' align='left' ><span className='ptitle'>Message Editor</span></div>
+                    <div className='pcontainer' align='left' id='msg_edit' ><span className='ptitle'>Message Editor</span></div>
                     <div id='msg_container'>
                         <form onSubmit={this.submitData}>
-                            <label hidden={!this.props.login.loggedInUser.rollno} className='label_msg'>Subject</label>
+                            <table className='tbl_disc'>
+                                <tr>
+                                    <th>
 
-                            <input hidden={!this.props.login.loggedInUser.rollno} className='msg_subject'
-                                type='text' name='subject' required={this.props.login.loggedInUser.rollno ? 'required' : false}
-                                value={this.state.subject} onChange={this.changeHandler}
-                                style={{ borderColor: this.state.titleerr ? 'red' : 'inherit' }} />
+                                        <label hidden={!this.props.login.loggedInUser.rollno} className='label_msg'>Subject:</label>
+                                    </th>
+                                    <td>
 
-                            <label hidden={this.props.login.loggedInUser.rollno} className='label_msg'>To</label>
+                                        <input hidden={!this.props.login.loggedInUser.rollno} className='msg_subject'
+                                            placeholder='Subject'
+                                            type='text' name='subject' required={this.props.login.loggedInUser.rollno ? 'required' : false}
+                                            value={this.state.subject} onChange={this.changeHandler}
+                                            style={{ borderColor: this.state.titleerr ? 'red' : 'inherit' }} />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
 
-                            <input hidden={this.props.login.loggedInUser.rollno} className='msg_subject'
-                                id='to' type='text' name='to' placeholder='eg: Dear Student,'
-                                required= {!this.props.login.loggedInUser.rollno ? 'required' : false} 
-                                value={this.state.to} onChange={this.change}
-                                style={{ borderColor: this.state.titleerr ? 'red' : 'inherit' }} />
-                            
-                            <br />
-                            <label id='label_msg' className='label_msg'>Message</label>
-                            <textarea id='msg_textarea' name="body" rows="10" cols="73.99" style={{ borderColor: this.state.bodyerr ? 'red' : 'inherit' }} required value={this.state.body || this.state.supreply} onChange={this.changeHandler} />
-                            <br />
-                            <div id='msg_controler'>
-                                <input id='msg_post' className='msg_control' type='submit' name='postmsg' value='' />
+                                        <label hidden={this.props.login.loggedInUser.rollno} className='label_msg ' >To</label>
+                                    </th>
+                                    <td>
 
-                                <Link to='/app/discussion' ><img src={post} id='msg_cancel' className='msg_control' /> </Link>
-                            </div>
+                                        <input hidden={this.props.login.loggedInUser.rollno} className='msg_subject'
+                                            id='to' type='text' name='to' placeholder='eg: Dear Student,'
+                                            required={!this.props.login.loggedInUser.rollno ? 'required' : false}
+                                            value={this.state.to} onChange={this.change}
+                                            style={{ borderColor: this.state.titleerr ? 'red' : 'inherit' }} />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        <label id='label_msg' className='label_msg'>Message:</label>
+
+                                    </th>
+                                    <td>
+
+                                        <textarea id='msg_textarea' name="body" style={{ borderColor: this.state.bodyerr ? 'red' : 'inherit' }} required value={this.state.body || this.state.supreply} onChange={this.changeHandler} />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    <td>
+
+                                        {/* <div id='msg_controler'> */}
+                                            <input id='msg_post' className='msg_control' type='submit' name='postmsg' value='' />
+
+                                            <Link to='/app/discussion' ><img src={post} id='msg_cancel' className='msg_control' /> </Link>
+                                        {/* </div> */}
+                                    </td>
+                                </tr>
+                            </table>
+
+
+
+
+                            {/* <br /> */}
+                            {/* <br /> */}
 
                         </form>
 

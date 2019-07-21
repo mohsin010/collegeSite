@@ -150,7 +150,8 @@ tr{
   }
   .bnt_save_change{
     margin-left: 0% !important;
-    width: 17% !important;
+    max-width: 50% !important;
+    min-width: 50% !important;
     margin-top: 10px !important;
     margin-bottom: 10px !important;
 

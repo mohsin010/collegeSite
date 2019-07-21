@@ -60,10 +60,10 @@ class Signin extends Component {
 					<form onSubmit={this.submitForm} className='signin_form'>
 						<p id='err_msg'></p>
 
-						<label id={'idlabel2'}>CNIC</label>
+						<label id={'idlabel2'}>CNIC:</label>
 						<input id={'idinpt2'} required={'required'} maxLength='13' type='numeric' name='cnic' placeholder='Please enter 13 digit Cnic' onChange={this.handleInput} />
 						<br></br>
-						<label id={'pass2'}>Password</label>
+						<label id={'pass2'}>Password:</label>
 						<input id={'passinpt2'} required={'required'} type='password' name='password' placeholder='Please enter your password' onChange={this.handleInput} />
 						<br></br>
 						
