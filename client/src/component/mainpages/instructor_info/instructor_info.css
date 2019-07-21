@@ -23,6 +23,7 @@
 
 #biography-container{
     /* float: left; */
+    word-break: break-all;
     width: 40%;
     margin-left: 7%;
     color: black;

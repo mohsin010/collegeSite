@@ -222,7 +222,7 @@ class Post_Msg extends Component {
                                     </th>
                                     <td>
 
-                                        <textarea id='msg_textarea' name="body" style={{ borderColor: this.state.bodyerr ? 'red' : 'inherit' }} required value={this.state.body || this.state.supreply} onChange={this.changeHandler} />
+                                        <textarea id='msg_textarea' name="body" placeholder='Type Messege Here' style={{ borderColor: this.state.bodyerr ? 'red' : 'inherit' }} required value={this.state.body || this.state.supreply} onChange={this.changeHandler} />
                                     </td>
                                 </tr>
                                 <tr>

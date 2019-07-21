@@ -119,7 +119,7 @@ class Profile extends Component {
                                 <th className={'p-th'}>Department</th>
                                 <td className={'p-td'}>{this.state.department}<span></span></td>
                                 <th className={'p-th'}>Phone</th>
-                                <td className={'p-td'}> <input placeholder={'Phone no here'} value={this.state.phone} name='phone' onChange={this.handleInput} /><span></span></td>
+                                <td className={'p-td'}> <input placeholder={'Phone no here'} className='pro_input' value={this.state.phone} name='phone' onChange={this.handleInput} /><span></span></td>
                                 {/* <td ></td> */}
 
                             </tr>
@@ -127,13 +127,13 @@ class Profile extends Component {
                                 <th className={'p-th'}>Program</th>
                                 <td className={'p-td'}><span>{this.state.program}</span></td>
                                 <th className={'p-th'}>Email</th>
-                                <td className={'p-td'}><input placeholder={'Email no here'} name='email' onChange={this.handleInput} value={this.state.email} /></td>
+                                <td className={'p-td'}><input placeholder={'Email no here'} className='pro_input' name='email' onChange={this.handleInput} value={this.state.email} /></td>
                             </tr>
                             <tr >
                                 <th className={'p-th'}>Session</th>
                                 <td className={'p-td'}><span>{this.state.startdate} <b>To</b> {this.state.enddate}</span></td>
                                 <th className={'p-th'}>Password</th>
-                                <td className={'p-td'}> <input type={this.state.type} name='password' className="password__input" onChange= { this.handleInput } value={this.state.password} />
+                                <td className={'p-td'}> <input type={this.state.type} name='password' className="password__input pro_input" onChange= { this.handleInput } value={this.state.password} />
 
                                     {/* onChange={this.passwordStrength} */}
                                     <span className="password__show" onClick={this.showHide}>{this.state.type === 'password' ? 'Show' : 'Hide'}</span>
