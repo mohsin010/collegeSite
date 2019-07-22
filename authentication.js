@@ -10,10 +10,10 @@ var myStrategy = new LocalStrategy({
     usernameField: 'cnic'
 }, function (username, password, next) {
  
-    User.findOne({ cnic: username, password: password }, function (err, user) {
+    // User.findOne({ cnic: username, password: password }, function (err, user) {
 
 
-        if (!user) {
+    //     if (!user) {
             Faculty.findOne({ cnic: username, password: password }, function (err, user) {
                 if (!user) {
                     Admin.findOne({ cnic: username, password: password }, function (err, user) {
@@ -29,15 +29,16 @@ var myStrategy = new LocalStrategy({
                     return next(null, user);
                 }
             })
-        }else {
+        // }
+        // else {
 
-            if (err) { return next(err); }
-            if (!user) { return next(null, false); }
-            return next(null, user);
-        }
+        //     if (err) { return next(err); }
+        //     if (!user) { return next(null, false); }
+        //     return next(null, user);
+        // }
 
 
-    });
+    // });
 
 
 
