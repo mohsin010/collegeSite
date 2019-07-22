@@ -45,12 +45,15 @@
     color: rgba(17, 17, 121, 0.884);
     text-align: left;
 }
-.tbl_signup> tr>td>input{
+.tbl_signup> tr>td>input{ 
     width: 97%;
     border-radius: 0.5px;
 }
 .tbl_signup> tr>td>select{
     width: 98.5%;
+}
+.tbl_signup> tr>td>textarea{
+    width: 96.3%;
 }
 .btn-signup1{
     background-color: rgba(17, 65, 197,0.8);
