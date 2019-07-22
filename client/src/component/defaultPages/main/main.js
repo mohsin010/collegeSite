@@ -32,7 +32,7 @@ class DefaultMain extends Component {
                                 </li>
                             </ul>
                         </div> 
-                        <div className={'signin'}>
+                        <div className={'signin'}> 
                             <Signin />
                             <span class={'anchor'} id={'anchor5'} >Or</span>
                         <br></br>
