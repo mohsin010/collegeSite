@@ -40,13 +40,14 @@ class Signin extends Component {
 				console.log('user found');
 				store.dispatch({
 					payload: resp,
-					type: 'LOGGED_IN_SUCCESS'
+					type: 'LOGGED_IN_SUCCESS' 
 				})
 				this.props.history.push('/app');
 				// alert('User Found');
 			} else {
 				this.props.history.push('/');
 				document.getElementById('err_msg').innerText = 'Invalid CNIC No or Password';
+				alert('Wait For Next Instructions From Group')
 			}
 
 		})
