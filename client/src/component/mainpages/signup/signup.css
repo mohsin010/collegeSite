@@ -32,532 +32,11 @@
     padding: 0%;
     background-color: rgb(9, 36, 116);
     margin-left: 0.5%;
-    /* background-color: red; */
-    /* height: auto; 
-    width: 99%;
-    min-width: 10%;
-    margin: 0.01%;
-    padding: 0%;
-    padding-top: 4px;
-    padding-bottom: 8px;
-    background-color: rgb(9, 36, 116);
-    margin-left: 0.5%;
-    margin-bottom: 5px; */
-    /* background-color: rgb(9, 36, 116); */
-    /* border-top: 4px solid rgb(2, 1, 75); */
     
-
-  
     /* animation: mymove 50s infinite ;    */
 }
 
 
-#submaincontainer1{
-    /* margin-top: 5%; */
-    margin-top: 0% !important;
-    
-}
-
-h2{
-    width: 100%;
-    height: 6vh;
-    /* color: bisque; */
-    color: rgba(17, 17, 121, 0.884);
-    /* font-stretch: ; */
-
-    /* background-color: rgb(132, 134, 94); */
-    text-align: center;
-}
-
-
-#submaincontainer1 > form > label{
-    font-size: 100%;
-    font-weight: bold;
-    color: rgba(3, 3, 105, 0.884);
-    margin-left: 15%;
-    /* margin-top: 20px; */
-    margin-right: 14%;
-}
-
-#submaincontainer1>form>#flabel{
-    margin-right: 12.2%;
-}
-#submaincontainer1>form>#emaillabel{
-    margin-right: 14.9%;
-}
-#phonelabel{
-    margin-right: 14%;
-}
-
-
-#submaincontainer1>form>input{
-    margin-bottom: 3%;
-    width: 50%;
-}
-
-#submaincontainer1>form>#pass{
-    font-size: 100%;
-    font-weight: bold;
-    color: rgba(3, 3, 105, 0.884);
-    margin-left: 15%;
-    
-    /* margin-top: 20px; */
-    margin-right: 3%;
-    /* margin-top: 50px; */
-    /* padding: 10px; */
-}
-#passinpt1{
-    margin-bottom: 5%;
-    
-    width: 50%;
-    margin-left: 7.7%;
-}
-/* #submaincontainer1>form>#radio1{
-    margin: 0%;
-    padding: 0%;
-    width: 5%;
-}
-#submaincontainer1>form>#radio2{
-    margin: 0%;
-    padding: 0%;
-    width: 5%;
-} */
-#submaincontainer1>form>#rollnolabel{
-    margin-right: 13.3%;
-}
-#submaincontainer1>form>#deptlabel{
-    margin-right: 8.2%;
-}
-#department, #program{
-    margin-bottom: 2%;
-    margin-left:  0%;
-    /* margin-right:9%; */
-}
-#submaincontainer1>form>#prolabel{
-    margin-right: 12%;
-}
-#sessionlabel{
-    margin-right: 12.3%;
-
-}
-#enddate{
-    margin-left: 5.2%;
-}
-#fromdate{
-    margin-left: 1.9%;
-}
-h5{
-    color: rgb(95, 3, 3);
-    margin-left: 15%;
-    margin-top: 0%;
-    margin-bottom: 2%;
-}
-hr{
-    width: 60%;
-}
-
-
-/* #statusLabel1{
-    font-size: 100%;
-    font-weight: bold;
-    color: rgba(3, 3, 105, 0.884);
-    margin-left: 15%;
-} */
-
-/* #status{
-    margin-left: 8%;
-} */
-
-/* border-radius: 10%; */
-#submaincontainer1 > form > .anchor{
-    margin-left: 37.4%;
-    font-size: 80%;
-    font-weight: bold;
-    color: rgb(95, 3, 3);
-}
-
-
-
-
-/* Start sytling of to_login */
-#redir_main-container{
-    /* background-color: red; */
-    border: 1px solid rgb(9, 9, 236);
-    width: 35%;
-    height: 35vh;
-    padding: 0%;
-    margin-left: calc(50% - 17%);
-    margin-top: 10vh;
-}
-
-/* #welcome, #linkto, #success{
-
-    margin: 2%;
-    margin-top: 4vh;
-} */
-#welcome{
-    height: 5vh;
-    padding: 0%;
-    margin-left: 2%;
-    margin-top: 2%;
-    /* margin-bottom: 2%; */
-    font-size: 110%;
-    font-family: 'Times New Roman', Times, serif
-}
-#linkto, #success{
-   /* text-align: center;  */
-
-}
-#tbl_render{
-    /* background-color: red; */
-    width: 100%;
-    height: inherit;
-    margin: 0%;
-    padding: 0%;
-}
-#tbl_render>thead , #tbl_render>tfoot{
-    background-color: rgb(146, 170, 243);
-    /* height: 2; */
-    color: rgb(7, 7, 121);
-    font-weight: bold;
-    margin: 0%;
-    padding: 0%;
-    
-
-}
-#tbl_render>tfoot{
-   text-align: center;
-   font-size: 80%;
-}
-#tr1, #tr2{
-    /* background-color: red; */
-    /* margin-left: 5%; */
-    /* padding-left: 4%; */
-    text-align: center;
-    height: 10px;
-    color: rgba(1, 1, 255, 0.966);
-    font-size: 90%
-
-}
-
-/* body{
-    overflow-y:unset;
-}
-@media only screen and (max-width:960px){ 
-    body{
-        overflow-y:scroll;
-    }
-} */
-
-/* sup_signup */
-.deptlabel_sup{
-    margin-right: 7.7% !important;
-}
-#cniclabel{
- margin-right: 16.5% !important;
- /* color: red ;   */
-}
-#desiglabel{
-    margin-right: 7.8% !important;
-}
-#descrlabel{
-    margin-right: 8.6% !important;
-    vertical-align: top ;
-}
-#inpt_file_pic{
-    margin-right: 5.4% !important;
-}
-
-/* Styling.......... */
-
-.maincontainer1_sup{
-height: 610px !important;
-}
-
-#maincontainer1{
-    /* background-color: rgb(70, 133, 133); */
-    height: 690px;
-    width: 50%;
-    /* margin-left: calc(50% - 15%); */
-    margin-top: 5px;
-    padding: 5px;
-
-    /* margin-left: 10px; */
-    margin-left: calc(50% - 25%);
-    background-color: rgb(243, 241, 236);
-    border-radius: 70px;
-    /* border-top-left-radius: 100px; */
-    /* animation: my3ndmove 10s infinite;    */
-} 
-#grandmain-container{
-    /* background-color: red; */
-    height: auto; 
-    width: 99%;
-    min-width: 10%;
-    margin: 0.01%;
-    padding: 0%;
-    padding-top: 4px;
-    padding-bottom: 8px;
-    background-color: rgb(9, 36, 116);
-    /* background-color: rgb(9, 36, 116); */
-    margin-left: 0.5%;
-    margin-bottom: 5px;
-    /* border-top: 4px solid rgb(2, 1, 75); */
-    
-
-  
-    /* animation: mymove 50s infinite ;    */
-}
-
-
-#submaincontainer1{
-    margin-top: 5%;
-    
-}
-
-h2{
-    width: 100%;
-    height: 6vh;
-    /* color: bisque; */
-    color: rgba(17, 17, 121, 0.884);
-    /* font-stretch: ; */
-
-    /* background-color: rgb(132, 134, 94); */
-    text-align: center;
-}
-
-
-#submaincontainer1 > form > label{
-    font-size: 100%;
-    font-weight: bold;
-    color: rgba(3, 3, 105, 0.884);
-    margin-left: 15%;
-    /* margin-top: 20px; */
-    margin-right: 14%;
-}
-
-#submaincontainer1>form>#flabel{
-    margin-right: 12.2%;
-}
-#submaincontainer1>form>#emaillabel{
-    margin-right: 14.9%;
-}
-#phonelabel{
-    margin-right: 14%;
-}
-
-
-#submaincontainer1>form>input{
-    margin-bottom: 3%;
-    width: 50%;
-}
-
-#submaincontainer1>form>#pass{
-    font-size: 100%;
-    font-weight: bold;
-    color: rgba(3, 3, 105, 0.884);
-    margin-left: 15%;
-    
-    /* margin-top: 20px; */
-    margin-right: 3%;
-    /* margin-top: 50px; */
-    /* padding: 10px; */
-}
-#passinpt1{
-    margin-bottom: 5%;
-    
-    width: 50%;
-    margin-left: 7.7%;
-}
-/* #submaincontainer1>form>#radio1{
-    margin: 0%;
-    padding: 0%;
-    width: 5%;
-}
-#submaincontainer1>form>#radio2{
-    margin: 0%;
-    padding: 0%;
-    width: 5%;
-} */
-#submaincontainer1>form>#rollnolabel{
-    margin-right: 13.3%;
-}
-#submaincontainer1>form>#deptlabel{
-    margin-right: 8.2%;
-}
-#department, #program{
-    margin-bottom: 2%;
-    margin-left:  0%;
-    /* margin-right:9%; */
-}
-#submaincontainer1>form>#prolabel{
-    margin-right: 12%;
-}
-#sessionlabel{
-    margin-right: 12.3%;
-
-}
-#enddate{
-    margin-left: 5.2%;
-}
-#fromdate{
-    margin-left: 1.9%;
-}
-h5{
-    color: rgb(95, 3, 3);
-    margin-left: 15%;
-    margin-top: 0%;
-    margin-bottom: 2%;
-}
-hr{
-    width: 60%;
-}
-
-
-/* #statusLabel1{
-    font-size: 100%;
-    font-weight: bold;
-    color: rgba(3, 3, 105, 0.884);
-    margin-left: 15%;
-} */
-
-/* #status{
-    margin-left: 8%;
-} */
-
-/* border-radius: 10%; */
-#submaincontainer1 > form > .anchor{
-    margin-left: 37.4%;
-    font-size: 80%;
-    font-weight: bold;
-    color: rgb(95, 3, 3);
-}
-
-#submaincontainer1 > form > #btn{
-    background-color: rgba(17, 65, 197,0.8);
-    
-    /* animation: my3ndmove 5s infinite reverse;    */
-
-     /* background-color: inherit; */
-    margin-left: 37%;
-    margin-top: 5%;
-    color: white;
-    /* font-weight: bold;     */
-    /* border: 1px solid; */
-    /* margin-top: 10%; */
-    /* float: right; */
-    /* margin-left: 100%; */
-    width: 20%;
-    height: 30px;
-    border: none;
-    border-radius: 3px;
-    /* border: 1 px solid blue;     */
-    /* background-color: rgba(17, 65, 197,0.8); */
-
-    /* border-radius: 10px; */
-    /* border-color: rgba(9, 2, 109, 0.692); */
-
-}
-#submaincontainer1 > form > #btn:hover{
-    background-color: rgba(17, 65, 197, 1);
-
-    box-shadow: 5px black;
-
-}
-
-@keyframes my3ndmove {
-    50% {background: rgb(187, 238, 243)  bottom right/50px 50px;}
-}
-
-
-/* Start sytling of to_login */
-#redir_main-container{
-    /* background-color: red; */
-    border: 1px solid rgb(9, 9, 236);
-    width: 35%;
-    height: 35vh;
-    padding: 0%;
-    margin-left: calc(50% - 17%);
-    margin-top: 10vh;
-}
-
-/* #welcome, #linkto, #success{
-
-    margin: 2%;
-    margin-top: 4vh;
-} */
-#welcome{
-    height: 5vh;
-    padding: 0%;
-    margin-left: 2%;
-    margin-top: 2%;
-    /* margin-bottom: 2%; */
-    font-size: 110%;
-    font-family: 'Times New Roman', Times, serif
-}
-#linkto, #success{
-   /* text-align: center;  */
-
-}
-#tbl_render{
-    /* background-color: red; */
-    width: 100%;
-    height: inherit;
-    margin: 0%;
-    padding: 0%;
-}
-#tbl_render>thead , #tbl_render>tfoot{
-    background-color: rgb(146, 170, 243);
-    /* height: 2; */
-    color: rgb(7, 7, 121);
-    font-weight: bold;
-    margin: 0%;
-    padding: 0%;
-    
-
-}
-#tbl_render>tfoot{
-   text-align: center;
-   font-size: 80%;
-}
-#tr1, #tr2{
-    /* background-color: red; */
-    /* margin-left: 5%; */
-    /* padding-left: 4%; */
-    text-align: center;
-    height: 10px;
-    color: rgba(1, 1, 255, 0.966);
-    font-size: 90%
-
-}
-
-/* body{
-    overflow-y:unset;
-}
-@media only screen and (max-width:960px){ 
-    body{
-        overflow-y:scroll;
-    }
-} */
-
-/* sup_signup */
-.deptlabel_sup{
-    margin-right: 7.7% !important;
-}
-#cniclabel{
- margin-right: 16.5% !important;
- color: red ;  
-}
-#desiglabel{
-    margin-right: 7.8% !important;
-}
-#descrlabel{
-    margin-right: 8.6% !important;
-    vertical-align: top ;
-}
-#inpt_file_pic{
-    margin-right: 5.4% !important;
-}
 
 /* Styling....... */
 
@@ -580,7 +59,7 @@ hr{
     width: 57% !important;
     height: 30px;
     border: none;
-    border-radius: 3px;
+    border-radius: 2px !important;
 
 }
 .btn-signup1:hover{
@@ -589,7 +68,61 @@ hr{
     box-shadow: 5px black ;
 
 }
+h2{
+    width: 100%;
+    height: 6vh;
+    color: rgba(17, 17, 121, 0.884);
+    text-align: center;
+}
 
 @keyframes my3ndmove {
     50% {background: rgb(187, 238, 243)  bottom right/50px 50px;}
+}
+
+/* Dialogbox */
+
+#redir_main-container{
+    /* background-color: red; */
+    border: 1px solid rgb(9, 9, 236);
+    width: 35%;
+    height: 35vh;
+    padding: 0%;
+    margin-left: calc(50% - 17%);
+    margin-top: 10vh;
+}
+#welcome{
+    height: 5vh;
+    padding: 0%;
+    margin-left: 2%;
+    margin-top: 2%;
+    /* margin-bottom: 2%; */
+    font-size: 110%;
+    font-family: 'Times New Roman', Times, serif
+}
+#tr1, #tr2{
+    text-align: center;
+    height: 10px;
+    color: rgba(1, 1, 255, 0.966);
+    font-size: 90%
+}
+#tbl_render{
+    /* background-color: red; */
+    width: 100%;
+    height: inherit;
+    margin: 0%;
+    padding: 0%;
+}
+#tbl_render>thead , #tbl_render>tfoot{
+    background-color: rgb(146, 170, 243);
+    /* height: 2; */
+    color: rgb(7, 7, 121);
+    font-weight: bold;
+    margin: 0%;
+    padding: 0%;
+    
+
+}
+#tbl_render>tfoot{
+   text-align: center;
+   font-size: 80%;
 }

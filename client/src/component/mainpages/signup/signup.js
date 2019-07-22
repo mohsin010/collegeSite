@@ -79,7 +79,7 @@ class Signup extends Component {
                                     <tr>
                                         <th>
 
-                                            <label id={''}>Name</label>
+                                            <label id={''}>Name:</label>
                                         </th>
                                         <td>
 
@@ -89,7 +89,7 @@ class Signup extends Component {
                                     <tr>
                                         <th>
 
-                                            <label id={''}>F Name</label>
+                                            <label id={''}>F Name:</label>
                                         </th>
                                         <td>
 
@@ -99,7 +99,7 @@ class Signup extends Component {
                                     <tr>
                                         <th>
 
-                                            <label id={''}>Email</label>
+                                            <label id={''}>Email:</label>
                                         </th>
                                         <td>
 
@@ -110,7 +110,7 @@ class Signup extends Component {
                                     <tr>
                                         <th>
 
-                                            <label id={''}>Phone</label>
+                                            <label id={''}>Phone:</label>
                                         </th>
                                         <td>
 
@@ -120,7 +120,7 @@ class Signup extends Component {
                                     <tr>
                                         <th>
 
-                                            <label id={''}>Password</label>
+                                            <label id={''}>Password:</label>
                                         </th>
                                         <td>
 
@@ -130,7 +130,7 @@ class Signup extends Component {
                                     <tr>
                                         <th>
 
-                                            <label id={''}>Roll No</label>
+                                            <label id={''}>Roll No:</label>
                                         </th>
                                         <td>
 
@@ -140,7 +140,7 @@ class Signup extends Component {
                                     <tr>
                                         <th>
 
-                                            <label id={''}>Cnic</label>
+                                            <label id={''}>Cnic:</label>
                                         </th>
                                             <td>
                                             <input type='numeric' maxLength='13' minLength='13' required name='cnic' placeholder='eg. (0000000000000)' onChange={this.handleInput} />
@@ -151,12 +151,12 @@ class Signup extends Component {
                                     <tr>
                                         <th>
 
-                                            <label id={''}>Department</label>
+                                            <label id={''}>Department:</label>
                                         </th>
                                         <td>
 
                                             <select name='department' id={''} required onChange={this.handleInput} >
-                                                <option>Select Your Department</option>
+                                                <option>Select Your Department:</option>
                                                 <option>Computer Science</option>
                                             </select>
                                         </td>
@@ -164,12 +164,12 @@ class Signup extends Component {
                                     <tr>
                                         <th>
 
-                                            <label id={''}>Program</label>
+                                            <label id={''}>Program:</label>
                                         </th>
                                         <td>
 
                                             <select name='program' id={''} required onChange={this.handleInput} >
-                                                <option>Select Your Program</option>
+                                                <option>Select Your Program:</option>
                                                 <option>BS Computer Science</option>
                                             </select>
                                         </td>
@@ -177,13 +177,13 @@ class Signup extends Component {
                                     <tr>
                                         <th>
 
-                                            <label id={''}>Session</label>
+                                            <label id={''}>Session:</label>
                                         </th>
                                     </tr>
                                     <tr>
                                         <th>
 
-                                            <label id={''}>From</label>
+                                            <label id={''}>From:</label>
                                         </th>
                                         <td>
 
@@ -193,7 +193,7 @@ class Signup extends Component {
                                     <tr>
                                         <th>
 
-                                            <label id={'to'}>To</label>
+                                            <label id={'to'}>To:</label>
                                         </th>
                                         <td>
 
@@ -215,10 +215,10 @@ class Signup extends Component {
                                     </tr>
                                 </table>
 
-                                <br></br>
+                                {/* <br></br> */}
 
                                 {/* Form Ends */}
-                                <br></br>
+                                {/* <br></br> */}
 
                                 {/* <a href={"#"} class={'anchor'}>Forget Password?</a>
 
