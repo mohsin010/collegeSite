@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './signup.css';
 import store from '../../../store/store';
 import DefaultHeader from '../../defaultPages/header/defaultheader';
@@ -20,9 +20,9 @@ class Signup extends Component {
             program: '',
             startdate: '',
             enddate: '',
-            groupid:'',
-            supervisorname:'',
-            cnic:''
+            groupid: '',
+            supervisorname: '',
+            cnic: ''
         }
         this.handleInput = this.handleInput.bind(this)
         this.submitForm = this.submitForm.bind(this)
@@ -55,7 +55,7 @@ class Signup extends Component {
         }).then((resp) => resp.json()).then((resp) => {
             if (resp._id) {
                 alert('User Already Exist');
-            }else if(resp.success){
+            } else if (resp.success) {
                 store.dispatch({
                     type: 'user_signedup_success',
                     payload: resp
@@ -64,68 +64,161 @@ class Signup extends Component {
             }
         })
     }
- 
+
     render() {
-        return ( 
+        return (
             <div>
-                {/* <DefaultHeader /> */} 
-                <div id='grandmain-container'>
+                {/* <DefaultHeader /> */}
+                <div id='grandmain_container'>
 
-                    <div id={'maincontainer1'}>
+                    <div id={'maincontainer11'}>
                         <h2>Sign Up Here!</h2>
-                        <div id={'submaincontainer1'}>
+                        <div id={''}>
                             <form onSubmit={this.submitForm}>
-                                <label id={'namlabel'}>Name</label>
-                                <input id={'name'} type='text' name='name' required placeholder='Name' onChange={this.handleInput} />
-                                <br></br>
+                                <table className='tbl_signup' cellSpacing='10'>
+                                    <tr>
+                                        <th>
 
-                                <label id={'flabel'}>F Name</label>
-                                <input id={'fnam'} type='text'  name='fname' required placeholder='Father Name' onChange={this.handleInput} />
-                                <br></br>
+                                            <label id={''}>Name</label>
+                                        </th>
+                                        <td>
 
-                                <label id={'emaillabel'}>Email</label>
-                                <input id={'email'} type='email' name='email' required placeholder='eg. (someone@example.com)' onChange={this.handleInput} />
-                                <br></br>
+                                            <input id={''} type='text' name='name' required placeholder='Name' onChange={this.handleInput} />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
 
-                                <label id={'phonelabel'}>Phone</label>
-                                <input id={'phone'} type='tel' name='phone' required placeholder='eg.(0000-0000000)' pattern='[0-9]{4}-[0-9]{7}' onChange={this.handleInput} />
-                                <br></br>
-                                <label id={'pass'}>Password</label>
-                                <input id={'passinpt1'} type='password' required name='password' placeholder='Password' onChange={this.handleInput} />
-                                <br></br>
-                                
-                                <label id={'rollnolabel'}>Roll No</label>
-                                <input type='number' name='rollno' placeholder='Roll No' required onChange={this.handleInput} />
-                                <br></br>
-                                 
-                                <label id={'cniclabel'}>Cnic</label>
-                                <input type='numeric' maxLength='13' minLength='13' required name='cnic' placeholder='eg. (0000000000000)' onChange={this.handleInput} />
-                                <br></br>
-                                <label id={'deptlabel'}>Department</label>
-                                <select name='department' id={'department'} required onChange={this.handleInput} >
-                                    <option>Select Your Department</option>
-                                    <option>Computer Science</option>
-                                </select>
-                                <br></br>
-                                <label id={'prolabel'}>Program</label>
-                                <select name='program' id={'program'} required onChange={this.handleInput} >
-                                    <option>Select Your Program</option>
-                                    <option>BS Computer Science</option>
-                                </select>
-                                <br></br>
-                                <label id={'sessionlabel'}>Session</label>
-                                <br></br>
-                                <label id={'from'}>From</label>
-                                <input type='date' name='startdate' id={'fromdate'} required onChange={this.handleInput} ></input>
-                                <br></br>
-                                <label id={'to'}>To</label>
-                                <input type='date' name='enddate' id={'enddate'} required onChange={this.handleInput} ></input>
+                                            <label id={''}>F Name</label>
+                                        </th>
+                                        <td>
+
+                                            <input id={''} type='text' name='fname' required placeholder='Father Name' onChange={this.handleInput} />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+
+                                            <label id={''}>Email</label>
+                                        </th>
+                                        <td>
+
+                                            <input id={''} type='email' name='email' required placeholder='eg. (someone@example.com)' onChange={this.handleInput} />
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <th>
+
+                                            <label id={''}>Phone</label>
+                                        </th>
+                                        <td>
+
+                                            <input id={''} type='tel' name='phone' required placeholder='eg.(0000-0000000)' pattern='[0-9]{4}-[0-9]{7}' onChange={this.handleInput} />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+
+                                            <label id={''}>Password</label>
+                                        </th>
+                                        <td>
+
+                                            <input id={''} type='password' required name='password' placeholder='Password' onChange={this.handleInput} />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+
+                                            <label id={''}>Roll No</label>
+                                        </th>
+                                        <td>
+
+                                            <input type='number' name='rollno' placeholder='Roll No' required onChange={this.handleInput} />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+
+                                            <label id={''}>Cnic</label>
+                                        </th>
+                                            <td>
+                                            <input type='numeric' maxLength='13' minLength='13' required name='cnic' placeholder='eg. (0000000000000)' onChange={this.handleInput} />
+
+                                            </td>
+
+                                    </tr>
+                                    <tr>
+                                        <th>
+
+                                            <label id={''}>Department</label>
+                                        </th>
+                                        <td>
+
+                                            <select name='department' id={''} required onChange={this.handleInput} >
+                                                <option>Select Your Department</option>
+                                                <option>Computer Science</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+
+                                            <label id={''}>Program</label>
+                                        </th>
+                                        <td>
+
+                                            <select name='program' id={''} required onChange={this.handleInput} >
+                                                <option>Select Your Program</option>
+                                                <option>BS Computer Science</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+
+                                            <label id={''}>Session</label>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th>
+
+                                            <label id={''}>From</label>
+                                        </th>
+                                        <td>
+
+                                            <input type='date' name='startdate' id={''} required onChange={this.handleInput} ></input>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+
+                                            <label id={'to'}>To</label>
+                                        </th>
+                                        <td>
+
+                                            <input type='date' name='enddate' id={''} required onChange={this.handleInput} ></input>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th></th>
+                                        <td>
+
+                                            <input className={'btn-signup1'} type='submit' name='signup' value={'Sign Up'} />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th></th>
+                                        <td>
+                                            <Link to='/' className={'anchor'}>Have an Account  ?</Link>
+                                        </td>
+                                    </tr>
+                                </table>
+
                                 <br></br>
 
                                 {/* Form Ends */}
-                                <input id={'btn'} type='submit' name='signup' value={'Sign Up'} />
                                 <br></br>
-                                <Link to='/' className={'anchor'}>Have an Account  ?</Link>
 
                                 {/* <a href={"#"} class={'anchor'}>Forget Password?</a>
 
