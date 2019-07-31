@@ -64,6 +64,7 @@ class AssignmentEditor extends Component {
     submitAssignment = (e) => {
 
         e.preventDefault();
+        
         let data = this.state;
         let formData = new FormData();
         formData.append('no', data.no);

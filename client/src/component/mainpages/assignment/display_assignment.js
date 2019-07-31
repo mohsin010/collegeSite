@@ -73,6 +73,7 @@ class AssignmentDisplay extends Component {
                 alert('Assignment Successfully Submitted');
 
             } else {
+            
                 alert('An error is occurd. Please try again')
             }
         })

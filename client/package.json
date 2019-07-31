@@ -27,7 +27,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "start-storybook": "start-storybook -s ./public,./../../ -p 9001"
   },
   "eslintConfig": {
     "extends": "react-app"

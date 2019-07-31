@@ -26,8 +26,9 @@ let crypto = require('crypto');
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
+        
 
-        cb(null, 'uploads')
+        cb(null, './client/public/')
     },
     filename: function (req, file, cb) {
         crypto.pseudoRandomBytes(16, function (err, raw) {
@@ -47,7 +48,9 @@ var upload = multer({ storage: storage })
 router.get('/is_authenticated', function (req, res) {
     res.json(req.user || {});
 });
-
+// router.get('/express', function (req, res) {
+//     res.json("Welcome to Express");
+// });
 
 router.post('/download_file', function(req, res){
     async function download(){
@@ -528,7 +531,7 @@ router.post('/delete_document', function (req, res) {
 
 router.post('/assignments', upload.single('file'), (req, res) => {
     if (req.file) {
-        req.body.file = req.file.path;
+        req.body.file = '/' + req.file.originalname;
     }
     Assignments.findOne({ groupid: req.body.groupid, no: req.body.no }, req.body, (err, rec) => {
         if (rec) {

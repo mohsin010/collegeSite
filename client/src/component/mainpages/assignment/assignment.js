@@ -66,13 +66,12 @@ class Sup_AssignmentDisplay extends Component {
 
  
                                 {this.state.assignments.map( (assignment) => {
-
                                     return <tr>
                                         <td>{assignment.no}</td>
                                         <td>{assignment.rollno}</td>
                                         <td>{assignment.title}</td>
                                         <td>{assignment.topic}</td>
-                                        <td><a href={assignment.file} download id='f-dowload'>(Download File)</a></td>
+                                        <td><a href={assignment.file} download  id='f-dowload'>(Download File)</a></td>
                                         <td id='d-date'>{assignment.due_date}</td>
                                         <td >{assignment.total_marks}</td>
                                         <td >{assignment.obtain_marks}</td>

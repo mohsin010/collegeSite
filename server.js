@@ -109,11 +109,12 @@ if(process.env.NODE_ENV === 'production'){
     });
 }
 
-app.use(express.static('./'))
-// console.log(__dirname + './up');
+app.use(express.static("public, ./"))
+
+console.log(__dirname);
 // const port = process.env.port || 8080;
 
-// app.listen(port, () => console.log('Server Running at', port));
+// app.listen(port, () => console.log('Server Runsning at', port));
 
 app.set( 'port', ( process.env.PORT || 8080 ));
 

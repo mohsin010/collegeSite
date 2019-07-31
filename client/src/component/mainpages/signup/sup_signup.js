@@ -229,12 +229,12 @@ class Sup_Signup extends Component {
                                             <input className={'btn-signup1'} type='submit' name='signup' value={'Create Account'} />
                                         </td>
                                     </tr>
-                                    <tr>
+                                    {/* <tr>
                                         <th></th>
                                         <td>
                                             <Link to='/' className={'anchor'}>Have an Account  ?</Link>
                                         </td>
-                                    </tr>
+                                    </tr> */}
                                 </table>
 
                                 
