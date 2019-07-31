@@ -736,14 +736,7 @@ router.post('/update_user_group', function (req, res) {
         }
     })
 
-    // Groups.findOne({st_group:req.body.rollno}, (err, rec)=>{
-    //     if(rec){
-    //     User.findOneAndUpdate({rollno: req.body.rollno}, {groupid:rec.groupid}, (err, rec) =>{
-    //         res.json(err || rec);
-    //     })
-    // }
-
-    // })
+   
 })
 
 
@@ -762,13 +755,7 @@ router.post('/login', function (req, res, next) {
             res.json({ success: false })
         }
 
-        // if (resp) {
-        //     console.log('Usr and err is Null')
-        // } else {
-
-        //     res.json(req.user || {});
-        // }
-        // if()
+      
 
     })(req, res, next);
 
@@ -779,7 +766,7 @@ router.post('/login', function (req, res, next) {
 // Faculty signup
 router.post('/sup_signup', upload.single('file'), (req, res) => {
     if (req.file) {
-        req.body.file = req.file.path;
+        req.body.file = req.file.originalname;
     }
     Faculty.findOne({ cnic: req.body.cnic }, req.body, (err, user) => {
 
@@ -795,33 +782,7 @@ router.post('/sup_signup', upload.single('file'), (req, res) => {
     })
 })
 
-// router.post('/sup_signup', function (req, res) {
 
-//     Faculty.findOne({ cnic: req.body.cnic }, (err, user) => {
-
-//         if (user) {
-//             res.json(user);
-//         } else {
-
-//             let newMember = new Faculty(req.body);
-//             newMember.save((err, user) => {
-//             })
-//         }
-
-//     })
-
-
-// })
-
-// router.post('/login', function (req, res) {
-
-
-//     User.findOne({ rollno: req.body.rollno, password: req.body.password }, (err, user) => {
-//         res.json(err || user || {})
-//     })
-
-
-// });
 
 router.post('/signup', function (req, res) {
 
@@ -846,22 +807,10 @@ router.post('/logout', function (req, res) {
     req.logout();
     res.json({ success: true });
     logggedIn = null;
-    // res.redirect('/');
 }
 )
 
-// router.get('/sup_assignment_display',  function (req, res)  {
 
-//     function search(req,res) {
-//         var groupid = []
-//         var stgroup;
-//         Groups.find().then(group => {
-//             groupid = [...groupid, group.groupid]
-//             stgroup = group.st_group
-//         })
-//     }
-//     search();
-// })
 
 
 

@@ -47,7 +47,6 @@ class Signin extends Component {
 			} else {
 				this.props.history.push('/');
 				document.getElementById('err_msg').innerText = 'Invalid CNIC No or Password';
-				alert('Wait For Next Instructions From Group')
 			}
 
 		})
