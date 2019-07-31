@@ -70,7 +70,17 @@ class Sup_Signup extends Component {
 
             body: formData,
         }).then((resp) => resp.json()).then((resp) => {
-            this.setState({
+           
+
+            if (resp._id) {
+                alert('User Already Exist');
+            } else if (resp.success) {
+                store.dispatch({
+                    type: 'user_signedup_success',
+                    payload: resp
+                });
+                // this.props.history.push('/')
+                 this.setState({
                 name: '',
                 fname: '',
                 email: '',
@@ -82,15 +92,6 @@ class Sup_Signup extends Component {
                 description: '',
                 file: ''
             })
-
-            if (resp._id) {
-                alert('User Already Exist');
-            } else if (resp.success) {
-                store.dispatch({
-                    type: 'user_signedup_success',
-                    payload: resp
-                });
-                // this.props.history.push('/')
                 alert('User Created Successfully');
 
             }

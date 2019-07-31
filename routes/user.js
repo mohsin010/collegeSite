@@ -560,7 +560,7 @@ router.post('/assignments_marks', function (req, res) {
 
 router.post('/submit_assignment', upload.single('file'), (req, res) => {
     if (req.file) {
-        req.body.subfile = req.file.path;
+        req.body.subfile = req.file.originalname;
     }
     Assignments.findOneAndUpdate({ groupid: req.body.b, no: req.body.a }, req.body, (err, rec) => {
 
@@ -807,6 +807,7 @@ router.post('/logout', function (req, res) {
     req.logout();
     res.json({ success: true });
     logggedIn = null;
+    // res.redirect('/');
 }
 )
 
