@@ -354,7 +354,7 @@ class AssignmentDisplay extends Component {
                                         <td ><input type='file' name='subfile' ref='assigninput' style={{ display: assignment.display3 ? 'block' : 'none' }}
                                             onChange={this.uploadSolvedAssinment.bind(this, assignment)}
                                             value={this.state.subfile} />
-                                            <a href={assignment.file} download id='f-dowload' style={{ display: assignment.display4 ? 'block' : 'none' }}>(Download File)</a>
+                                            <a href={assignment.subfile} download id='f-dowload' style={{ display: assignment.display4 ? 'block' : 'none' }}>(Download File)</a>
                                             <br />
                                             <span id='sub_d' style={{ display: assignment.display4 ? 'block' : 'none' }}>Submit Date: {assignment.date}</span>
                                         </td>

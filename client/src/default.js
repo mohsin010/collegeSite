@@ -12,9 +12,9 @@ import { withRouter } from 'react-router-dom';
 class Default extends Component {
   constructor(props) {
     super(props);
-    this.state ={
+    this.state = {
       rollno: this.props.login.loggedInUser.rollno,
-      
+
     }
     let user = this.props.login.loggedInUser;
     if (this.props.location.pathname == '/signup' || this.props.location.pathname == '/to_login') {
@@ -22,26 +22,26 @@ class Default extends Component {
       fetch('/st_groups_display', {
         method: 'POST',
         headers: {
-            'Content-Type': 'Application/json'
+          'Content-Type': 'Application/json'
         },
         body: JSON.stringify(this.state)
-    }).then((resp) => resp.json()).then((group) => {
+      }).then((resp) => resp.json()).then((group) => {
 
         if (group) {
-            this.setState({
-                groupid: group.groupid,
-                title: group.title,
-                supervisor: group.supervisor
-            })
-            store.dispatch({
-                payload: group,
-                type: 'group_loaded'
-            })
+          this.setState({
+            groupid: group.groupid,
+            title: group.title,
+            supervisor: group.supervisor
+          })
+          store.dispatch({
+            payload: group,
+            type: 'group_loaded'
+          })
         } else {
-            console.log('Not Found any Reacord')
+          console.log('Not Found any Reacord')
         }
 
-    })
+      })
 
       fetch('/is_authenticated', {
         method: 'GET',
@@ -57,7 +57,7 @@ class Default extends Component {
             type: 'user_signed_success'
           })
           // if(this.props.location.pathname == '/'){
-            this.props.history.push('/app');
+          this.props.history.push('/app');
           // }
           // else{
           //   this.props.history.push(this.props.history.location.pathname);
@@ -74,26 +74,42 @@ class Default extends Component {
         //   this.props.history.push('/app');
         // }
       })
-     
+
     }
   }
   render() {
-    return (
-      <div className="default">
-        <Header />
-        <div hidden={!this.props.login.loggedInUser.cnic}>
-          <Example />
+    if (this.props.login.loggedInUser.cnic) {
+      return (
+        <div className="default">
+          <Header />
+          <div hidden={!this.props.login.loggedInUser.cnic}>
+            <Example />
+          </div>
+          {/* <div hidden={!this.props.login.loggedInUser._id}>
+              <Home />
+            </div> */}
+          {/* <div  hidden={!this.props.login.loggedInUser._id} > */}
+
+          <CustomDefaultRouts />
+          {/* </div> */}
         </div>
-        {/* <div hidden={!this.props.login.loggedInUser._id}>
-            <Home />
-          </div> */}
-        {/* <div  hidden={!this.props.login.loggedInUser._id} > */}
 
-        <CustomDefaultRouts />
-        {/* </div> */}
-      </div>
+      );
+    }else{
+      return(
+        <div className="default">
+          <Header />
+          {/* <div hidden={!this.props.login.loggedInUser._id}>
+              <Home />
+            </div> */}
+          {/* <div  hidden={!this.props.login.loggedInUser._id} > */}
 
-    );
+          <CustomDefaultRouts />
+          {/* </div> */}
+        </div>
+      )
+    }
+
   }
 }
 

@@ -28,7 +28,7 @@ var storage = multer.diskStorage({
     destination: function (req, file, cb) {
         
 
-        cb(null, './client/public/')
+        cb(null, 'uploads')
     },
     filename: function (req, file, cb) {
         crypto.pseudoRandomBytes(16, function (err, raw) {
@@ -487,7 +487,7 @@ router.post('/delete_marks', function (req, res) {
 
 router.post('/documents', upload.single('file'), (req, res) => {
     if (req.file) {
-        req.body.file = req.file.path;
+        req.body.file = req.file.originalname;
     }
     Documents.findOne(req.body, (err, rec) => {
 
@@ -560,7 +560,7 @@ router.post('/assignments_marks', function (req, res) {
 
 router.post('/submit_assignment', upload.single('file'), (req, res) => {
     if (req.file) {
-        req.body.subfile = req.file.path;
+        req.body.subfile = req.file.originalname;
     }
     Assignments.findOneAndUpdate({ groupid: req.body.b, no: req.body.a }, req.body, (err, rec) => {
 
