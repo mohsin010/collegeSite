@@ -193,7 +193,7 @@ class Discussion extends Component {
     var display = false;
     var filterdMsgs = this.state.msgs.filter(
         (msg) => {
-            if (msg.groupid.indexOf(this.state.search)) {
+            if (msg.groupid.toLowerCase().indexOf(this.state.search)) {
 
                 return msg.groupid.toLowerCase().indexOf(this.state.search) !== -1;
             } else {

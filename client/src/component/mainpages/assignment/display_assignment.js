@@ -275,7 +275,7 @@ class AssignmentDisplay extends Component {
         var display = false;
         var filterdAssignment = this.state.assignments.filter(
             (assignment) => {
-                if (assignment.groupid.indexOf(this.state.search)) {
+                if (assignment.groupid.toLowerCase().indexOf(this.state.search)) {
 
                     return assignment.groupid.toLowerCase().indexOf(this.state.search) !== -1;
                 } else {
@@ -305,7 +305,7 @@ class AssignmentDisplay extends Component {
                         </div>
                         <div className='searching_assignment' hidden={this.props.login.loggedInUser.rollno}>
                             <span className='search-ass-conatiner'>
-                        <input type='text' placeholder='Search by No or GroupId' onChange={this.updateSearch} value={this.state.search} className='search-ass-input' />
+                        <input type='text' placeholder='Search by GroupId' onChange={this.updateSearch} value={this.state.search} className='search-ass-input' />
                         {/* <button onClick={this.updateSearch} className='search-ass-btn'>Search</button> */}
                         <button onClick={this.restSearch} className='search-ass-reset'>Reset</button>
 

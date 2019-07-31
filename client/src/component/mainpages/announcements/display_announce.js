@@ -201,7 +201,7 @@ class Display_announce extends React.Component {
         var display = false;
     var filterAnnouncements = this.state.assignments.filter(
         (annuncement) => {
-            if (annuncement.groupid.indexOf(this.state.search)) {
+            if (annuncement.groupid.toLowerCase().indexOf(this.state.search)) {
 
                 return annuncement.groupid.toLowerCase().indexOf(this.state.search) !== -1;
             } else {

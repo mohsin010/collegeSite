@@ -101,7 +101,7 @@ class ResultDisplay extends Component {
         var display = false;
     var filterdResult = this.state.assignments.filter(
         (result) => {
-            if (result.groupId.indexOf(this.state.search)) {
+            if (result.groupId.toLowerCase().indexOf(this.state.search)) {
 
                 return result.groupId.toLowerCase().indexOf(this.state.search) !== -1;
             } else {

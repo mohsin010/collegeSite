@@ -87,7 +87,7 @@ class Display_notic extends React.Component {
         var display = false;
         var filterdNotice = this.state.assignments.filter(
             (notice) => {
-                if (notice.title.indexOf(this.state.search)) {
+                if (notice.title.toLowerCase().indexOf(this.state.search)) {
 
                     return notice.title.toLowerCase().indexOf(this.state.search) !== -1;
                 } else {

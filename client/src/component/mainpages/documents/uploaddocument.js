@@ -74,7 +74,7 @@ class Display_document extends React.Component {
         var display = false;
     var filterdDoc = this.state.assignments.filter(
         (doc) => {
-            if (doc.linkadress.indexOf(this.state.search)) {
+            if (doc.linkadress.toLowerCase().indexOf(this.state.search)) {
 
                 return doc.linkadress.toLowerCase().indexOf(this.state.search) !== -1;
             } else {
