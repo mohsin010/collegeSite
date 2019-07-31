@@ -78,7 +78,7 @@ class Default extends Component {
     }
   }
   render() {
-    if (this.props.login.loggedInUser.cnic) {
+   
       return (
         <div className="default">
           <Header />
@@ -95,20 +95,7 @@ class Default extends Component {
         </div>
 
       );
-    }else{
-      return(
-        <div className="default">
-          <Header />
-          {/* <div hidden={!this.props.login.loggedInUser._id}>
-              <Home />
-            </div> */}
-          {/* <div  hidden={!this.props.login.loggedInUser._id} > */}
-
-          <CustomDefaultRouts />
-          {/* </div> */}
-        </div>
-      )
-    }
+    
 
   }
 }
