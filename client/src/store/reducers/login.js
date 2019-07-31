@@ -102,6 +102,9 @@ const loginReducer = (state = initialState, action) => {
         case 'update_profile_success':
             return {
                 loggedInUser: action.payload,
+                group: { ...state.group},
+                messageId:{...state.messageId},
+                assignments: {...state.assignments},
                 in_process: 'false'
             }
             break;

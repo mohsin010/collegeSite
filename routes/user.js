@@ -487,7 +487,7 @@ router.post('/delete_marks', function (req, res) {
 
 router.post('/documents', upload.single('file'), (req, res) => {
     if (req.file) {
-        req.body.file = req.file.originalname;
+        req.body.file = '/' + req.file.originalname;
     }
     Documents.findOne(req.body, (err, rec) => {
 
