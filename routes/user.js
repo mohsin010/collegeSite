@@ -560,7 +560,7 @@ router.post('/assignments_marks', function (req, res) {
 
 router.post('/submit_assignment', upload.single('file'), (req, res) => {
     if (req.file) {
-        req.body.subfile = req.file.originalname;
+        req.body.subfile = req.file.path;
     }
     Assignments.findOneAndUpdate({ groupid: req.body.b, no: req.body.a }, req.body, (err, rec) => {
 
