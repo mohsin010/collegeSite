@@ -487,7 +487,7 @@ router.post('/delete_marks', function (req, res) {
 
 router.post('/documents', upload.single('file'), (req, res) => {
     if (req.file) {
-        req.body.file = '/' + req.file.originalname;
+        req.body.file = req.file.path;
     }
     Documents.findOne(req.body, (err, rec) => {
 
@@ -531,7 +531,7 @@ router.post('/delete_document', function (req, res) {
 
 router.post('/assignments', upload.single('file'), (req, res) => {
     if (req.file) {
-        req.body.file = '/' + req.file.originalname;
+        req.body.file = '/' + req.file.path;
     }
     Assignments.findOne({ groupid: req.body.groupid, no: req.body.no }, req.body, (err, rec) => {
         if (rec) {
@@ -560,7 +560,7 @@ router.post('/assignments_marks', function (req, res) {
 
 router.post('/submit_assignment', upload.single('file'), (req, res) => {
     if (req.file) {
-        req.body.subfile = '/' + req.file.originalname;
+        req.body.subfile = req.file.path;
     }
     Assignments.findOneAndUpdate({ groupid: req.body.b, no: req.body.a }, req.body, (err, rec) => {
 
@@ -766,7 +766,7 @@ router.post('/login', function (req, res, next) {
 // Faculty signup
 router.post('/sup_signup', upload.single('file'), (req, res) => {
     if (req.file) {
-        req.body.file = req.file.originalname;
+        req.body.file = req.file.path;
     }
     Faculty.findOne({ cnic: req.body.cnic }, req.body, (err, user) => {
 

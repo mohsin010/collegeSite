@@ -1,6 +1,6 @@
-import store from '../store/store';
+import store from '../store/store'; 
 import history from '../history';
-
+  
 const userService = {
     signup: function (data) {
 

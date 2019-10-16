@@ -3,11 +3,11 @@ import userService from '../../services/user';
 
 
 let initialState = {
-    in_process: 'false',
+    in_process: 'false', 
     loggedInUser: {},
     assignments: [],
     messageId: {},
-    group:{}
+    group:{} 
 };
 
 const loginReducer = (state = initialState, action) => {

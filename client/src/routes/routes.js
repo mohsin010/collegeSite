@@ -1,7 +1,7 @@
 // import Signin from './component/mainpages/signin';
 // import Header from './component/header/header';
 import App from '../App';
-import Nav from '../component/navbar/navbar';
+import Nav from '../component/navbar/navbar'; 
 import Home from '../component/home/home'
 import Profile from '../component/mainpages/profile/Profile';
 import Noticeboard from '../component/mainpages/noticeboard/viewnoticeboard';
@@ -14,7 +14,7 @@ import Viva from '../component/mainpages/schedule/viva schedule/viva';
 import Instructor_Info from '../component/mainpages/instructor_info/instructor_info';
 import ViewAssignment from '../component/mainpages/assignment/view_assignment';
 
-// import Profile from './component/mainpages/profile/Profile';
+// import Profile from './componenavnt/mainpages/profile/Profile';
 
 import React, { Component } from 'react';
 import {

@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import store from './store/store';
 import history from './history';
 
-
+ 
 import {
     Router
 } from 'react-router-dom';

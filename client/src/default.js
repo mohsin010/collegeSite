@@ -20,7 +20,7 @@ class Default extends Component {
     if (this.props.location.pathname == '/signup' || this.props.location.pathname == '/to_login') {
     } else {
       fetch('/st_groups_display', {
-        method: 'POST',
+        method: 'POST', 
         headers: {
           'Content-Type': 'Application/json'
         },

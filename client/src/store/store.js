@@ -11,4 +11,4 @@ const store = createStore(combineReducers({ loginReducer }));
 //     message:'Hello friend!'
 // });
 
-export default store; 
+export default store;  

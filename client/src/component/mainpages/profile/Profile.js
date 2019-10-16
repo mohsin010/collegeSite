@@ -21,7 +21,8 @@ class Profile extends Component {
             enddate: this.props.login.loggedInUser.enddate,
             cnic: this.props.login.loggedInUser.cnic,
             designation: this.props.login.loggedInUser.designation,
-            g_id: this.props.login.group.groupid,
+            // g_id: this.props.login.group.groupid,
+            g_id: this.props.login.loggedInUser.groupid,
             type: 'password',
             score: 'null'
 

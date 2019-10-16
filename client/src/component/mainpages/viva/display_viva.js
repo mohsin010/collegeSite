@@ -52,7 +52,6 @@ class Display_Viva extends Component {
                 // })
                 // debugger;
                 if (viva) {
-                    debugger;
                     this.setState({
 
                         // startDate: viva.startDate,
@@ -73,14 +72,12 @@ class Display_Viva extends Component {
 
 
     getDates = (startDate, endDate) => {
+        debugger;
         var firstDate = new Date(this.state.startDate);
         var secondDate = new Date(this.state.endDate);
-        var start = firstDate ;
-        var end = secondDate
         var dates = [];
-        // dates.push(firstDate);
         while (firstDate -1 <= secondDate - 1) {
-            firstDate.setDate(firstDate.getDate() + 1);
+            firstDate.setDate(firstDate.getDate() + 1); 
             var date = new Date(firstDate).toLocaleDateString()
             dates.push(date )
             // start ++
@@ -145,7 +142,7 @@ class Display_Viva extends Component {
             <div>
 
                 {/* <button onClick={this.getDates}>Click me</button> */}
-                <div style={{display: this.state.display4 ? 'block' : 'none'}}>nfsfkjdfhkjsdhjfksk</div>
+                <div style={{display: this.state.display4 ? 'block' : 'none'}}></div>
 
                 <div style={{display: this.state.display3 ? 'block' : 'none'}}>
                     <table id='tbl-assignment' >

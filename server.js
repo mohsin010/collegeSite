@@ -102,6 +102,8 @@ app.use('/', userRoutes);
 //     res.end('Hellow bhai log');
 // })
 
+//Deployment Configuration
+
 if(process.env.NODE_ENV === 'production'){
     app.use(express.static('client/build'))
     app.use(express.static('uploads'))
@@ -113,7 +115,7 @@ if(process.env.NODE_ENV === 'production'){
 
 app.use(express.static("./"))
 
-console.log(__dirname);
+
 // const port = process.env.port || 8080;
 
 // app.listen(port, () => console.log('Server Runsning at', port));
@@ -122,5 +124,5 @@ app.set( 'port', ( process.env.PORT || 8080 ));
 
 // Start node server
 app.listen( app.get( 'port' ), function() {
-  console.log( 'Node server is running on port ' + app.get( 'port' ));
+  console.log( 'Http server is running on port ' + app.get( 'port' ));
   });

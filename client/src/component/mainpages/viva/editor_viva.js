@@ -177,7 +177,6 @@ class Editor_Vivaa extends Component {
 
             // supervisor: evt.target.value
         })
-        console.log(this.state.selectedStudents)
     }
 
     submit = (e) => {
@@ -185,10 +184,10 @@ class Editor_Vivaa extends Component {
 
         debugger;
         let data = {
-            groupid: this.state.selectedStudents.map((item) => {
-                return item.groupid;
-            }),
-            // groupid: this.state.groupid,
+            // groupid: this.state.selectedStudents.map((item) => {
+            //     return item.groupid;
+            // }),
+            groupid: this.state.selectedStudents[0].groupid,
             startDate: this.state.startDate,
             endDate: this.state.endDate,
             vivaDate: this.state.vivaDate,
@@ -247,18 +246,7 @@ class Editor_Vivaa extends Component {
                 console.log('Err')
 
             }
-            // if (groups) {
-            //     this.setState({
-
-            //         groups: groups,
-            //         // display3: groups.display3,
-            //         // display4: groups.display4,
-            //         // display1: 'block',
-            //     });
-            // } else {
-            //     // this.setState({ display2: 'block' })
-            //     console.log('Err')
-            // }
+           
         })
 
         // if (!this.props.login.loggedInUser.department) {
