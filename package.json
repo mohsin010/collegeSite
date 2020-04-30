@@ -19,7 +19,7 @@
     "cookie-parser": "^1.4.4",
     "express": "^4.16.4",
     "express-session": "^1.16.1",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "mongoose": "^5.5.1",
     "multer": "^1.4.1",
     "nodemon": "^1.19.1",
